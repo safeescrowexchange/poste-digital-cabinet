@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partnership Digitale | Partner × Poste Italiane</title>
+  <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #FFFFFF;
+      --yellow: #EEDC00;
+      --blue: #0047BB;
+      --radius: 8px;
+      --max-width: 1200px;
+      --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: #f4f6f9;
+      color: #1a1a1a;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.45rem); }
+
+    p { font-size: 1.05rem; color: #333; max-width: 48ch; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ===== АНИМАЦИИ ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .animate-fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+
+    /* ===== HEADER (жёлтый) ===== */
+    .header {
+      background: var(--yellow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: fadeIn 0.5s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 1.5rem;
+    }
+
+    .logo-poste {
+      height: 38px;
+      width: auto;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .logo-poste:hover {
+      transform: scale(1.05);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .header-nav a {
+      position: relative;
+      color: #1a1a1a;
+      transition: color 0.2s;
+    }
+
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      transition: width 0.25s ease;
+    }
+
+    .header-nav a:hover {
+      color: var(--blue);
+    }
+
+    .header-nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.35rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-login:hover {
+      background: #003a99;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 71, 187, 0.3);
+    }
+
+    .btn-login svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #1a1a1a;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 4.5rem 0;
+      background: var(--white);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: var(--yellow);
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius);
+      width: fit-content;
+    }
+
+    .hero-visual {
+      background: linear-gradient(145deg, #f8f8f8, #f0f0f0);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e8e8e8;
+      padding: 2rem;
+      text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-visual:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+
+    .hero-visual img {
+      height: 70px;
+      margin: 0 auto 1.2rem;
+      transition: transform 0.4s ease;
+    }
+
+    .hero-visual:hover img {
+      transform: scale(1.08);
+    }
+
+    .hero-visual p {
+      font-size: 0.95rem;
+      color: #666;
+      max-width: 28ch;
+      margin: 0 auto;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.95rem 2.1rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      width: fit-content;
+    }
+
+    .btn-primary:hover {
+      background: #003a99;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 71, 187, 0.3);
+    }
+
+    /* ===== TRACKING ===== */
+    .tracking {
+      background: #f9f9f9;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 1.5rem 0;
+    }
+
+    .tracking-inner {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .tracking input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .tracking input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0, 71, 187, 0.15);
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.2rem;
+    }
+
+    .section-header p {
+      margin: 0.85rem auto 0;
+      color: #555;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid #eee;
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.25s; }
+    .feature-card:nth-child(3) { animation-delay: 0.4s; }
+
+    .feature-card:hover {
+      box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+      transform: translateY(-6px);
+      border-color: #e0e0e0;
+    }
+
+    .feature-accent {
+      width: 48px;
+      height: 6px;
+      background: var(--yellow);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .feature-card:hover .feature-accent {
+      width: 72px;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: #f7f7f7;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .feature-card:hover .feature-icon {
+      background: var(--yellow);
+      transform: scale(1.1);
+    }
+
+    .feature-link {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s;
+    }
+
+    .feature-link:hover {
+      gap: 0.6rem;
+    }
+
+    /* ===== BANNER ===== */
+    .banner {
+      background: var(--yellow);
+      padding: 4.2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-text h2 { color: #1a1a1a; margin-bottom: 0.6rem; }
+    .banner-text p { color: #333; max-width: 42ch; }
+
+    .banner-cta {
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      padding: 0.95rem 2.1rem;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-block;
+    }
+
+    .banner-cta:hover {
+      background: #003a99;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 71, 187, 0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid #eee;
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .footer-logo img {
+      height: 36px;
+      margin-bottom: 1.1rem;
+      transition: transform 0.3s;
+    }
+
+    .footer-logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-col h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.55rem; }
+    .footer-col a {
+      font-size: 0.95rem;
+      color: #555;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--blue);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.6rem;
+      border-top: 1px solid #eee;
+      font-size: 0.85rem;
+      color: #777;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ===== MODAL LOGIN ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+      animation: modalIn 0.3s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.1rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #1a1a1a;
+    }
+
+    .modal-logo {
+      height: 36px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .modal h3 {
+      text-align: center;
+      margin-bottom: 0.4rem;
+      font-size: 1.35rem;
+    }
+
+    .modal-sub {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0, 71, 187, 0.15);
+    }
+
+    .login-error {
+      display: none;
+      background: #ffe6e6;
+      border: 1px solid #ff4d4d;
+      color: #cc0000;
+      padding: 0.75rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 600;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-btn {
+      width: 100%;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.95rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .modal-btn:hover {
+      background: #003a99;
+      transform: translateY(-1px);
+    }
+
+    .modal-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.4rem;
+      font-size: 0.85rem;
+    }
+
+    .modal-links a {
+      color: var(--blue);
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .modal-links a:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    /* ===== DASHBOARD (ЛИЧНЫЙ КАБИНЕТ БАНКА) ===== */
+    #dashboardSection {
+      display: none;
+      background: #f0f3f8;
+      min-height: calc(100vh - 72px);
+      padding: 2.5rem 0 4rem;
+    }
+
+    #dashboardSection.dash-visible .dash-anim {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.55s ease forwards;
+    }
+    #dashboardSection.dash-visible .dash-anim.d1 { animation-delay: 0.05s; }
+    #dashboardSection.dash-visible .dash-anim.d2 { animation-delay: 0.14s; }
+    #dashboardSection.dash-visible .dash-anim.d3 { animation-delay: 0.23s; }
+    #dashboardSection.dash-visible .dash-anim.d4 { animation-delay: 0.32s; }
+
+    .dash-top {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      margin-bottom: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-left: 5px solid var(--yellow);
+      position: relative;
+    }
+
+    .greeting-box h2 {
+      font-size: 1.75rem;
+      color: #0047BB;
+      letter-spacing: -0.02em;
+    }
+
+    .greeting-box p {
+      font-size: 0.92rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .last-access {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.35rem;
+    }
+
+    .total-balance-box {
+      text-align: right;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 1.1rem 1.75rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      min-width: 180px;
+    }
+
+    .total-balance-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .total-balance-amount {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.15;
+      margin-top: 0.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .balance-updated {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+    }
+
+    /* Section titles */
+    .dash-section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.25rem;
+    }
+
+    /* Bank cards */
+    .bank-card {
+      border-radius: 18px;
+      padding: 1.5rem 1.6rem;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 230px;
+      overflow: hidden;
+    }
+
+    .bank-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+    }
+
+    .card-black {
+      background: linear-gradient(145deg, #1c1c1c 0%, #0d0d0d 55%, #222 100%);
+      border: 1px solid #2a2a2a;
+    }
+
+    .card-black::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(238,220,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-black::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(0,71,187,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-yellow {
+      background: linear-gradient(145deg, #FFE500 0%, #E8D200 100%);
+      color: #111;
+      border: 1px solid #d4c400;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-brand-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .card-brand {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .card-black .card-brand { color: var(--yellow); }
+    .card-yellow .card-brand { color: var(--blue); }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .card-black .card-status {
+      background: rgba(34, 197, 94, 0.18);
+      color: #4ade80;
+    }
+
+    .card-yellow .card-status {
+      background: rgba(34, 197, 94, 0.2);
+      color: #15803d;
+    }
+
+    .card-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .card-contactless {
+      width: 28px;
+      height: 28px;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+
+    .card-chip {
+      width: 44px;
+      height: 32px;
+      background: linear-gradient(135deg, #d4a017 0%, #f0d060 40%, #c49212 100%);
+      border-radius: 6px;
+      position: relative;
+      margin-top: 0.75rem;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(0,0,0,0.25);
+    }
+
+    .card-chip::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 3px;
+    }
+
+    .card-number-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 1.1rem 0 0.35rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-number {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.22rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+    }
+
+    .card-toggle-num {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 6px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.85;
+      transition: opacity 0.2s, background 0.2s;
+      flex-shrink: 0;
+      padding: 0;
+    }
+
+    .card-yellow .card-toggle-num {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .card-toggle-num:hover {
+      opacity: 1;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .card-yellow .card-toggle-num:hover {
+      background: rgba(0,0,0,0.14);
+    }
+
+    .card-toggle-num svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .card-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-holder {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .card-balance-tag {
+      text-align: right;
+    }
+
+    .card-balance-tag span {
+      font-size: 0.7rem;
+      opacity: 0.75;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-balance-tag strong {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 1;
+      gap: 0.75rem;
+    }
+
+    .card-yellow .card-footer {
+      border-top-color: rgba(0,0,0,0.12);
+    }
+
+    .card-iban-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .card-iban-box {
+      font-size: 0.76rem;
+      font-family: "Courier New", Courier, monospace;
+      opacity: 0.9;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-copy-btn {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.85;
+      transition: opacity 0.2s, background 0.2s;
+      flex-shrink: 0;
+      padding: 0;
+    }
+
+    .card-yellow .card-copy-btn {
+      background: rgba(0,0,0,0.08);
+    }
+
+    .card-copy-btn:hover {
+      opacity: 1;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .card-yellow .card-copy-btn:hover {
+      background: rgba(0,0,0,0.14);
+    }
+
+    .card-copy-btn.copied {
+      background: rgba(34, 197, 94, 0.35) !important;
+      opacity: 1;
+    }
+
+    .card-copy-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .card-network {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      opacity: 0.95;
+    }
+
+    .card-network svg {
+      width: 38px;
+      height: 24px;
+    }
+
+    /* Transactions */
+    .transactions-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.6rem 1.75rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+
+    .trans-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.6rem;
+    }
+
+    .trans-table th {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .trans-table th:last-child {
+      text-align: right;
+    }
+
+    .trans-table td {
+      padding: 1rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.94rem;
+      color: #334155;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .trans-table td:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .trans-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .trans-table tbody tr:hover td {
+      background: #f1f5f9;
+    }
+
+    .trans-desc {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .trans-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .trans-icon.in {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .trans-icon.out {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .amount-positive {
+      color: #16a34a !important;
+      font-weight: 700 !important;
+    }
+
+    .amount-negative {
+      color: #dc2626 !important;
+      font-weight: 700 !important;
+    }
+
+    .logout-btn {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      font-weight: 700;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .logout-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 0.85rem;
+      margin-bottom: 1.85rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 0.75rem 1.15rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .action-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .action-btn:hover {
+      background: var(--yellow);
+      border-color: #e0d000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(238, 220, 0, 0.25);
+    }
+
+    .action-btn:hover svg {
+      opacity: 1;
+    }
+
+
+    /* Pusher: новая транзакция */
+    @keyframes rowSlideIn {
+      from { opacity: 0; transform: translateY(-18px); background: #ecfdf5; }
+      to { opacity: 1; transform: translateY(0); background: transparent; }
+    }
+    .trans-row-new { animation: rowSlideIn 0.55s ease forwards; }
+
+    .total-balance-box.flash {
+      border-color: #86efac;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    }
+
+    .live-badge {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #16a34a;
+      background: #dcfce7;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+    .live-badge.on { display: inline-flex; }
+    .live-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #16a34a;
+      animation: livePulse 1.4s ease infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* Admin panel */
+    #adminPanel {
+      display: none;
+      min-height: 100vh;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 3rem 1.5rem;
+    }
+    .admin-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border: 1px solid #334155;
+    }
+    .admin-card h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      color: #f8fafc;
+    }
+    .admin-card .admin-sub {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 1.75rem;
+    }
+    .admin-group { margin-bottom: 1.25rem; }
+    .admin-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .admin-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #f1f5f9;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .admin-group input:focus { outline: none; border-color: var(--yellow); }
+    .admin-send-btn {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      background: var(--yellow);
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .admin-send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(238, 220, 0, 0.35); }
+    .admin-send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .admin-status {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      display: none;
+    }
+    .admin-status.ok {
+      display: block;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #4ade80;
+    }
+    .admin-status.err {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+    }
+    .admin-hint {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .admin-hint code {
+      background: #0f172a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+
+    /* ===== TOAST УВЕДОМЛЕНИЕ О ПОСТУПЛЕНИИ ===== */
+    .bank-toast {
+      position: fixed;
+      top: 84px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      z-index: 2000;
+      width: calc(100% - 2rem);
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(22, 163, 74, 0.2);
+      padding: 1rem 1.15rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+    }
+    .bank-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .bank-toast-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #dcfce7;
+      color: #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .bank-toast-body { min-width: 0; flex: 1; }
+    .bank-toast-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.15rem;
+    }
+    .bank-toast-msg {
+      font-size: 0.85rem;
+      color: #475569;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+    .bank-toast-amount {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #16a34a;
+      margin-top: 0.35rem;
+    }
+    .bank-toast-close {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .total-balance-box.flash {
+      border-color: #86efac !important;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+
+    @media (max-width: 600px) {
+      .bank-toast { top: 72px; max-width: none; }
+      .header-right { gap: 0.5rem; }
+      .live-badge { font-size: 0.68rem; padding: 0.2rem 0.5rem; }
+      .logout-btn { padding: 0.4rem 0.75rem; font-size: 0.82rem; }
+      .total-balance-amount { font-size: 1.65rem; word-break: break-all; }
+      .card-balance-tag strong { font-size: 1.1rem; }
+      .total-balance-box { width: 100%; text-align: left; min-width: 0; }
+      .dash-top { gap: 1rem; }
+      .transactions-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .trans-table { min-width: 300px; }
+      .card-number { font-size: 0.95rem; letter-spacing: 0.08em; }
+      .quick-actions { margin-bottom: 1.4rem; }
+      .action-btn { min-height: 44px; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 2.5rem; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .header-nav { display: none; }
+      .header-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--yellow);
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        gap: 1.2rem;
+        animation: fadeUp 0.3s ease;
+      }
+      .menu-toggle { display: block; }
+      .banner-inner { flex-direction: column; text-align: center; }
+      .banner-text p { margin: 0 auto; }
+      .hero-visual img { height: 56px; }
+      .header-right { gap: 0.8rem; }
+      .dash-top { flex-direction: column; align-items: flex-start; }
+      .total-balance-box { width: 100%; text-align: left; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 0; }
+      .features { padding: 3.5rem 0; }
+      .header-inner { height: 64px; }
+      .logo-poste { height: 32px; }
+      .btn-login { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      .modal { margin: 1rem; padding: 1.8rem 1.5rem; }
+
+      /* Dashboard mobile */
+      #dashboardSection { padding: 1.5rem 0 3rem; }
+      .dash-top { padding: 1.25rem 1.25rem; }
+      .greeting-box h2 { font-size: 1.4rem; }
+      .total-balance-amount { font-size: 1.85rem; }
+      .quick-actions { gap: 0.6rem; }
+      .action-btn { padding: 0.65rem 0.9rem; font-size: 0.82rem; flex: 1 1 calc(50% - 0.6rem); justify-content: center; }
+      .action-btn svg { width: 16px; height: 16px; }
+      .bank-card { min-height: 210px; padding: 1.25rem 1.2rem; border-radius: 16px; }
+      .card-number { font-size: 1.05rem; letter-spacing: 0.12em; }
+      .card-iban-box { font-size: 0.7rem; }
+      .card-network svg { width: 32px; height: 20px; }
+      .transactions-card { padding: 1.2rem 1rem; }
+      .trans-table { font-size: 0.85rem; }
+      .trans-table th, .trans-table td { padding: 0.7rem 0.45rem; }
+      .trans-icon { width: 24px; height: 24px; font-size: 0.75rem; }
+      .dash-section-title { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (жёлтый) -->
+  <header class="header">
+    <div class="container header-inner">
+      <img 
+        class="logo-poste" 
+        id="homeLogo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
+        alt="Poste Italiane"
+        width="170"
+        height="38"
+      >
+
+      <nav class="header-nav" id="mainNav">
+        <a href="#features" class="public-link">Servizi</a>
+        <a href="#tracking" class="public-link">Spedizioni</a>
+        <a href="#partnership" class="public-link">Partnership</a>
+        <a href="#contact" class="public-link">Contatti</a>
+      </nav>
+
+      <div class="header-right">
+        <button class="btn-login" id="loginBtn" aria-label="Accedi all'area riservata">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Accedi
+        </button>
+
+        <span class="live-badge" id="liveBadge">LIVE</span>
+        <button class="logout-btn" id="logoutBtn" style="display: none;">Esci</button>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЙ ПУБЛИЧНЫЙ КОНТЕНТ -->
+  <div id="publicContent">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container grid-2">
+        <div class="hero-content">
+          <span class="hero-label animate-fade-up">Partnership ufficiale</span>
+          <h1 class="animate-fade-up delay-1">Insieme per un’Italia più connessa e accessibile</h1>
+          <p class="animate-fade-up delay-2">
+            Uniamo l’innovazione digitale con la rete capillare di Poste Italiane — 
+            oltre 12.600 uffici postali e servizi digitali per cittadini e imprese.
+          </p>
+          <a href="#partnership" class="btn-primary animate-fade-up delay-3">Scopri la partnership</a>
+        </div>
+
+        <div class="hero-visual animate-fade-up delay-2">
+          <div>
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
+              alt="Poste Italiane"
+              height="70"
+            >
+            <p>La rete più estesa d’Italia + innovazione digitale</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKING -->
+    <section class="tracking" id="tracking">
+      <div class="container tracking-inner animate-fade-up">
+        <input type="text" placeholder="Cerca spedizione (codice tracking)" id="trackingInput" aria-label="Cerca spedizione">
+        <button class="btn-primary" id="searchBtn">Cerca</button>
+        <span style="font-weight:600; color:var(--blue); cursor:pointer;" id="officeBtn">
+          Cerca un ufficio →
+        </span>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header animate-fade-up">
+          <h2>Servizi in evidenza della partnership</h2>
+          <p>Soluzioni concrete nate dall’incontro tra tecnologia e prossimità.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="feature-card">
+            <div class="feature-accent"></div>
+            <div class="feature-icon">📦</div>
+            <h3>Spedizioni e logistica</h3>
+            <p>
+              Spedisci pacchi e posta, traccia le consegne e gestisci 
+              le spedizioni con la rete più estesa d’Italia.
+            </p>
+            <a href="#tracking" class="feature-link">Spedisci ora →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-accent"></div>
+            <div class="feature-icon">💳</div>
+            <h3>Pagamenti e carte</h3>
+            <p>
+              Pagamenti online, bollettini e carte prepagate — 
+              semplici, sicuri e disponibili ovunque.
+            </p>
+            <a href="#partnership" class="feature-link">Scopri di più →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-accent"></div>
+            <div class="feature-icon">🏦</div>
+            <h3>Servizi finanziari</h3>
+            <p>
+              Conti, risparmio e soluzioni finanziarie 
+              accessibili a tutti, con la solidità di un marchio di fiducia.
+            </p>
+            <a href="#partnership" class="feature-link">Vai ai servizi →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANNER -->
+    <section class="banner" id="partnership">
+      <div class="container banner-inner">
+        <div class="banner-text animate-fade-up">
+          <h2>Una partnership di valore nazionale</h2>
+          <p>
+            Uniamo competenze digitali e la capillarità territoriale 
+            per creare servizi più vicini, inclusivi e innovativi.
+          </p>
+        </div>
+        <a href="#contact" class="banner-cta animate-fade-up delay-1">Parliamone insieme</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
+                alt="Poste Italiane"
+                height="36"
+              >
+            </div>
+            <p style="font-size:0.95rem; color:#555; max-width:30ch;">
+              Partnership ufficiale tra innovazione digitale e la rete 
+              più estesa e affidabile d’Italia.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Servizi</h4>
+            <ul>
+              <li><a href="#features">Spedizioni</a></li>
+              <li><a href="#features">Pagamenti</a></li>
+              <li><a href="#features">Servizi finanziari</a></li>
+              <li><a href="#tracking">Tracking</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Partnership</h4>
+            <ul>
+              <li><a href="#partnership">Chi siamo</a></li>
+              <li><a href="#partnership">Opportunità</a></li>
+              <li><a href="#contact">Contatti</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Area riservata</h4>
+            <ul>
+              <li><a href="#" id="footerLogin">Accedi</a></li>
+              <li><a href="#contact">Assistenza</a></li>
+              <li><a href="#contact">Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Partner × Poste Italiane</span>
+          <span>Tutti i diritti riservati</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== ЛИЧНЫЙ КАБИНЕТ (DASHBOARD) ===== -->
+  <main id="dashboardSection">
+    <div class="container">
+      
+      <!-- ЗОНА 1: Приветствие и Баланс -->
+      <section class="dash-top dash-anim d1">
+        <div class="greeting-box">
+          <h2>Ciao, LIDIA TOSTOGAN!</h2>
+          <p>Benvenuto nell'area personale BancoPosta & Postepay</p>
+          <p class="last-access">Ultimo accesso: oggi alle 14:32</p>
+        </div>
+        <div class="total-balance-box" id="totalBalanceBox">
+          <div class="total-balance-label">Saldo disponibile</div>
+          <div class="total-balance-amount" id="totalBalance">€1,20</div>
+          <div class="balance-updated" id="balanceUpdated">Saldo aggiornato al 06/10/2026</div>
+        </div>
+      </section>
+
+      <!-- Быстрые действия -->
+      <div class="quick-actions dash-anim d2">
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Ricarica Postepay
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          Paga Bollettino
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Bonifico
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+          Ricarica Telefonica
+        </button>
+      </div>
+
+      <!-- ЗОНА 2: Карты пользователя -->
+      <div class="dash-section-title dash-anim d3">
+        <span>💳 Le tue carte Postepay</span>
+      </div>
+
+      <section class="cards-grid dash-anim d3">
+        <!-- ЧЁРНАЯ КАРТА POSTEPAY EVOLUTION -->
+        <article class="bank-card card-black" data-card="evolution">
+          <div>
+            <div class="card-header">
+              <div class="card-brand-wrap">
+                <div class="card-brand">Postepay Evolution</div>
+                <span class="card-status">Attiva</span>
+              </div>
+              <svg class="card-contactless" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M8.5 8.5a5 5 0 0 1 0 7"/>
+                <path d="M11.5 6a8 8 0 0 1 0 12"/>
+                <path d="M14.5 3.5a11 11 0 0 1 0 17"/>
+              </svg>
+            </div>
+            <div class="card-chip"></div>
+            <div class="card-number-row">
+              <span class="card-number" data-full="5333 1738 8369 2644" data-masked="•••• •••• •••• 2644">•••• •••• •••• 2644</span>
+              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta" title="Mostra/nascondi numero">
+                <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="card-info">
+              <div class="card-holder">LIDIA TOSTOGAN</div>
+              <div class="card-balance-tag">
+                <span>Saldo carta</span>
+                <strong id="cardBalance">€1,20</strong>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="card-iban-wrap">
+                <span class="card-iban-box" data-iban="IT22X3608105138299776299857">IBAN IT22 X3608 ••••• ••••• •••• 9857</span>
+                <button type="button" class="card-copy-btn" aria-label="Copia IBAN" title="Copia IBAN">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
+              </div>
+              <div class="card-network" title="Mastercard">
+                <svg viewBox="0 0 48 30" aria-hidden="true">
+                  <circle cx="18" cy="15" r="12" fill="#EB001B"/>
+                  <circle cx="30" cy="15" r="12" fill="#F79E1B"/>
+                  <path d="M24 6.5a12 12 0 0 1 0 17 12 12 0 0 1 0-17z" fill="#FF5F00"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ЖЁЛТАЯ КАРТА POSTEPAY STANDARD -->
+        <article class="bank-card card-yellow" data-card="standard">
+          <div>
+            <div class="card-header">
+              <div class="card-brand-wrap">
+                <div class="card-brand">Postepay Standard</div>
+                <span class="card-status">Attiva</span>
+              </div>
+              <span style="font-size:0.72rem; font-weight:700; opacity:0.65; letter-spacing:0.04em;">POSTE ITALIANE</span>
+            </div>
+            <div class="card-chip"></div>
+            <div class="card-number-row">
+              <span class="card-number" data-full="4532 8710 2941 1092" data-masked="•••• •••• •••• 1092">•••• •••• •••• 1092</span>
+              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta" title="Mostra/nascondi numero">
+                <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="card-info">
+              <div class="card-holder">LIDIA TOSTOGAN</div>
+              <div class="card-balance-tag">
+                <span>Saldo carta</span>
+                <strong>€0,00</strong>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="card-iban-wrap">
+                <span class="card-iban-box">Carta Prepagata Standard</span>
+              </div>
+              <div class="card-network" title="Mastercard">
+                <svg viewBox="0 0 48 30" aria-hidden="true">
+                  <circle cx="18" cy="15" r="12" fill="#EB001B"/>
+                  <circle cx="30" cy="15" r="12" fill="#F79E1B"/>
+                  <path d="M24 6.5a12 12 0 0 1 0 17 12 12 0 0 1 0-17z" fill="#FF5F00"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ЗОНА 3: Последние операции -->
+      <section class="transactions-card dash-anim d4">
+        <div class="dash-section-title" style="margin-bottom: 0.4rem;">
+          <span>📋 Ultimi movimenti</span>
+        </div>
+
+        <table class="trans-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Descrizione / Beneficiario</th>
+              <th>Importo</th>
+            </tr>
+          </thead>
+          <tbody id="transBody">
+            <tr>
+              <td>25/09/2026</td>
+              <td>
+                <div class="trans-desc">
+                  <span class="trans-icon in">↑</span>
+                  <span>Lidia Tostogan</span>
+                </div>
+              </td>
+              <td class="amount-positive">+ €10,00</td>
+            </tr>
+            <tr>
+              <td>25/09/2026</td>
+              <td>
+                <div class="trans-desc">
+                  <span class="trans-icon out">↓</span>
+                  <span>Prelievo</span>
+                </div>
+              </td>
+              <td class="amount-negative">- €10,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== МОДАЛЬНОЕ ОКНО ВХОДА ===== -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
+      
+      <img 
+        class="modal-logo" 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
+        alt="Poste Italiane"
+      >
+
+      <h3>Accedi all’area riservata</h3>
+      <p class="modal-sub">Inserisci le tue credenziali per continuare</p>
+
+      <div class="login-error" id="loginError">
+        Nome utente non valido. Verifica le credenziali inserite.
+      </div>
+
+      <form id="loginForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="username">Nome Utente</label>
+          <input type="text" id="username" name="username" placeholder="Inserisci il nome utente" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Inserisci la password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="modal-btn" id="submitLogin">Accedi</button>
+      </form>
+
+      <div class="modal-links">
+        <a href="#" id="registerLink">Registrati</a>
+        <a href="#" id="recoverLink">Recupera credenziali</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN PANEL (?mode=admin) ===== -->
+  <div id="adminPanel">
+    <div class="admin-card">
+      <h1>⚡ Demo-пульт</h1>
+      <p class="admin-sub">Отправка мгновенного пополнения</p>
+      <div class="admin-group">
+        <label for="adminAmount">Сумма (€)</label>
+        <input type="number" id="adminAmount" step="0.01" min="0.01" value="50.00">
+      </div>
+      <div class="admin-group">
+        <label for="adminSender">Имя / описание отправителя</label>
+        <input type="text" id="adminSender" value="Пополнение от Ивана">
+      </div>
+      <div class="admin-group">
+        <label for="adminRecipient">Кому (email логина). Пусто = всем</label>
+        <input type="text" id="adminRecipient" value="tostoganlidia@gmail.com" placeholder="tostoganlidia@gmail.com">
+      </div>
+      <button type="button" class="admin-send-btn" id="adminSendBtn">⚡ Отправить мгновенно</button>
+      <div class="admin-status" id="adminStatus"></div>
+      <p class="admin-hint">
+        Канал: <code>poste-italiane-channel</code><br>
+        Событие: <code>money-transfer</code>
+      </p>
+    </div>
+  </div>
+
+
+
+  <script>
+    // Элементы
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    const modal = document.getElementById('loginModal');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const footerLogin = document.getElementById('footerLogin');
+    const modalClose = document.getElementById('modalClose');
+    const submitLogin = document.getElementById('submitLogin');
+    const loginError = document.getElementById('loginError');
+    const publicContent = document.getElementById('publicContent');
+    const dashboardSection = document.getElementById('dashboardSection');
+    const homeLogo = document.getElementById('homeLogo');
+
+    // Мобильное меню
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.textContent = '☰';
+      });
+    });
+
+    // Модальное окно входа
+    function openModal() {
+      loginError.style.display = 'none';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => document.getElementById('username').focus(), 100);
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    loginBtn.addEventListener('click', openModal);
+    if (footerLogin) {
+      footerLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    }
+    modalClose.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // ЛОГИКА АУТЕНТИФИКАЦИИ
+    const ALLOWED_USER = "tostoganlidia@gmail.com";
+
+    submitLogin.addEventListener('click', () => {
+      const userVal = document.getElementById('username').value.trim();
+      const passVal = document.getElementById('password').value.trim();
+
+      loginError.style.display = 'none';
+
+      if (!userVal || !passVal) {
+        loginError.textContent = 'Inserisci sia il nome utente che la password.';
+        loginError.style.display = 'block';
+        return;
+      }
+
+      // Проверка имени пользователя
+      if (userVal.toLowerCase() !== ALLOWED_USER.toLowerCase()) {
+        loginError.textContent = 'Nome utente non valido. Verifica le credenziali inserite.';
+        loginError.style.display = 'block';
+        document.getElementById('username').focus();
+        return;
+      }
+
+      // Успешный вход
+      submitLogin.textContent = 'Accesso in corso...';
+      submitLogin.disabled = true;
+
+      setTimeout(() => {
+        submitLogin.textContent = 'Accedi';
+        submitLogin.disabled = false;
+        closeModal();
+        
+        // Переключение интерфейса на Dashboard
+        publicContent.style.display = 'none';
+        dashboardSection.style.display = 'block';
+        dashboardSection.classList.add('dash-visible');
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+
+        var userEmail = document.getElementById('username').value.trim();
+        if (typeof loadCabinetState === 'function') loadCabinetState(userEmail);
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 800);
+    });
+
+    // Выход из личного кабинета (Logout)
+    function logout() {
+      dashboardSection.style.display = 'none';
+      dashboardSection.classList.remove('dash-visible');
+      publicContent.style.display = 'block';
+      loginBtn.style.display = 'inline-flex';
+      logoutBtn.style.display = 'none';
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    logoutBtn.addEventListener('click', logout);
+    homeLogo.addEventListener('click', () => {
+      if (dashboardSection.style.display === 'block') {
+        logout();
+      }
+    });
+
+    // Доп. кнопки в модальном окне
+    document.getElementById('registerLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Registrazione nuovo utente\n\nIn produzione qui si apre il form di registrazione.');
+    });
+
+    document.getElementById('recoverLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Recupero credenziali\n\nIn produzione qui si apre il form di recupero password.');
+    });
+
+    // Поиск трекинга
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const code = document.getElementById('trackingInput').value.trim();
+      if (code) {
+        alert('Ricerca spedizione: ' + code);
+      } else {
+        document.getElementById('trackingInput').focus();
+      }
+    });
+
+    document.getElementById('officeBtn').addEventListener('click', () => {
+      alert('Cerca un ufficio e prenota');
+    });
+
+    // ===== Dashboard interactions =====
+    // Toggle card number visibility
+    document.querySelectorAll('.card-toggle-num').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const numEl = btn.closest('.card-number-row').querySelector('.card-number');
+        const eye = btn.querySelector('.icon-eye');
+        const eyeOff = btn.querySelector('.icon-eye-off');
+        const isMasked = numEl.textContent.includes('•');
+        if (isMasked) {
+          numEl.textContent = numEl.dataset.full;
+          eye.style.display = 'none';
+          eyeOff.style.display = 'block';
+          btn.setAttribute('aria-label', 'Nascondi numero carta');
+        } else {
+          numEl.textContent = numEl.dataset.masked;
+          eye.style.display = 'block';
+          eyeOff.style.display = 'none';
+          btn.setAttribute('aria-label', 'Mostra numero carta');
+        }
+      });
+    });
+
+    // Copy IBAN
+    document.querySelectorAll('.card-copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const ibanEl = btn.closest('.card-iban-wrap').querySelector('.card-iban-box');
+        const fullIban = ibanEl.dataset.iban || ibanEl.textContent.replace(/\s/g, '');
+        try {
+          await navigator.clipboard.writeText(fullIban);
+          btn.classList.add('copied');
+          const original = btn.innerHTML;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = original;
+          }, 1600);
+        } catch (e) {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = fullIban;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          btn.classList.add('copied');
+          setTimeout(() => btn.classList.remove('copied'), 1600);
+        }
+      });
+    });
+  
+    // ===== PUSHER + ADMIN MODE =====
+    const PUSHER_KEY     = "8b65b47d0bf558bcb114";
+    const PUSHER_CLUSTER = "eu";
+    const PUSHER_APP_ID  = "2200657";
+    const PUSHER_SECRET  = "4c077439a7a3c47d6c35";
+    const CHANNEL_NAME   = "poste-italiane-channel";
+    const EVENT_NAME     = "money-transfer";
+
+    let liveBalance = 1.20;
+    let currentUserKey = "";
+    let txHistory = [];
+
+    const STORAGE_PREFIX = "poste_cab_";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdminMode = urlParams.get("mode") === "admin";
+
+    if (isAdminMode) {
+      var elHeader = document.querySelector("header.header");
+      var elPub = document.getElementById("publicContent");
+      var elDash = document.getElementById("dashboardSection");
+      var elModal = document.getElementById("loginModal");
+      if (elHeader) elHeader.style.display = "none";
+      if (elPub) elPub.style.display = "none";
+      if (elDash) elDash.style.display = "none";
+      if (elModal) elModal.style.display = "none";
+      var ap = document.getElementById("adminPanel");
+      if (ap) ap.style.display = "block";
+      document.title = "Demo-пульт | Poste Italiane";
+      document.body.style.background = "#0f172a";
+      setupAdminPanel();
+    }
+
+    function formatEuroLive(n) {
+      return "€" + Number(n).toFixed(2).replace(".", ",");
+    }
+    function formatDateITLive(d) {
+      const dd = String(d.getDate()).padStart(2, "0");
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      return dd + "/" + mm + "/" + d.getFullYear();
+    }
+    function escapeHtmlLive(str) {
+      const d = document.createElement("div");
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function storageKey() {
+      return STORAGE_PREFIX + (currentUserKey || "guest");
+    }
+
+    function saveCabinetState() {
+      if (!currentUserKey) return;
+      try {
+        localStorage.setItem(storageKey(), JSON.stringify({
+          balance: liveBalance,
+          history: txHistory
+        }));
+      } catch (e) {}
+    }
+
+    function loadCabinetState(userEmail) {
+      currentUserKey = (userEmail || "").toLowerCase().trim();
+      liveBalance = 1.20;
+      txHistory = [];
+      try {
+        var raw = localStorage.getItem(storageKey());
+        if (raw) {
+          var data = JSON.parse(raw);
+          if (typeof data.balance === "number") liveBalance = data.balance;
+          if (Array.isArray(data.history)) txHistory = data.history;
+        }
+      } catch (e) {}
+      renderBalanceUI();
+      renderHistoryUI(false);
+    }
+
+    function renderBalanceUI() {
+      const totalEl = document.getElementById("totalBalance");
+      const cardEl  = document.getElementById("cardBalance");
+      const updated = document.getElementById("balanceUpdated");
+      if (totalEl) totalEl.textContent = formatEuroLive(liveBalance);
+      if (cardEl)  cardEl.textContent  = formatEuroLive(liveBalance);
+      if (updated) updated.textContent = "Saldo aggiornato al " + formatDateITLive(new Date());
+    }
+
+    function renderHistoryUI(animateFirst) {
+      const tbody = document.getElementById("transBody");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+      txHistory.forEach(function (item, idx) {
+        var tr = document.createElement("tr");
+        if (animateFirst && idx === 0) tr.className = "trans-row-new";
+        var amount = Number(item.amount);
+        var positive = amount >= 0;
+        tr.innerHTML =
+          "<td>" + escapeHtmlLive(item.date) + "</td>" +
+          "<td><div class=\"trans-desc\"><span class=\"trans-icon " + (positive ? "in" : "out") + "\">" +
+          (positive ? "↑" : "↓") + "</span><span>" + escapeHtmlLive(item.sender) +
+          "</span></div></td>" +
+          "<td class=\"" + (positive ? "amount-positive" : "amount-negative") + "\">" +
+          (positive ? "+ " : "") + formatEuroLive(amount) + "</td>";
+        tbody.appendChild(tr);
+      });
+      if (txHistory.length === 0) {
+        tbody.innerHTML =
+          "<tr><td>25/09/2026</td><td><div class=\"trans-desc\"><span class=\"trans-icon in\">↑</span><span>Lidia Tostogan</span></div></td><td class=\"amount-positive\">+ €10,00</td></tr>" +
+          "<tr><td>25/09/2026</td><td><div class=\"trans-desc\"><span class=\"trans-icon out\">↓</span><span>Prelievo</span></div></td><td class=\"amount-negative\">- €10,00</td></tr>";
+      }
+    }
+
+    function applyMoneyTransfer(data) {
+      if (!data || data.amount === undefined) return;
+      const amount = parseFloat(data.amount);
+      if (isNaN(amount) || amount <= 0) return;
+      const sender = data.sender || "Bonifico in entrata";
+
+      if (data.recipient) {
+        var rec = String(data.recipient).toLowerCase().trim();
+        if (rec && currentUserKey && rec !== currentUserKey) {
+          console.log("[Pusher] skip other user", rec);
+          return;
+        }
+        if (rec && !currentUserKey) return;
+      }
+
+      if (!dashboardSection || dashboardSection.style.display !== "block") return;
+
+      liveBalance = Math.round((liveBalance + amount) * 100) / 100;
+      txHistory.unshift({
+        date: formatDateITLive(new Date()),
+        sender: sender,
+        amount: amount
+      });
+      if (txHistory.length > 50) txHistory = txHistory.slice(0, 50);
+
+      renderBalanceUI();
+      renderHistoryUI(true);
+
+      const box = document.getElementById("totalBalanceBox");
+      if (box) {
+        box.classList.remove("flash");
+        void box.offsetWidth;
+        box.classList.add("flash");
+        setTimeout(function () { box.classList.remove("flash"); }, 1200);
+      }
+      saveCabinetState();
+      showBankToast(sender, amount);
+    }
+
+    var toastTimer = null;
+    function showBankToast(sender, amount) {
+      var toast = document.getElementById("bankToast");
+      var msg = document.getElementById("bankToastMsg");
+      var amt = document.getElementById("bankToastAmount");
+      if (!toast) return;
+      if (msg) msg.textContent = sender || "Bonifico in entrata";
+      if (amt) amt.textContent = "+ " + formatEuroLive(amount);
+      toast.classList.remove("show");
+      void toast.offsetWidth;
+      toast.classList.add("show");
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toast.classList.remove("show");
+      }, 4500);
+    }
+
+    (function bindToastClose() {
+      var btn = document.getElementById("bankToastClose");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var toast = document.getElementById("bankToast");
+          if (toast) toast.classList.remove("show");
+          if (toastTimer) clearTimeout(toastTimer);
+        });
+      }
+    })();
+
+    function initPusherLive() {
+      if (typeof Pusher === "undefined") return;
+      const pusher = new Pusher(PUSHER_KEY, { cluster: PUSHER_CLUSTER, forceTLS: true });
+      const channel = pusher.subscribe(CHANNEL_NAME);
+      channel.bind(EVENT_NAME, function (data) {
+        console.log("[Pusher]", data);
+        applyMoneyTransfer(data);
+      });
+      pusher.connection.bind("connected", function () {
+        const badge = document.getElementById("liveBadge");
+        if (badge) badge.classList.add("on");
+      });
+    }
+
+    function md5Live(string) {
+      function cmn(q, a, b, x, s, t) {
+        a = add32(add32(a, q), add32(x, t));
+        return add32((a << s) | (a >>> (32 - s)), b);
+      }
+      function ff(a, b, c, d, x, s, t) { return cmn((b & c) | ((~b) & d), a, b, x, s, t); }
+      function gg(a, b, c, d, x, s, t) { return cmn((b & d) | (c & (~d)), a, b, x, s, t); }
+      function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); }
+      function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | (~d)), a, b, x, s, t); }
+      function md5cycle(x, k) {
+        var a = x[0], b = x[1], c = x[2], d = x[3];
+        a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586);
+        c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330);
+        a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426);
+        c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983);
+        a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417);
+        c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162);
+        a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101);
+        c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329);
+        a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632);
+        c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302);
+        a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083);
+        c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848);
+        a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690);
+        c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501);
+        a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784);
+        c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734);
+        a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463);
+        c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556);
+        a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353);
+        c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640);
+        a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222);
+        c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189);
+        a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835);
+        c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651);
+        a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415);
+        c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055);
+        a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606);
+        c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799);
+        a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744);
+        c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649);
+        a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379);
+        c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551);
+        x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]);
+      }
+      function md5blk(s) {
+        var md5blks = [], i;
+        for (i = 0; i < 64; i += 4) {
+          md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) +
+            (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
+        }
+        return md5blks;
+      }
+      function md51(s) {
+        var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
+        for (i = 64; i <= n; i += 64) md5cycle(state, md5blk(s.substring(i - 64, i)));
+        s = s.substring(i - 64);
+        var tail = new Array(16); for (i = 0; i < 16; i++) tail[i] = 0;
+        for (i = 0; i < s.length; i++) tail[i >> 2] |= s.charCodeAt(i) << ((i % 4) << 3);
+        tail[i >> 2] |= 0x80 << ((i % 4) << 3);
+        if (i > 55) { md5cycle(state, tail); for (i = 0; i < 16; i++) tail[i] = 0; }
+        tail[14] = n * 8;
+        md5cycle(state, tail);
+        return state;
+      }
+      function rhex(n) {
+        var s = "", j;
+        for (j = 0; j < 4; j++) s += ("0" + ((n >> (j * 8)) & 0xff).toString(16)).slice(-2);
+        return s;
+      }
+      function add32(a, b) { return (a + b) & 0xffffffff; }
+      return md51(string).map(rhex).join("");
+    }
+
+    async function hmacSha256Live(secret, message) {
+      var enc = new TextEncoder();
+      var key = await crypto.subtle.importKey(
+        "raw", enc.encode(secret),
+        { name: "HMAC", hash: "SHA-256" },
+        false, ["sign"]
+      );
+      var sig = await crypto.subtle.sign("HMAC", key, enc.encode(message));
+      return Array.from(new Uint8Array(sig)).map(function (b) {
+        return b.toString(16).padStart(2, "0");
+      }).join("");
+    }
+
+    async function pusherTriggerLive(amount, sender, recipient) {
+      var dataObj = { amount: amount, sender: sender };
+      if (recipient) dataObj.recipient = recipient;
+      var body = JSON.stringify({
+        name: EVENT_NAME,
+        channel: CHANNEL_NAME,
+        data: JSON.stringify(dataObj)
+      });
+      var path = "/apps/" + PUSHER_APP_ID + "/events";
+      var authTimestamp = Math.floor(Date.now() / 1000);
+      var bodyMd5 = md5Live(body);
+      var query =
+        "auth_key=" + PUSHER_KEY +
+        "&auth_timestamp=" + authTimestamp +
+        "&auth_version=1.0" +
+        "&body_md5=" + bodyMd5;
+      var stringToSign = "POST\n" + path + "\n" + query;
+      var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
+      var url =
+        "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path +
+        "?" + query + "&auth_signature=" + authSignature;
+      var res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: body
+      });
+      if (!res.ok) throw new Error("Pusher API " + res.status + ": " + (await res.text()));
+      return true;
+    }
+
+    function setupAdminPanel() {
+      var sendBtn = document.getElementById("adminSendBtn");
+      var statusEl = document.getElementById("adminStatus");
+      if (!sendBtn) {
+        console.error("adminSendBtn not found");
+        return;
+      }
+      sendBtn.addEventListener("click", async function () {
+        var amount = parseFloat(document.getElementById("adminAmount").value);
+        var sender = document.getElementById("adminSender").value.trim() || "Bonifico in entrata";
+        var recipientEl = document.getElementById("adminRecipient");
+        var recipient = recipientEl ? recipientEl.value.trim() : "";
+        if (isNaN(amount) || amount <= 0) {
+          statusEl.className = "admin-status err";
+          statusEl.textContent = "Укажи сумму больше 0.";
+          return;
+        }
+        sendBtn.disabled = true;
+        statusEl.className = "admin-status";
+        statusEl.style.display = "none";
+
+        var payload = { amount: amount, sender: sender, recipient: recipient, t: Date.now() };
+
+        // 1) Локальный мост (для вкладок на том же сайте / GitHub Pages)
+        try {
+          localStorage.setItem("poste-money-transfer", JSON.stringify(payload));
+        } catch (e) {}
+
+        // 2) Отправка в Pusher (для других людей в интернете)
+        try {
+          await pusherTriggerLive(amount, sender, recipient);
+          statusEl.className = "admin-status ok";
+          statusEl.textContent = "Отправлено: " + formatEuroLive(amount) + (recipient ? (" → " + recipient) : " → всем") + " («" + sender + "»)";
+        } catch (err) {
+          // Даже если Pusher REST заблокирован CORS — localStorage уже сработал для соседних вкладок
+          statusEl.className = "admin-status ok";
+          statusEl.textContent = "Сигнал отправлен (локально). Для других людей используй Debug Console Pusher, если LIVE не обновился.";
+          console.warn("Pusher REST:", err);
+        } finally {
+          sendBtn.disabled = false;
+        }
+      });
+    }
+
+    // Слушаем localStorage (соседние вкладки того же сайта)
+    if (!isAdminMode) {
+      window.addEventListener("storage", function (e) {
+        if (e.key === "poste-money-transfer" && e.newValue) {
+          try {
+            applyMoneyTransfer(JSON.parse(e.newValue));
+          } catch (err) {}
+        }
+      });
+    }
+
+    // После входа в кабинет — подключаем Pusher
+    if (!isAdminMode && typeof submitLogin !== "undefined") {
+      submitLogin.addEventListener("click", function () {
+        setTimeout(function () {
+          if (dashboardSection && dashboardSection.style.display === "block") {
+            initPusherLive();
+          }
+        }, 900);
+      });
+    }
+
+  </script>
+
+
+  <!-- Toast уведомление о поступлении -->
+  <div class="bank-toast" id="bankToast" role="status" aria-live="polite">
+    <div class="bank-toast-icon">↑</div>
+    <div class="bank-toast-body">
+      <div class="bank-toast-title">Accredito ricevuto</div>
+      <div class="bank-toast-msg" id="bankToastMsg">Bonifico in entrata</div>
+      <div class="bank-toast-amount" id="bankToastAmount">+ €0,00</div>
+    </div>
+    <button type="button" class="bank-toast-close" id="bankToastClose" aria-label="Chiudi">×</button>
+  </div>
+
+</body>
+</html>
