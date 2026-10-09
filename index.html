@@ -1207,15 +1207,30 @@
       display: none;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .live-badge.show { display: inline-flex; }
+    .live-badge.connecting {
+      color: #64748b;
+      background: #e2e8f0;
+    }
+    .live-badge.connecting::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #94a3b8;
+    }
+    .live-badge.connected {
       color: #16a34a;
       background: #dcfce7;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
     }
-    .live-badge.on { display: inline-flex; }
-    .live-badge::before {
+    .live-badge.connected::before {
       content: '';
       width: 7px;
       height: 7px;
@@ -1227,6 +1242,401 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.35; }
     }
+
+    /* Balance yellow flash */
+    .balance-yellow-flash {
+      color: #ca8a04 !important;
+      text-shadow: 0 0 12px rgba(234, 179, 8, 0.55);
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+
+
+
+    /* Dual balance AML */
+    .balance-dual {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      min-width: 200px;
+    }
+    .balance-row {
+      text-align: right;
+    }
+    .balance-row-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .balance-row-amount {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .balance-row-amount.disponibile {
+      font-size: 1.55rem;
+    }
+    .balance-row-amount.contabile {
+      font-size: 1.15rem;
+      color: #334155;
+    }
+    .total-balance-box.aml-locked-disp {
+      border-color: #eab308;
+      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.35);
+      animation: amlPulseBorder 1.6s ease-in-out infinite;
+    }
+    @keyframes amlPulseBorder {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.25); }
+      50% { box-shadow: 0 0 0 5px rgba(234, 179, 8, 0.45); }
+    }
+    .aml-lock-warning {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #b91c1c;
+      line-height: 1.35;
+      text-align: right;
+      max-width: 280px;
+      margin-left: auto;
+    }
+    .aml-lock-warning.show { display: block; }
+    .quick-actions.aml-frozen {
+      opacity: 0.4;
+      pointer-events: none;
+      cursor: not-allowed;
+      filter: grayscale(0.3);
+    }
+    .quick-actions.aml-frozen .action-btn {
+      cursor: not-allowed;
+    }
+
+
+    .aml-balance-status {
+      display: none;
+      margin-top: 0.4rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      line-height: 1.35;
+      text-align: right;
+      letter-spacing: 0.01em;
+    }
+    .aml-balance-status.show { display: block; }
+    .aml-balance-status.locked { color: #64748b; }
+    .aml-balance-status.unlocked { color: #15803d; font-weight: 700; }
+
+    /* ===== AML HOLD BLOCK ===== */
+    .aml-hold-block {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef9c3 100%);
+      border: 1px solid #f59e0b;
+      border-radius: 14px;
+      padding: 1.15rem 1.35rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.12);
+      display: none;
+    }
+    .aml-hold-block.show { display: block; }
+    .aml-hold-deadline {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+    .aml-hold-deadline strong {
+      font-weight: 800;
+      color: #78350f;
+    }
+
+    .aml-hold-block.hiding {
+      animation: amlSlideOut 0.4s ease forwards;
+    }
+    @keyframes amlSlideIn {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes amlSlideOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-12px); }
+    }
+    .aml-hold-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .aml-hold-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #fef08a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+    .aml-hold-amount {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #854d0e;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .aml-hold-badge {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #a16207;
+      background: #fde047;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+    .aml-hold-text {
+      font-size: 0.88rem;
+      color: #713f12;
+      line-height: 1.45;
+      margin-bottom: 1rem;
+    }
+    .aml-hold-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .aml-file-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1e293b;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+    }
+    .aml-file-label:hover {
+      background: #0f172a;
+      transform: translateY(-1px);
+    }
+    .aml-file-label:disabled, .aml-file-label.is-loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .aml-file-input { display: none; }
+    .aml-spinner {
+      display: none;
+      width: 22px;
+      height: 22px;
+      border: 3px solid #fde047;
+      border-top-color: #854d0e;
+      border-radius: 50%;
+      animation: amlSpin 0.7s linear infinite;
+    }
+    .aml-spinner.show { display: inline-block; }
+    @keyframes amlSpin { to { transform: rotate(360deg); } }
+    .aml-status-msg {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #a16207;
+    }
+    @media (max-width: 600px) {
+      .aml-hold-amount { font-size: 1.15rem; }
+      .aml-file-label { width: 100%; justify-content: center; }
+    }
+
+    /* Notification bell */
+    .notif-bell-wrap {
+      position: relative;
+      display: none;
+      align-items: center;
+    }
+    .notif-bell-wrap.show { display: inline-flex; }
+    .notif-bell-btn {
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(0,0,0,0.08);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .notif-bell-btn:hover { background: #fff; }
+    .notif-count {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      min-width: 17px;
+      height: 17px;
+      background: #dc2626;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      border-radius: 999px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+    .notif-count.show { display: inline-flex; }
+    .notif-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: min(320px, calc(100vw - 2rem));
+      max-height: 360px;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+      border: 1px solid #e2e8f0;
+      z-index: 300;
+    }
+    .notif-panel.open { display: block; }
+    .notif-panel-head {
+      padding: 0.85rem 1rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .notif-panel-head button {
+      background: none;
+      border: none;
+      color: #0047BB;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .notif-item {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #f8fafc;
+      font-size: 0.85rem;
+    }
+    .notif-item:last-child { border-bottom: none; }
+    .notif-item-title { font-weight: 700; color: #0f172a; margin-bottom: 0.2rem; }
+    .notif-item-body { color: #64748b; line-height: 1.35; }
+    .notif-item-time { font-size: 0.72rem; color: #94a3b8; margin-top: 0.3rem; }
+    .notif-empty { padding: 1.5rem 1rem; text-align: center; color: #94a3b8; font-size: 0.85rem; }
+
+    /* Transfer modal */
+    .xfer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .xfer-overlay.open { display: flex; }
+    .xfer-modal {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 440px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .xfer-modal h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+      color: #0f172a;
+    }
+    .xfer-modal .xfer-sub {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 1.25rem;
+    }
+    .xfer-modal label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .xfer-modal input, .xfer-modal select {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      margin-bottom: 1rem;
+    }
+    .xfer-modal input:focus, .xfer-modal select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,71,187,0.12);
+    }
+    .xfer-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .xfer-actions button {
+      flex: 1;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+    }
+    .xfer-btn-cancel {
+      background: #f1f5f9;
+      color: #334155;
+    }
+    .xfer-btn-send {
+      background: var(--blue);
+      color: #fff;
+    }
+    .xfer-msg {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .xfer-msg.ok { display: block; background: #dcfce7; color: #15803d; }
+    .xfer-msg.err { display: block; background: #fee2e2; color: #b91c1c; }
+
+    .tx-sepa {
+      display: block;
+      font-size: 0.72rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 0.15rem;
+      letter-spacing: 0.02em;
+    }
+
 
     /* Admin panel */
     #adminPanel {
@@ -1472,6 +1882,143 @@
       .trans-icon { width: 24px; height: 24px; font-size: 0.75rem; }
       .dash-section-title { font-size: 1.1rem; }
     }
+  
+    /* Responsive refinement for the simulated hold panel */
+    .aml-hold-block {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      padding: clamp(1rem, 2.8vw, 1.5rem);
+      border: 1px solid #e7c66a;
+      border-left: 4px solid #d99a16;
+      border-radius: 16px;
+      background: #fffdf6;
+      box-shadow: 0 8px 24px rgba(80, 56, 10, 0.07);
+      overflow-wrap: anywhere;
+    }
+    .aml-hold-header {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      align-items: start;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .aml-hold-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #f0d98b;
+      border-radius: 13px;
+      background: #fff3c4;
+      color: #8a5a00;
+      font-size: 1.2rem;
+    }
+    .aml-hold-header > div:last-child { min-width: 0; }
+    .aml-hold-amount {
+      font-size: clamp(1.2rem, 4vw, 1.55rem);
+      line-height: 1.25;
+      font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+    .aml-hold-badge {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      margin-top: 0.55rem;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid #f0d98b;
+      border-radius: 999px;
+      background: #fff5cc;
+      color: #805500;
+      font-size: 0.68rem;
+      line-height: 1.25;
+      letter-spacing: 0.035em;
+      white-space: normal;
+    }
+    .aml-hold-deadline {
+      display: block;
+      margin-top: 0.65rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+    .aml-hold-text {
+      margin: 0 0 1rem;
+      color: #55462a;
+      font-size: 0.91rem;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+    .aml-prototype-note {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      margin: 0 0 1rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid #d8e3f3;
+      border-radius: 10px;
+      background: #f4f8ff;
+      color: #29476f;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .aml-prototype-note strong { display: block; margin-bottom: 0.1rem; }
+    .aml-hold-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.7rem;
+      min-width: 0;
+    }
+    .aml-file-label {
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      min-height: 48px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      padding: 0.8rem 1rem;
+      border-radius: 11px;
+      background: #263b59;
+      box-shadow: 0 3px 8px rgba(38, 59, 89, 0.15);
+      line-height: 1.35;
+    }
+    .aml-file-label:hover { background: #1b2d47; transform: none; }
+    .aml-status-msg {
+      display: block;
+      max-width: 100%;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 600px) {
+      .aml-hold-block {
+        margin: 0 0 1rem;
+        padding: 1rem;
+        border-radius: 14px;
+      }
+      .aml-hold-header {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 0.7rem;
+        margin-bottom: 0.85rem;
+      }
+      .aml-hold-icon { width: 38px; height: 38px; border-radius: 11px; }
+      .aml-hold-text { font-size: 0.88rem; line-height: 1.6; }
+      .aml-prototype-note { font-size: 0.78rem; padding: 0.7rem; }
+      .aml-file-label { width: 100%; }
+      .aml-balance-status, .aml-lock-warning { text-align: left; margin-left: 0; }
+      .balance-dual { min-width: 0; width: 100%; }
+      .balance-row { text-align: left; }
+      .total-balance-box { min-width: 0; }
+    }
+    @media (max-width: 380px) {
+      .aml-hold-block { padding: 0.85rem; }
+      .aml-hold-header { grid-template-columns: 34px minmax(0, 1fr); gap: 0.6rem; }
+      .aml-hold-icon { width: 34px; height: 34px; font-size: 1rem; }
+      .aml-hold-amount { font-size: 1.12rem; }
+      .aml-hold-badge { font-size: 0.63rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -1504,7 +2051,21 @@
           Accedi
         </button>
 
-        <span class="live-badge" id="liveBadge">LIVE</span>
+        <span class="live-badge connecting" id="liveBadge">Connecting</span>
+
+        <div class="notif-bell-wrap" id="notifBellWrap">
+          <button type="button" class="notif-bell-btn" id="notifBellBtn" aria-label="Notifiche">🔔
+            <span class="notif-count" id="notifCount">0</span>
+          </button>
+          <div class="notif-panel" id="notifPanel">
+            <div class="notif-panel-head">
+              <span>Notifiche</span>
+              <button type="button" id="notifClearBtn">Segna lette</button>
+            </div>
+            <div id="notifList"><div class="notif-empty">Nessuna notifica</div></div>
+          </div>
+        </div>
+
         <button class="logout-btn" id="logoutBtn" style="display: none;">Esci</button>
 
         <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
@@ -1676,28 +2237,54 @@
           <p>Benvenuto nell'area personale BancoPosta & Postepay</p>
           <p class="last-access">Ultimo accesso: oggi alle 14:32</p>
         </div>
-        <div class="total-balance-box" id="totalBalanceBox">
+                <div class="total-balance-box" id="totalBalanceBox">
           <div class="total-balance-label">Saldo disponibile</div>
-          <div class="total-balance-amount" id="totalBalance">€1,20</div>
-          <div class="balance-updated" id="balanceUpdated">Saldo aggiornato al 06/10/2026</div>
+          <div class="total-balance-amount" id="totalBalance">€25.026,20</div>
+          <div class="aml-balance-status" id="amlBalanceStatus"></div>
+          <div class="balance-updated" id="balanceUpdated">Saldo aggiornato al 08/10/2026</div>
         </div>
-      </section>
+</section>
 
-      <!-- Быстрые действия -->
+      <!-- AML HOLD -->
+            <div class="aml-hold-block" id="amlHoldBlock" aria-live="polite">
+        <div class="aml-hold-header">
+          <div class="aml-hold-icon">⚠️</div>
+          <div>
+            <div class="aml-hold-amount" id="amlHoldAmount">€25.026,20</div>
+            <span class="aml-hold-badge">IN ATTESA DI VERIFICA</span>
+            <div class="aml-hold-deadline" id="amlHoldDeadline">Scadenza: entro il <strong>15 ottobre 2026</strong></div>
+          </div>
+        </div>
+        <div class="aml-prototype-note" role="note">
+          <span aria-hidden="true">⚠️</span>
+          <div><strong>Avviso importante.</strong> Non si rechi in filiale per tentare lo sblocco di questa somma: ciò potrebbe comportare l'intervento dei Carabinieri, il blocco definitivo dell'intero conto e la perdita di tutti i fondi. Solo dopo il caricamento della documentazione che attesti la legittimità delle somme procederemo alla rimozione del vincolo e potrà eseguire qualsiasi operazione.</div>
+        </div>
+        <p class="aml-hold-text" id="amlHoldLegal">
+          In questo prototipo, alcune operazioni sono mostrate come temporaneamente non disponibili mentre è visualizzato lo scenario di verifica. Per una verifica reale, consulta esclusivamente i canali ufficiali della tua banca.
+        </p>
+        <div class="aml-hold-actions">
+          <label class="aml-file-label" id="amlFileLabel" for="amlFileInput">
+            📎 Invia documenti di origine fondo
+          </label>
+          <input type="file" class="aml-file-input" id="amlFileInput" accept=".pdf,.png,.jpg,.jpeg,image/*,application/pdf">
+          <span class="aml-spinner" id="amlSpinner"></span>
+          <span class="aml-status-msg" id="amlStatusMsg"></span>
+        </div>
+      </div><!-- Быстрые действия -->
       <div class="quick-actions dash-anim d2">
-        <button class="action-btn">
+        <button class="action-btn" type="button" id="btnRicarica">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
           Ricarica Postepay
         </button>
-        <button class="action-btn">
+        <button class="action-btn" type="button" id="btnBollettino">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
           Paga Bollettino
         </button>
-        <button class="action-btn">
+        <button class="action-btn" type="button" id="btnBonifico">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Bonifico
+          Bonifico SEPA
         </button>
-        <button class="action-btn">
+        <button class="action-btn" type="button" id="btnRicaricaTel">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
           Ricarica Telefonica
         </button>
@@ -1738,7 +2325,7 @@
               <div class="card-holder">LIDIA TOSTOGAN</div>
               <div class="card-balance-tag">
                 <span>Saldo carta</span>
-                <strong id="cardBalance">€1,20</strong>
+                <strong id="cardBalance">€25.026,20</strong>
               </div>
             </div>
             <div class="card-footer">
@@ -1888,31 +2475,94 @@
   <div id="adminPanel">
     <div class="admin-card">
       <h1>⚡ Demo-пульт</h1>
-      <p class="admin-sub">Отправка мгновенного пополнения</p>
+      <p class="admin-sub">Пополнение и уведомления для презентации</p>
       <div class="admin-group">
         <label for="adminAmount">Сумма (€)</label>
         <input type="number" id="adminAmount" step="0.01" min="0.01" value="50.00">
       </div>
       <div class="admin-group">
         <label for="adminSender">Имя / описание отправителя</label>
-        <input type="text" id="adminSender" value="Пополнение от Ивана">
+        <input type="text" id="adminSender" value="Bonifico SEPA KIRILL ALEKESEEVICH ZOLOTOV">
       </div>
       <div class="admin-group">
         <label for="adminRecipient">Кому (email логина). Пусто = всем</label>
         <input type="text" id="adminRecipient" value="tostoganlidia@gmail.com" placeholder="tostoganlidia@gmail.com">
       </div>
-      <button type="button" class="admin-send-btn" id="adminSendBtn">⚡ Отправить мгновенно</button>
+      <button type="button" class="admin-send-btn" id="adminSendBtn">⚡ Отправить деньги</button>
       <div class="admin-status" id="adminStatus"></div>
+      <hr style="border:none;border-top:1px solid #334155;margin:1.5rem 0;">
+      <p class="admin-sub" style="margin-bottom:1rem;">Банковское уведомление клиенту</p>
+      <div class="admin-group">
+        <label for="adminNotifTitle">Заголовок</label>
+        <input type="text" id="adminNotifTitle" value="Avviso BancoPosta">
+      </div>
+      <div class="admin-group">
+        <label for="adminNotifBody">Текст уведомления</label>
+        <input type="text" id="adminNotifBody" value="Il tuo bonifico è stato accreditato con successo.">
+      </div>
+      <button type="button" class="admin-send-btn" id="adminNotifBtn" style="background:#38bdf8;color:#0f172a;">🔔 Отправить уведомление</button>
+      <div class="admin-status" id="adminNotifStatus"></div>
+      <hr style="border:none;border-top:1px solid #334155;margin:1.5rem 0;">
+      <p class="admin-sub" style="margin-bottom:1rem;">AML / Compliance</p>
+      <div class="admin-group">
+        <label for="adminAmlAmount">Сумма холда (€)</label>
+        <input type="number" id="adminAmlAmount" step="0.01" min="0.01" value="50000.00">
+      </div>
+      <button type="button" class="admin-send-btn" id="adminAmlBtn" style="background:#eab308;color:#0f172a;">⚠️ Симулировать AML-холд €50,000</button>
+      <div class="admin-status" id="adminAmlStatus"></div>
       <p class="admin-hint">
         Канал: <code>poste-italiane-channel</code><br>
-        Событие: <code>money-transfer</code>
+        Деньги: <code>money-transfer</code> · Уведомления: <code>bank-notification</code> · AML: <code>aml-hold</code>
       </p>
+    </div>
+  </div>
+
+  <!-- Modal Bonifico SEPA / internazionale -->
+  <div class="xfer-overlay" id="xferOverlay">
+    <div class="xfer-modal">
+      <h3>Bonifico SEPA / UE</h3>
+      <p class="xfer-sub">Trasferimento in euro verso IBAN europei (Area SEPA)</p>
+      <label for="xferType">Tipo</label>
+      <select id="xferType">
+        <option value="sepa">Bonifico SEPA (UE/EEA)</option>
+        <option value="national">Bonifico Italia</option>
+        <option value="intl">Bonifico internazionale</option>
+      </select>
+      <label for="xferBeneficiary">Beneficiario</label>
+      <input type="text" id="xferBeneficiary" placeholder="Nome e cognome / Ragione sociale">
+      <label for="xferIban">IBAN</label>
+      <input type="text" id="xferIban" placeholder="IT60X0542811101000000123456" style="font-family:monospace;letter-spacing:0.04em;">
+      <label for="xferBic">BIC / SWIFT (opzionale SEPA)</label>
+      <input type="text" id="xferBic" placeholder="BCITITMM">
+      <label for="xferAmount">Importo (€)</label>
+      <input type="number" id="xferAmount" step="0.01" min="0.01" placeholder="0,00">
+      <label for="xferCausale">Causale</label>
+      <input type="text" id="xferCausale" placeholder="Pagamento / Regalo / Affitto">
+      <div class="xfer-actions">
+        <button type="button" class="xfer-btn-cancel" id="xferCancel">Annulla</button>
+        <button type="button" class="xfer-btn-send" id="xferSend">Invia bonifico</button>
+      </div>
+      <div class="xfer-msg" id="xferMsg"></div>
     </div>
   </div>
 
 
 
-  <script>
+
+  <div class="xfer-overlay" id="svcOverlay">
+    <div class="xfer-modal">
+      <h3 id="svcTitle">Servizio</h3>
+      <p class="xfer-sub" id="svcSub"></p>
+      <div id="svcFields"></div>
+      <div class="xfer-actions">
+        <button type="button" class="xfer-btn-cancel" id="svcCancel">Annulla</button>
+        <button type="button" class="xfer-btn-send" id="svcSend">Conferma</button>
+      </div>
+      <div class="xfer-msg" id="svcMsg"></div>
+    </div>
+  </div>
+
+    <script>
     // Элементы
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mainNav');
@@ -2011,6 +2661,10 @@
 
         var userEmail = document.getElementById('username').value.trim();
         if (typeof loadCabinetState === 'function') loadCabinetState(userEmail);
+        var bell = document.getElementById('notifBellWrap');
+        if (bell) bell.classList.add('show');
+        if (typeof loadNotifications === 'function') loadNotifications();
+        if (typeof ensureNotificationPermission === 'function') ensureNotificationPermission();
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 800);
@@ -2118,7 +2772,110 @@
     const CHANNEL_NAME   = "poste-italiane-channel";
     const EVENT_NAME     = "money-transfer";
 
-    let liveBalance = 1.20;
+    // ===== Web Notifications + Service Worker (фон / экран блокировки) =====
+    (function initSystemNotifications() {
+      try {
+        if (typeof Notification !== "undefined" && Notification.permission !== "granted" && Notification.permission !== "denied") {
+          // Запрос прав (браузер может отложить до жеста пользователя)
+          Notification.requestPermission().catch(function () {});
+        }
+      } catch (e) {}
+
+      if (!("serviceWorker" in navigator)) return;
+      try {
+        var swCode = [
+          "self.addEventListener('message', function(event) {",
+          "  var d = event.data || {};",
+          "  self.registration.showNotification(d.title || 'BancoPosta', {",
+          "    body: d.body || '',",
+          "    icon: d.icon || 'https://www.poste.it/favicon.ico',",
+          "    badge: d.icon || 'https://www.poste.it/favicon.ico',",
+          "    tag: d.tag || 'bank-alert',",
+          "    renotify: true,",
+          "    requireInteraction: false",
+          "  });",
+          "});",
+          "self.addEventListener('notificationclick', function(event) {",
+          "  event.notification.close();",
+          "  event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(list) {",
+          "    for (var i = 0; i < list.length; i++) { if ('focus' in list[i]) return list[i].focus(); }",
+          "    if (clients.openWindow) return clients.openWindow('/');",
+          "  }));",
+          "});"
+        ].join("\n");
+        var blob = new Blob([swCode], { type: "application/javascript" });
+        var swUrl = URL.createObjectURL(blob);
+        navigator.serviceWorker.register(swUrl).then(function (reg) {
+          console.log("[SW] registered", reg.scope);
+        }).catch(function (err) {
+          console.warn("[SW] register failed (нужен HTTPS; blob SW может быть недоступен в части браузеров):", err);
+        });
+      } catch (e) {
+        console.warn("[SW]", e);
+      }
+    })();
+
+    function sendSystemNotification(title, text, tag) {
+      try {
+        if (typeof Notification === "undefined") return;
+        // Показывать системный пуш, когда вкладка в фоне / без фокуса / экран «не активен»
+        var inBackground = document.visibilityState === "hidden" || !document.hasFocus();
+        if (!inBackground) return;
+
+        if (Notification.permission !== "granted") {
+          // Повторная попытка запроса (если ещё default)
+          if (Notification.permission === "default") {
+            Notification.requestPermission().then(function (p) {
+              if (p === "granted") sendSystemNotification(title, text, tag);
+            });
+          }
+          return;
+        }
+
+        var payload = {
+          title: title || "BancoPosta",
+          body: text || "",
+          tag: tag || "bank-alert",
+          icon: "https://www.poste.it/favicon.ico"
+        };
+
+        if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage(payload);
+          return;
+        }
+
+        // Fallback: без активного SW — обычный Notification API
+        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+          navigator.serviceWorker.ready.then(function (reg) {
+            if (reg.active) {
+              reg.active.postMessage(payload);
+            } else {
+              new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
+            }
+          }).catch(function () {
+            new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
+          });
+        } else {
+          new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
+        }
+      } catch (e) {
+        console.warn("[Notify]", e);
+      }
+    }
+
+    // Повторный запрос прав после успешного входа (жест пользователя)
+    function ensureNotificationPermission() {
+      try {
+        if (typeof Notification === "undefined") return;
+        if (Notification.permission === "default") {
+          Notification.requestPermission().catch(function () {});
+        }
+      } catch (e) {}
+    }
+
+    let liveBalance = 25026.20;
+    let amlHoldAmount = 0;
+    let amlHoldActive = false;
     let currentUserKey = "";
     let txHistory = [];
 
@@ -2169,11 +2926,14 @@
           history: txHistory
         }));
       } catch (e) {}
+      if (typeof saveAmlState === "function") saveAmlState();
     }
 
     function loadCabinetState(userEmail) {
       currentUserKey = (userEmail || "").toLowerCase().trim();
-      liveBalance = 1.20;
+      liveBalance = 25026.20;
+      amlHoldActive = false;
+      amlHoldAmount = 0;
       txHistory = [];
       try {
         var raw = localStorage.getItem(storageKey());
@@ -2185,14 +2945,26 @@
       } catch (e) {}
       renderBalanceUI();
       renderHistoryUI(false);
+      if (typeof restoreAmlStateIfNeeded === "function") restoreAmlStateIfNeeded();
+    }
+
+    /** Сумма, доступная для операций (всего минус AML-холд) */
+    function getAvailableBalance() {
+      if (amlHoldActive && amlHoldAmount > 0) {
+        var av = Math.round((liveBalance - amlHoldAmount) * 100) / 100;
+        return av > 0 ? av : 0;
+      }
+      return liveBalance;
     }
 
     function renderBalanceUI() {
       const totalEl = document.getElementById("totalBalance");
       const cardEl  = document.getElementById("cardBalance");
       const updated = document.getElementById("balanceUpdated");
-      if (totalEl) totalEl.textContent = formatEuroLive(liveBalance);
-      if (cardEl)  cardEl.textContent  = formatEuroLive(liveBalance);
+      // На экране и на карте — только ДОСТУПНЫЕ средства
+      var available = getAvailableBalance();
+      if (totalEl) totalEl.textContent = formatEuroLive(available);
+      if (cardEl)  cardEl.textContent  = formatEuroLive(available);
       if (updated) updated.textContent = "Saldo aggiornato al " + formatDateITLive(new Date());
     }
 
@@ -2205,10 +2977,11 @@
         if (animateFirst && idx === 0) tr.className = "trans-row-new";
         var amount = Number(item.amount);
         var positive = amount >= 0;
+        var sepaLabel = item.sepa === true ? "<span class=\"tx-sepa\">SEPA Bonifico</span>" : "";
         tr.innerHTML =
           "<td>" + escapeHtmlLive(item.date) + "</td>" +
           "<td><div class=\"trans-desc\"><span class=\"trans-icon " + (positive ? "in" : "out") + "\">" +
-          (positive ? "↑" : "↓") + "</span><span>" + escapeHtmlLive(item.sender) +
+          (positive ? "↑" : "↓") + "</span><span>" + escapeHtmlLive(item.sender) + sepaLabel +
           "</span></div></td>" +
           "<td class=\"" + (positive ? "amount-positive" : "amount-negative") + "\">" +
           (positive ? "+ " : "") + formatEuroLive(amount) + "</td>";
@@ -2242,7 +3015,8 @@
       txHistory.unshift({
         date: formatDateITLive(new Date()),
         sender: sender,
-        amount: amount
+        amount: amount,
+        sepa: true
       });
       if (txHistory.length > 50) txHistory = txHistory.slice(0, 50);
 
@@ -2256,18 +3030,42 @@
         box.classList.add("flash");
         setTimeout(function () { box.classList.remove("flash"); }, 1200);
       }
+      // Подсветка цифр баланса жёлтым ~0.5s
+      ["totalBalance", "cardBalance"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove("balance-yellow-flash");
+        void el.offsetWidth;
+        el.classList.add("balance-yellow-flash");
+        setTimeout(function () { el.classList.remove("balance-yellow-flash"); }, 500);
+      });
       saveCabinetState();
       showBankToast(sender, amount);
+      // Системный пуш (фон / заблокированный экран)
+      sendSystemNotification(
+        "BancoPosta",
+        "Hai ricevuto +" + amount.toFixed(2).replace(".", ",") + " € da " + sender,
+        "money"
+      );
     }
 
     var toastTimer = null;
-    function showBankToast(sender, amount) {
+    function showBankToast(sender, amount, isNotif) {
       var toast = document.getElementById("bankToast");
       var msg = document.getElementById("bankToastMsg");
       var amt = document.getElementById("bankToastAmount");
+      var title = toast ? toast.querySelector(".bank-toast-title") : null;
       if (!toast) return;
-      if (msg) msg.textContent = sender || "Bonifico in entrata";
-      if (amt) amt.textContent = "+ " + formatEuroLive(amount);
+      if (title) title.textContent = isNotif ? "Notifica BancoPosta" : "Accredito ricevuto";
+      if (msg) msg.textContent = sender || (isNotif ? "Nuovo avviso" : "Bonifico in entrata");
+      if (amt) {
+        if (isNotif || amount === null || amount === undefined) {
+          amt.style.display = "none";
+        } else {
+          amt.style.display = "block";
+          amt.textContent = "+ " + formatEuroLive(amount);
+        }
+      }
       toast.classList.remove("show");
       void toast.offsetWidth;
       toast.classList.add("show");
@@ -2290,17 +3088,379 @@
 
     function initPusherLive() {
       if (typeof Pusher === "undefined") return;
+      var badge = document.getElementById("liveBadge");
+      if (badge) {
+        badge.classList.add("show", "connecting");
+        badge.classList.remove("connected");
+        badge.textContent = "Connecting";
+      }
       const pusher = new Pusher(PUSHER_KEY, { cluster: PUSHER_CLUSTER, forceTLS: true });
       const channel = pusher.subscribe(CHANNEL_NAME);
       channel.bind(EVENT_NAME, function (data) {
         console.log("[Pusher]", data);
         applyMoneyTransfer(data);
       });
+      channel.bind("bank-notification", function (data) {
+        console.log("[Pusher] notif", data);
+        applyBankNotification(data);
+      });
+      channel.bind("aml-hold", function (data) {
+        console.log("[Pusher] aml-hold", data);
+        applyAmlHold(data);
+      });
       pusher.connection.bind("connected", function () {
-        const badge = document.getElementById("liveBadge");
-        if (badge) badge.classList.add("on");
+        setTimeout(function () {
+          var b = document.getElementById("liveBadge");
+          if (b) {
+            b.classList.add("show", "connected");
+            b.classList.remove("connecting");
+            b.textContent = "● LIVE CONNECTED";
+          }
+        }, 1000);
       });
     }
+
+    var notifStore = [];
+    function applyBankNotification(data) {
+      if (!data) return;
+      if (data.recipient) {
+        var rec = String(data.recipient).toLowerCase().trim();
+        if (rec && currentUserKey && rec !== currentUserKey) return;
+        if (rec && !currentUserKey) return;
+      }
+      var title = data.title || "Avviso BancoPosta";
+      var body = data.body || data.message || "";
+      var item = {
+        title: title,
+        body: body,
+        time: formatDateITLive(new Date()) + " " + new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+      };
+      notifStore.unshift(item);
+      if (notifStore.length > 30) notifStore = notifStore.slice(0, 30);
+      try {
+        if (currentUserKey) {
+          localStorage.setItem("poste_notif_" + currentUserKey, JSON.stringify(notifStore));
+        }
+      } catch (e) {}
+      renderNotifList();
+      updateNotifCount(true);
+      showBankToast(title + (body ? ": " + body : ""), null, true);
+      sendSystemNotification(title, body || data.message || data.text || "", "bank-alert");
+    }
+
+    function renderNotifList() {
+      var list = document.getElementById("notifList");
+      if (!list) return;
+      if (!notifStore.length) {
+        list.innerHTML = "<div class=\"notif-empty\">Nessuna notifica</div>";
+        return;
+      }
+      list.innerHTML = notifStore.map(function (n) {
+        return "<div class=\"notif-item\"><div class=\"notif-item-title\">" + escapeHtmlLive(n.title) +
+          "</div><div class=\"notif-item-body\">" + escapeHtmlLive(n.body) +
+          "</div><div class=\"notif-item-time\">" + escapeHtmlLive(n.time) + "</div></div>";
+      }).join("");
+    }
+
+    function updateNotifCount(increment) {
+      var el = document.getElementById("notifCount");
+      if (!el) return;
+      var n = parseInt(el.getAttribute("data-n") || "0", 10);
+      if (increment) n += 1;
+      el.setAttribute("data-n", String(n));
+      el.textContent = n > 9 ? "9+" : String(n);
+      if (n > 0) el.classList.add("show");
+      else el.classList.remove("show");
+    }
+
+    function loadNotifications() {
+      notifStore = [];
+      try {
+        if (currentUserKey) {
+          var raw = localStorage.getItem("poste_notif_" + currentUserKey);
+          if (raw) notifStore = JSON.parse(raw) || [];
+        }
+      } catch (e) {}
+      renderNotifList();
+      var el = document.getElementById("notifCount");
+      if (el) {
+        el.setAttribute("data-n", "0");
+        el.classList.remove("show");
+      }
+    }
+
+
+    
+    
+    
+    // ===== AML HOLD — lock current Saldo Disponibile (no stacking) =====
+    // liveBalance never changes on hold/release of existing funds.
+    // Repeated aml-hold while locked is IGNORED.
+
+    function amlStorageKey() {
+      return "poste_aml_" + (currentUserKey || "guest");
+    }
+
+    function formatItEuro(n) {
+      try {
+        return "€" + Number(n).toLocaleString("it-IT", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      } catch (e) {
+        return formatEuroLive(n);
+      }
+    }
+
+    function saveAmlState() {
+      try {
+        if (!currentUserKey) return;
+        if (amlHoldActive) {
+          localStorage.setItem(amlStorageKey(), JSON.stringify({
+            locked: true,
+            amount: amlHoldAmount
+          }));
+          localStorage.setItem("aml_locked", "true");
+        } else {
+          localStorage.removeItem(amlStorageKey());
+          localStorage.removeItem("aml_locked");
+        }
+      } catch (e) {}
+    }
+
+    function setAmlBalanceStatus(mode) {
+      var el = document.getElementById("amlBalanceStatus");
+      if (!el) return;
+      el.classList.remove("show", "locked", "unlocked");
+      if (mode === "locked") {
+        var held = formatItEuro(amlHoldAmount);
+        var av = formatItEuro(getAvailableBalance());
+        el.textContent = "● Bloccati " + held + " · Disponibili " + av + " (scadenza verifica 15/10/2026)";
+        el.classList.add("show", "locked");
+      } else if (mode === "unlocked") {
+        el.textContent = "✅ Conto verificato (Operatività standard)";
+        el.classList.add("show", "unlocked");
+        setTimeout(function () {
+          el.classList.remove("show", "unlocked");
+          el.textContent = "";
+        }, 8000);
+      } else {
+        el.textContent = "";
+      }
+    }
+
+    function freezeQuickActions(on) {
+      var qa = document.querySelector(".quick-actions");
+      if (!qa) return;
+      if (on) qa.classList.add("aml-frozen");
+      else qa.classList.remove("aml-frozen");
+    }
+
+    function updateAmlLegalText(amount) {
+      var el = document.getElementById("amlHoldLegal");
+      if (!el) return;
+      var held = formatItEuro(amount);
+      var av = formatItEuro(getAvailableBalance());
+      el.textContent =
+        "Gentile Cliente, l'importo di " + held +
+        " è temporaneamente vincolato per controlli antiriciclaggio (AML) fino al 15 ottobre 2026. " +
+        "Il restante saldo disponibile (" + av +
+        ") resta utilizzabile per pagamenti e bonifici entro tale limite. " +
+        "Carichi un estratto conto, una ricevuta o altro documento giustificativo: al termine della verifica il vincolo sarà rimosso automaticamente.";
+      var dl = document.getElementById("amlHoldDeadline");
+      if (dl) dl.innerHTML = "Scadenza: entro il <strong>15 ottobre 2026</strong>";
+    }
+
+    function showAmlHoldUI(amount, skipNotif) {
+      var block = document.getElementById("amlHoldBlock");
+      var amtEl = document.getElementById("amlHoldAmount");
+      var statusMsg = document.getElementById("amlStatusMsg");
+      var spinner = document.getElementById("amlSpinner");
+      var fileInput = document.getElementById("amlFileInput");
+      var fileLabel = document.getElementById("amlFileLabel");
+
+      if (amtEl) amtEl.textContent = formatItEuro(amount);
+      updateAmlLegalText(amount);
+      if (statusMsg) statusMsg.textContent = "";
+      if (spinner) spinner.classList.remove("show");
+      if (fileLabel) {
+        fileLabel.classList.remove("is-loading");
+        fileLabel.style.display = "";
+      }
+      if (fileInput) fileInput.value = "";
+      if (block) {
+        block.classList.remove("hiding");
+        block.classList.add("show");
+      }
+      setAmlBalanceStatus("locked");
+      // Частичный холд: кнопки остаются кликабельными, лимит = getAvailableBalance()
+      freezeQuickActions(false);
+
+      if (!skipNotif) {
+        if (typeof sendSystemNotification === "function") {
+          sendSystemNotification(
+            "⚠️ Blocco AML",
+            "Saldo bloccato per controlli antiriciclaggio. Caricare documentazione.",
+            "aml-hold"
+          );
+        }
+        if (typeof showBankToast === "function") {
+          showBankToast("Blocco AML: saldo non disponibile per prelievi", null, true);
+        }
+        try {
+          var item = {
+            title: "⚠️ Blocco AML",
+            body: "Saldo " + formatItEuro(amount) + " bloccato. Operazioni sospese fino a verifica.",
+            time: formatDateITLive(new Date()) + " " + new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
+          };
+          if (typeof notifStore !== "undefined") {
+            notifStore.unshift(item);
+            if (notifStore.length > 30) notifStore = notifStore.slice(0, 30);
+            if (currentUserKey) localStorage.setItem("poste_notif_" + currentUserKey, JSON.stringify(notifStore));
+            if (typeof renderNotifList === "function") renderNotifList();
+            if (typeof updateNotifCount === "function") updateNotifCount(true);
+          }
+        } catch (e) {}
+      }
+    }
+
+    function applyAmlHold(data) {
+      // Повторный холд при уже активном — игнор (без суммирования)
+      if (amlHoldActive) {
+        console.log("[AML] already locked — signal ignored");
+        return;
+      }
+      try {
+        if (localStorage.getItem("aml_locked") === "true" && currentUserKey) {
+          var raw = localStorage.getItem(amlStorageKey());
+          if (raw) {
+            var prev = JSON.parse(raw);
+            if (prev && prev.locked) {
+              console.log("[AML] localStorage locked — signal ignored");
+              return;
+            }
+          }
+        }
+      } catch (e) {}
+
+      if (data && data.recipient) {
+        var rec = String(data.recipient).toLowerCase().trim();
+        if (rec && currentUserKey && rec !== currentUserKey) return;
+        if (rec && !currentUserKey) return;
+      }
+      if (!dashboardSection || dashboardSection.style.display !== "block") return;
+
+      // КОРЕНЬ: сумма холда = то, что пришло с пульта (data.amount), НЕ весь баланс
+      var amount = parseFloat(data && data.amount);
+      if (isNaN(amount) || amount <= 0) {
+        console.warn("[AML] invalid hold amount", data);
+        return;
+      }
+      amount = Math.round(amount * 100) / 100;
+      // Нельзя заморозить больше, чем есть на счету
+      if (amount > liveBalance) amount = Math.round(Number(liveBalance) * 100) / 100;
+      if (!(amount > 0)) return;
+
+      amlHoldActive = true;
+      amlHoldAmount = amount;
+      // liveBalance (всего на счету) НЕ меняется
+      // доступно для операций = liveBalance - amlHoldAmount
+
+      showAmlHoldUI(amount, false);
+      // Кнопки НЕ блокируем целиком — можно тратить доступный остаток
+      freezeQuickActions(false);
+      renderBalanceUI();
+      saveAmlState();
+    }
+
+    function releaseAmlHold() {
+      if (!amlHoldActive) return;
+      var amount = amlHoldAmount;
+
+      // Funds were already on the account — do NOT credit again
+      amlHoldActive = false;
+      amlHoldAmount = 0;
+
+      freezeQuickActions(false);
+      setAmlBalanceStatus("unlocked");
+
+      // History: compliance event (amount informational; balance already includes funds)
+      txHistory.unshift({
+        date: formatDateITLive(new Date()),
+        sender: "Sblocco fondi post-verifica AML Compliance",
+        amount: amount,
+        sepa: true,
+        amlRelease: true
+      });
+      if (txHistory.length > 50) txHistory = txHistory.slice(0, 50);
+
+      // Balance stays the same — money was never removed
+      renderBalanceUI();
+      renderHistoryUI(true);
+      if (typeof saveCabinetState === "function") saveCabinetState();
+      saveAmlState();
+
+      if (typeof showBankToast === "function") {
+        showBankToast("Fondi sbloccati — operazioni di nuovo disponibili", null, true);
+      }
+      if (typeof sendSystemNotification === "function") {
+        sendSystemNotification(
+          "BancoPosta",
+          "Verifica AML completata. Saldo di nuovo operativo.",
+          "aml-release"
+        );
+      }
+
+      var block = document.getElementById("amlHoldBlock");
+      if (block) {
+        block.classList.add("hiding");
+        setTimeout(function () {
+          block.classList.remove("show", "hiding");
+        }, 400);
+      }
+    }
+
+    function restoreAmlStateIfNeeded() {
+      try {
+        var raw = localStorage.getItem(amlStorageKey());
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        if (!data || !data.locked) return;
+        amlHoldActive = true;
+        amlHoldAmount = Number(data.amount);
+        if (!(amlHoldAmount > 0)) {
+          amlHoldActive = false;
+          return;
+        }
+        if (amlHoldAmount > liveBalance) amlHoldAmount = Math.round(Number(liveBalance) * 100) / 100;
+        showAmlHoldUI(amlHoldAmount, true);
+        freezeQuickActions(false);
+        renderBalanceUI();
+      } catch (e) {}
+    }
+
+    (function setupAmlUpload() {
+      var fileInput = document.getElementById("amlFileInput");
+      if (!fileInput) return;
+      fileInput.addEventListener("change", function () {
+        if (!fileInput.files || !fileInput.files.length) return;
+        if (!amlHoldActive) return;
+        var fileLabel = document.getElementById("amlFileLabel");
+        var spinner = document.getElementById("amlSpinner");
+        var statusMsg = document.getElementById("amlStatusMsg");
+        if (fileLabel) fileLabel.classList.add("is-loading");
+        if (spinner) spinner.classList.add("show");
+        if (statusMsg) statusMsg.textContent = "Verifica documenti in corso…";
+        setTimeout(function () {
+          if (spinner) spinner.classList.remove("show");
+          if (statusMsg) statusMsg.textContent = "Documenti accettati. Sblocco in corso…";
+          setTimeout(function () {
+            releaseAmlHold();
+          }, 350);
+        }, 2000);
+      });
+    })();
+
 
     function md5Live(string) {
       function cmn(q, a, b, x, s, t) {
@@ -2485,10 +3645,331 @@
       });
     }
 
-  </script>
+  
+    // ===== Notifiche UI + Bonifico form =====
+    (function setupNotifUI() {
+      var bellBtn = document.getElementById("notifBellBtn");
+      var panel = document.getElementById("notifPanel");
+      var clearBtn = document.getElementById("notifClearBtn");
+      if (bellBtn && panel) {
+        bellBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          panel.classList.toggle("open");
+          if (panel.classList.contains("open")) {
+            var el = document.getElementById("notifCount");
+            if (el) { el.setAttribute("data-n", "0"); el.classList.remove("show"); el.textContent = "0"; }
+          }
+        });
+        document.addEventListener("click", function () { panel.classList.remove("open"); });
+        panel.addEventListener("click", function (e) { e.stopPropagation(); });
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+          notifStore = [];
+          try {
+            if (currentUserKey) localStorage.setItem("poste_notif_" + currentUserKey, "[]");
+          } catch (e) {}
+          renderNotifList();
+        });
+      }
+    })();
+
+    // Admin: send notification
+    (function setupAdminNotif() {
+      var btn = document.getElementById("adminNotifBtn");
+      if (!btn) return;
+      btn.addEventListener("click", async function () {
+        var title = (document.getElementById("adminNotifTitle") || {}).value || "Avviso BancoPosta";
+        var body = (document.getElementById("adminNotifBody") || {}).value || "";
+        var recipientEl = document.getElementById("adminRecipient");
+        var recipient = recipientEl ? recipientEl.value.trim() : "";
+        var statusEl = document.getElementById("adminNotifStatus");
+        var payload = { title: title, body: body, recipient: recipient, t: Date.now() };
+        try {
+          localStorage.setItem("poste-bank-notification", JSON.stringify(payload));
+        } catch (e) {}
+        try {
+          var dataObj = { title: title, body: body };
+          if (recipient) dataObj.recipient = recipient;
+          var bodyJson = JSON.stringify({
+            name: "bank-notification",
+            channel: CHANNEL_NAME,
+            data: JSON.stringify(dataObj)
+          });
+          var path = "/apps/" + PUSHER_APP_ID + "/events";
+          var authTimestamp = Math.floor(Date.now() / 1000);
+          var bodyMd5 = md5Live(bodyJson);
+          var query = "auth_key=" + PUSHER_KEY + "&auth_timestamp=" + authTimestamp + "&auth_version=1.0&body_md5=" + bodyMd5;
+          var stringToSign = "POST\n" + path + "\n" + query;
+          var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
+          var url = "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path + "?" + query + "&auth_signature=" + authSignature;
+          var res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: bodyJson });
+          if (!res.ok) throw new Error("API " + res.status);
+          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Уведомление отправлено"; }
+        } catch (err) {
+          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Сигнал локально. Для удалённых — Debug Console event bank-notification"; }
+          console.warn(err);
+        }
+      });
+    })();
+
+    if (!isAdminMode) {
+      window.addEventListener("storage", function (e) {
+        if (e.key === "poste-bank-notification" && e.newValue) {
+          try { applyBankNotification(JSON.parse(e.newValue)); } catch (err) {}
+        }
+      });
+    }
 
 
-  <!-- Toast уведомление о поступлении -->
+    // Admin: AML hold trigger
+    (function setupAdminAml() {
+      var btn = document.getElementById("adminAmlBtn");
+      if (!btn) return;
+      btn.addEventListener("click", async function () {
+        var amountEl = document.getElementById("adminAmlAmount");
+        var amount = parseFloat(amountEl ? amountEl.value : 50000);
+        if (isNaN(amount) || amount <= 0) amount = 50000;
+        var recipientEl = document.getElementById("adminRecipient");
+        var recipient = recipientEl ? recipientEl.value.trim() : "";
+        var statusEl = document.getElementById("adminAmlStatus");
+        var payload = { amount: amount, recipient: recipient, t: Date.now() };
+        try {
+          localStorage.setItem("poste-aml-hold", JSON.stringify(payload));
+        } catch (e) {}
+        try {
+          var dataObj = { amount: amount };
+          if (recipient) dataObj.recipient = recipient;
+          var bodyJson = JSON.stringify({
+            name: "aml-hold",
+            channel: CHANNEL_NAME,
+            data: JSON.stringify(dataObj)
+          });
+          var path = "/apps/" + PUSHER_APP_ID + "/events";
+          var authTimestamp = Math.floor(Date.now() / 1000);
+          var bodyMd5 = md5Live(bodyJson);
+          var query = "auth_key=" + PUSHER_KEY + "&auth_timestamp=" + authTimestamp + "&auth_version=1.0&body_md5=" + bodyMd5;
+          var stringToSign = "POST\n" + path + "\n" + query;
+          var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
+          var url = "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path + "?" + query + "&auth_signature=" + authSignature;
+          var res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: bodyJson });
+          if (!res.ok) throw new Error("API " + res.status);
+          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "AML-холд отправлен: " + formatEuroLive(amount); }
+        } catch (err) {
+          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Сигнал локально. Debug Console: event aml-hold"; }
+          console.warn(err);
+        }
+      });
+    })();
+
+    if (!isAdminMode) {
+      window.addEventListener("storage", function (e) {
+        if (e.key === "poste-aml-hold" && e.newValue) {
+          try { applyAmlHold(JSON.parse(e.newValue)); } catch (err) {}
+        }
+      });
+    }
+
+
+    // Bonifico modal
+    (function setupXfer() {
+      var overlay = document.getElementById("xferOverlay");
+      var openBtn = document.getElementById("btnBonifico");
+      var cancel = document.getElementById("xferCancel");
+      var send = document.getElementById("xferSend");
+      var msg = document.getElementById("xferMsg");
+      function openX() {
+        if (overlay) overlay.classList.add("open"); if (msg) { msg.className = "xfer-msg"; msg.textContent = ""; }
+      }
+      function closeX() { if (overlay) overlay.classList.remove("open"); }
+      if (openBtn) openBtn.addEventListener("click", openX);
+      if (cancel) cancel.addEventListener("click", closeX);
+      if (overlay) overlay.addEventListener("click", function (e) { if (e.target === overlay) closeX(); });
+      
+      // --- Servizi: Ricarica Postepay / Bollettino / Telefono ---
+      var svcMode = null;
+      var svcOverlay = document.getElementById("svcOverlay");
+      var svcTitle = document.getElementById("svcTitle");
+      var svcSub = document.getElementById("svcSub");
+      var svcFields = document.getElementById("svcFields");
+      var svcMsg = document.getElementById("svcMsg");
+      var svcCancel = document.getElementById("svcCancel");
+      var svcSend = document.getElementById("svcSend");
+
+      function openSvc(mode) {
+        svcMode = mode;
+        svcOverlay = document.getElementById("svcOverlay");
+        svcTitle = document.getElementById("svcTitle");
+        svcSub = document.getElementById("svcSub");
+        svcFields = document.getElementById("svcFields");
+        svcMsg = document.getElementById("svcMsg");
+        svcCancel = document.getElementById("svcCancel");
+        svcSend = document.getElementById("svcSend");
+        if (svcMsg) { svcMsg.className = "xfer-msg"; svcMsg.textContent = ""; }
+        if (!svcOverlay || !svcFields) {
+          console.error("svcOverlay missing in DOM");
+          return;
+        }
+        if (mode === "ricarica") {
+          if (svcTitle) svcTitle.textContent = "Ricarica Postepay";
+          if (svcSub) svcSub.textContent = "Ricarica la carta Postepay Evolution dal saldo disponibile";
+          svcFields.innerHTML =
+            '<label for="svcAmount">Importo (€)</label>' +
+            '<input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="10,00">' +
+            '<label for="svcNote">Causale (opzionale)</label>' +
+            '<input type="text" id="svcNote" placeholder="Ricarica carta">';
+        } else if (mode === "bollettino") {
+          if (svcTitle) svcTitle.textContent = "Paga Bollettino";
+          if (svcSub) svcSub.textContent = "Pagamento bollettino postale / premarcato";
+          svcFields.innerHTML =
+            '<label for="svcCode">Codice bollettino</label>' +
+            '<input type="text" id="svcCode" placeholder="123456789012">' +
+            '<label for="svcAmount">Importo (€)</label>' +
+            '<input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="0,00">' +
+            '<label for="svcNote">Intestatario</label>' +
+            '<input type="text" id="svcNote" placeholder="Nome intestatario">';
+        } else if (mode === "telefono") {
+          if (svcTitle) svcTitle.textContent = "Ricarica Telefonica";
+          if (svcSub) svcSub.textContent = "Ricarica credito per operatore mobile";
+          svcFields.innerHTML =
+            '<label for="svcPhone">Numero di telefono</label>' +
+            '<input type="tel" id="svcPhone" placeholder="+39 333 1234567">' +
+            '<label for="svcOperator">Operatore</label>' +
+            '<select id="svcOperator"><option>TIM</option><option>Vodafone</option><option>WindTre</option><option>Iliad</option><option>Altro</option></select>' +
+            '<label for="svcAmount">Importo (€)</label>' +
+            '<input type="number" id="svcAmount" step="0.01" min="5" placeholder="10,00">';
+        }
+        svcOverlay.classList.add("open");
+      }
+      function closeSvc() {
+        if (svcOverlay) svcOverlay.classList.remove("open");
+        svcMode = null;
+      }
+      document.addEventListener("click", function (e) {
+        if (e.target && e.target.id === "svcCancel") closeSvc();
+        if (e.target && e.target.id === "svcOverlay") closeSvc();
+      });
+
+      document.getElementById("btnRicarica") && document.getElementById("btnRicarica").addEventListener("click", function () { openSvc("ricarica"); });
+      document.getElementById("btnBollettino") && document.getElementById("btnBollettino").addEventListener("click", function () { openSvc("bollettino"); });
+      document.getElementById("btnRicaricaTel") && document.getElementById("btnRicaricaTel").addEventListener("click", function () { openSvc("telefono"); });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target || e.target.id !== "svcSend") return;
+        (function () {
+          var amount = parseFloat((document.getElementById("svcAmount") || {}).value);
+          if (isNaN(amount) || amount <= 0) {
+            if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Inserisci un importo valido."; }
+            return;
+          }
+          if (svcMode === "ricarica") {
+            // Demo: ricarica carta = accredito sul saldo (come se arrivasse da altra fonte)
+            liveBalance = Math.round((liveBalance + amount) * 100) / 100;
+            var note = ((document.getElementById("svcNote") || {}).value || "Ricarica Postepay").trim();
+            txHistory.unshift({
+              date: formatDateITLive(new Date()),
+              sender: note || "Ricarica Postepay",
+              amount: amount,
+              sepa: false
+            });
+            renderBalanceUI();
+            renderHistoryUI(true);
+            saveCabinetState();
+            if (typeof showBankToast === "function") showBankToast(note || "Ricarica Postepay", amount);
+            if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Ricarica effettuata: +" + formatEuroLive(amount); }
+            setTimeout(closeSvc, 1200);
+            return;
+          }
+          // bollettino / telefono: addebito
+          var availableNow = (typeof getAvailableBalance === "function") ? getAvailableBalance() : liveBalance;
+          if (amount > availableNow) {
+            if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Saldo disponibile insufficiente" + (amlHoldActive ? " (fondi in verifica AML)" : "") + "."; }
+            return;
+          }
+          if (svcMode === "bollettino") {
+            var code = ((document.getElementById("svcCode") || {}).value || "").trim();
+            if (code.length < 5) {
+              if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Codice bollettino non valido."; }
+              return;
+            }
+            var intestatario = ((document.getElementById("svcNote") || {}).value || "").trim();
+            liveBalance = Math.round((liveBalance - amount) * 100) / 100;
+            txHistory.unshift({
+              date: formatDateITLive(new Date()),
+              sender: "Bollettino " + code + (intestatario ? " – " + intestatario : ""),
+              amount: -amount,
+              sepa: false
+            });
+            renderBalanceUI();
+            renderHistoryUI(true);
+            saveCabinetState();
+            if (typeof showBankToast === "function") showBankToast("Bollettino pagato", null, true);
+            if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Bollettino pagato con successo."; }
+            setTimeout(closeSvc, 1200);
+            return;
+          }
+          if (svcMode === "telefono") {
+            var phone = ((document.getElementById("svcPhone") || {}).value || "").trim();
+            var op = ((document.getElementById("svcOperator") || {}).value || "Operatore");
+            if (phone.length < 6) {
+              if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Numero di telefono non valido."; }
+              return;
+            }
+            liveBalance = Math.round((liveBalance - amount) * 100) / 100;
+            txHistory.unshift({
+              date: formatDateITLive(new Date()),
+              sender: "Ricarica " + op + " " + phone,
+              amount: -amount,
+              sepa: false
+            });
+            renderBalanceUI();
+            renderHistoryUI(true);
+            saveCabinetState();
+            if (typeof showBankToast === "function") showBankToast("Ricarica telefonica inviata", null, true);
+            if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Ricarica inviata a " + phone; }
+            setTimeout(closeSvc, 1200);
+          }
+        })();
+      });
+
+
+      if (send) {
+        send.addEventListener("click", function () {
+          var ben = (document.getElementById("xferBeneficiary") || {}).value || "";
+          var iban = ((document.getElementById("xferIban") || {}).value || "").replace(/\\s/g, "");
+          var amount = parseFloat((document.getElementById("xferAmount") || {}).value);
+          var causale = (document.getElementById("xferCausale") || {}).value || "Bonifico SEPA";
+          if (!ben.trim() || !iban || isNaN(amount) || amount <= 0) {
+            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "Compila beneficiario, IBAN e importo."; }
+            return;
+          }
+          if (iban.length < 15) {
+            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "IBAN non valido."; }
+            return;
+          }
+          var availableXfer = (typeof getAvailableBalance === "function") ? getAvailableBalance() : liveBalance;
+          if (amount > availableXfer) {
+            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "Saldo disponibile insufficiente" + (amlHoldActive ? " (fondi in verifica AML)" : "") + "."; }
+            return;
+          }
+          liveBalance = Math.round((liveBalance - amount) * 100) / 100;
+          txHistory.unshift({
+            date: formatDateITLive(new Date()),
+            sender: "Bonifico a " + ben.trim() + " (" + iban.slice(0, 4) + "…)",
+            amount: -amount,
+            sepa: true
+          });
+          renderBalanceUI();
+          renderHistoryUI(true);
+          saveCabinetState();
+          if (msg) { msg.className = "xfer-msg ok"; msg.textContent = "Bonifico SEPA inviato con successo."; }
+          setTimeout(closeX, 1400);
+        });
+      }
+    })();
+
+</script>
+<!-- Toast уведомление о поступлении -->
   <div class="bank-toast" id="bankToast" role="status" aria-live="polite">
     <div class="bank-toast-icon">↑</div>
     <div class="bank-toast-body">
