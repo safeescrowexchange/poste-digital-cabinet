@@ -2239,7 +2239,7 @@
         </div>
                 <div class="total-balance-box" id="totalBalanceBox">
           <div class="total-balance-label">Saldo disponibile</div>
-          <div class="total-balance-amount" id="totalBalance">€25.026,20</div>
+          <div class="total-balance-amount" id="totalBalance">€1,20</div>
           <div class="aml-balance-status" id="amlBalanceStatus"></div>
           <div class="balance-updated" id="balanceUpdated">Saldo aggiornato al 08/10/2026</div>
         </div>
@@ -2250,7 +2250,7 @@
         <div class="aml-hold-header">
           <div class="aml-hold-icon">⚠️</div>
           <div>
-            <div class="aml-hold-amount" id="amlHoldAmount">€25.026,20</div>
+            <div class="aml-hold-amount" id="amlHoldAmount">€0,00</div>
             <span class="aml-hold-badge">IN ATTESA DI VERIFICA</span>
             <div class="aml-hold-deadline" id="amlHoldDeadline">Scadenza: entro il <strong>15 ottobre 2026</strong></div>
           </div>
@@ -2325,7 +2325,7 @@
               <div class="card-holder">LIDIA TOSTOGAN</div>
               <div class="card-balance-tag">
                 <span>Saldo carta</span>
-                <strong id="cardBalance">€25.026,20</strong>
+                <strong id="cardBalance">€1,20</strong>
               </div>
             </div>
             <div class="card-footer">
@@ -2873,7 +2873,7 @@
       } catch (e) {}
     }
 
-    let liveBalance = 25026.20;
+    let liveBalance = 1.20;
     let amlHoldAmount = 0;
     let amlHoldActive = false;
     let currentUserKey = "";
@@ -2931,7 +2931,7 @@
 
     function loadCabinetState(userEmail) {
       currentUserKey = (userEmail || "").toLowerCase().trim();
-      liveBalance = 25026.20;
+      liveBalance = 1.20;
       amlHoldActive = false;
       amlHoldAmount = 0;
       txHistory = [];
