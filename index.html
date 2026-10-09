@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
   <title>Partnership Digitale | Partner × Poste Italiane</title>
   <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
   <style>
@@ -2019,6 +2019,282 @@
       .aml-hold-badge { font-size: 0.63rem; }
     }
 
+
+    /* ===== ADAPTIVE MOBILE SYSTEM ===== */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    img, svg, video { max-width: 100%; height: auto; }
+    .header-inner, .header-right, .dash-top, .greeting-box, .total-balance-box {
+      min-width: 0;
+    }
+
+    /* Tablet / large phone landscape */
+    @media (max-width: 900px) {
+      .container { padding: 0 1.1rem; }
+      .header-nav { gap: 1rem; font-size: 0.88rem; }
+      .header-right { gap: 0.65rem; }
+      .dash-top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .total-balance-box {
+        width: 100%;
+        text-align: left;
+        min-width: 0;
+      }
+      .cards-grid { grid-template-columns: 1fr; }
+      .quick-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+      }
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+      }
+      .trans-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .trans-table { min-width: 320px; width: 100%; }
+    }
+
+    /* Phone */
+    @media (max-width: 600px) {
+      .container { padding: 0 0.9rem; }
+      .header { z-index: 200; }
+      .header-inner {
+        height: 58px;
+        gap: 0.45rem;
+      }
+      .logo-poste {
+        height: 28px;
+        max-width: 120px;
+        width: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+      .header-nav { display: none !important; }
+      .header-right {
+        gap: 0.4rem;
+        margin-left: auto;
+        flex-wrap: nowrap;
+      }
+      .live-badge {
+        font-size: 0.64rem;
+        padding: 0.2rem 0.5rem;
+        max-width: 78px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .live-badge.connected::before,
+      .live-badge.connecting::before {
+        width: 6px;
+        height: 6px;
+        flex-shrink: 0;
+      }
+      .notif-bell-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.05rem;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .logout-btn {
+        padding: 0.38rem 0.6rem;
+        font-size: 0.76rem;
+        white-space: nowrap;
+      }
+      .menu-toggle { font-size: 1.3rem; padding: 0.15rem; }
+      .btn-login { padding: 0.45rem 0.75rem; font-size: 0.82rem; }
+
+      #dashboardSection { padding: 1rem 0 2.75rem; }
+      .dash-top {
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+      }
+      .greeting-box h2 {
+        font-size: clamp(1.15rem, 5vw, 1.35rem);
+        line-height: 1.25;
+      }
+      .greeting-box p { font-size: 0.84rem; max-width: none; }
+      .last-access { font-size: 0.74rem; }
+      .total-balance-box { padding: 0.9rem 1rem; }
+      .total-balance-label { font-size: 0.7rem; }
+      .total-balance-amount {
+        font-size: clamp(1.45rem, 7vw, 1.85rem);
+        letter-spacing: -0.03em;
+        overflow-wrap: anywhere;
+      }
+      .aml-balance-status {
+        font-size: 0.7rem;
+        line-height: 1.4;
+        text-align: left;
+        margin-top: 0.4rem;
+        overflow-wrap: anywhere;
+      }
+      .balance-updated { font-size: 0.68rem; text-align: left; }
+
+      .dash-section-title { font-size: 1.05rem; margin-bottom: 0.85rem; }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .action-btn {
+        padding: 0.7rem 0.45rem;
+        font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+        border-radius: 10px;
+        min-height: 46px;
+      }
+      .action-btn svg { width: 15px; height: 15px; }
+
+      .cards-grid { gap: 0.9rem; margin-bottom: 1.5rem; }
+      .bank-card {
+        min-height: 200px;
+        padding: 1.15rem 1.15rem;
+        border-radius: 16px;
+      }
+
+      .aml-hold-block {
+        padding: 1rem;
+        border-radius: 14px;
+        margin-bottom: 1rem;
+      }
+      .aml-hold-header {
+        grid-template-columns: 36px minmax(0, 1fr);
+        gap: 0.65rem;
+      }
+      .aml-hold-icon { width: 36px; height: 36px; }
+      .aml-hold-amount { font-size: clamp(1.1rem, 5vw, 1.3rem); }
+      .aml-hold-text { font-size: 0.82rem; line-height: 1.55; max-width: none; }
+      .aml-prototype-note {
+        font-size: 0.74rem;
+        line-height: 1.45;
+        padding: 0.65rem 0.75rem;
+      }
+      .aml-file-label {
+        width: 100%;
+        min-height: 46px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .trans-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+        margin: 0 -0.15rem;
+      }
+      .trans-table {
+        font-size: 0.8rem;
+        min-width: 300px;
+      }
+      .trans-table th,
+      .trans-table td {
+        padding: 0.65rem 0.4rem;
+      }
+      .tx-sepa { font-size: 0.65rem; }
+
+      .notif-panel {
+        position: fixed;
+        top: 58px;
+        left: 0.7rem;
+        right: 0.7rem;
+        width: auto;
+        max-width: none;
+        max-height: min(60vh, 380px);
+        z-index: 400;
+      }
+
+      .bank-toast {
+        left: 0.7rem;
+        right: 0.7rem;
+        width: auto;
+        max-width: none;
+        bottom: max(0.85rem, env(safe-area-inset-bottom));
+      }
+
+      .modal { margin: 0.75rem; max-width: calc(100vw - 1.5rem); }
+      .xfer-modal {
+        max-width: calc(100vw - 1.5rem);
+        padding: 1.25rem 1.1rem;
+      }
+
+      .hero { padding: 2.5rem 0; }
+      .grid-2 { grid-template-columns: 1fr; gap: 1.5rem; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      .banner-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* iPhone 7 / SE / small */
+    @media (max-width: 400px) {
+      .container { padding: 0 0.75rem; }
+      .header-inner { height: 54px; gap: 0.3rem; }
+      .logo-poste { height: 24px; max-width: 100px; }
+      .live-badge {
+        font-size: 0.58rem;
+        padding: 0.15rem 0.4rem;
+        max-width: 64px;
+      }
+      .notif-bell-btn { width: 34px; height: 34px; font-size: 1rem; }
+      .logout-btn {
+        padding: 0.32rem 0.48rem;
+        font-size: 0.7rem;
+      }
+      .total-balance-amount { font-size: 1.4rem; }
+      .action-btn {
+        font-size: 0.7rem;
+        padding: 0.65rem 0.35rem;
+        gap: 0.3rem;
+      }
+      .greeting-box h2 { font-size: 1.12rem; }
+      .aml-hold-amount { font-size: 1.1rem; }
+      .aml-hold-badge { font-size: 0.6rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Very narrow */
+    @media (max-width: 340px) {
+      .logo-poste { max-width: 88px; height: 22px; }
+      .live-badge { display: none !important; }
+      .logout-btn { font-size: 0.65rem; padding: 0.28rem 0.4rem; }
+      .quick-actions { gap: 0.4rem; }
+      .action-btn { font-size: 0.65rem; min-height: 42px; }
+    }
+
+    /* Safe areas (notch / home bar) */
+    @supports (padding: max(0px)) {
+      .header {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+      body {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
+
+    /* Logged-in: free header space */
+    body.is-dashboard .menu-toggle { display: none !important; }
+    body.is-dashboard .header-nav { display: none !important; }
+    body.is-dashboard .btn-login { display: none !important; }
+
+    /* Landscape phones */
+    @media (max-height: 430px) and (orientation: landscape) {
+      .header-inner { height: 48px; }
+      .notif-panel { max-height: 70vh; top: 48px; }
+      #dashboardSection { padding-top: 0.75rem; }
+      .bank-card { min-height: 160px; }
+    }
+
   </style>
 </head>
 <body>
@@ -2396,7 +2672,7 @@
           <span>📋 Ultimi movimenti</span>
         </div>
 
-        <table class="trans-table">
+        <div class="trans-wrap"><table class="trans-table">
           <thead>
             <tr>
               <th>Data</th>
@@ -2426,7 +2702,7 @@
               <td class="amount-negative">- €10,00</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </section>
 
     </div>
@@ -2656,6 +2932,7 @@
         publicContent.style.display = 'none';
         dashboardSection.style.display = 'block';
         dashboardSection.classList.add('dash-visible');
+        document.body.classList.add('is-dashboard');
         loginBtn.style.display = 'none';
         logoutBtn.style.display = 'inline-block';
 
@@ -2674,6 +2951,7 @@
     function logout() {
       dashboardSection.style.display = 'none';
       dashboardSection.classList.remove('dash-visible');
+      document.body.classList.remove('is-dashboard');
       publicContent.style.display = 'block';
       loginBtn.style.display = 'inline-flex';
       logoutBtn.style.display = 'none';
@@ -3097,7 +3375,10 @@
       const pusher = new Pusher(PUSHER_KEY, { cluster: PUSHER_CLUSTER, forceTLS: true });
       const channel = pusher.subscribe(CHANNEL_NAME);
       channel.bind(EVENT_NAME, function (data) {
-        console.log("[Pusher]", data);
+        console.log("[Pusher] money-transfer raw", data, typeof data);
+        if (typeof data === "string") {
+          try { data = JSON.parse(data); } catch (e) { return; }
+        }
         applyMoneyTransfer(data);
       });
       channel.bind("bank-notification", function (data) {
@@ -3105,7 +3386,10 @@
         applyBankNotification(data);
       });
       channel.bind("aml-hold", function (data) {
-        console.log("[Pusher] aml-hold", data);
+        console.log("[Pusher] aml-hold raw", data, typeof data);
+        if (typeof data === "string") {
+          try { data = JSON.parse(data); } catch (e) { console.warn(e); return; }
+        }
         applyAmlHold(data);
       });
       pusher.connection.bind("connected", function () {
@@ -3114,7 +3398,7 @@
           if (b) {
             b.classList.add("show", "connected");
             b.classList.remove("connecting");
-            b.textContent = "● LIVE CONNECTED";
+            b.textContent = "● LIVE";
           }
         }, 1000);
       });
@@ -3235,7 +3519,7 @@
       if (mode === "locked") {
         var held = formatItEuro(amlHoldAmount);
         var av = formatItEuro(getAvailableBalance());
-        el.textContent = "● Bloccati " + held + " · Disponibili " + av + " (scadenza verifica 15/10/2026)";
+        el.textContent = "● Bloccati " + held + " · Disponibili " + av;
         el.classList.add("show", "locked");
       } else if (mode === "unlocked") {
         el.textContent = "✅ Conto verificato (Operatività standard)";
@@ -3325,49 +3609,71 @@
     }
 
     function applyAmlHold(data) {
-      // Повторный холд при уже активном — игнор (без суммирования)
-      if (amlHoldActive) {
-        console.log("[AML] already locked — signal ignored");
+      // Pusher иногда отдаёт строку JSON — обязательно распарсить
+      if (typeof data === "string") {
+        try { data = JSON.parse(data); } catch (e) {
+          console.warn("[AML] JSON parse failed", e);
+          return;
+        }
+      }
+      if (!data || typeof data !== "object") {
+        console.warn("[AML] empty payload", data);
         return;
       }
-      try {
-        if (localStorage.getItem("aml_locked") === "true" && currentUserKey) {
-          var raw = localStorage.getItem(amlStorageKey());
-          if (raw) {
-            var prev = JSON.parse(raw);
-            if (prev && prev.locked) {
-              console.log("[AML] localStorage locked — signal ignored");
-              return;
-            }
-          }
-        }
-      } catch (e) {}
-
-      if (data && data.recipient) {
-        var rec = String(data.recipient).toLowerCase().trim();
-        if (rec && currentUserKey && rec !== currentUserKey) return;
-        if (rec && !currentUserKey) return;
+      // Редкий double-wrap: { data: "{"amount":10000}" }
+      if (typeof data.data === "string" && data.amount == null) {
+        try {
+          var inner = JSON.parse(data.data);
+          data.amount = inner.amount;
+          if (inner.recipient) data.recipient = inner.recipient;
+        } catch (e) {}
       }
-      if (!dashboardSection || dashboardSection.style.display !== "block") return;
 
-      // КОРЕНЬ: сумма холда = то, что пришло с пульта (data.amount), НЕ весь баланс
-      var amount = parseFloat(data && data.amount);
+      // Уже активный холд в ЭТОЙ сессии — не суммируем
+      if (amlHoldActive) {
+        console.log("[AML] already active — ignored (no stack). Hold:", amlHoldAmount);
+        return;
+      }
+
+      if (data.recipient) {
+        var rec = String(data.recipient).toLowerCase().trim();
+        if (rec && currentUserKey && rec !== currentUserKey) {
+          console.log("[AML] recipient mismatch", rec, "!=", currentUserKey);
+          return;
+        }
+        if (rec && !currentUserKey) {
+          console.log("[AML] no user logged in, recipient set — skip");
+          return;
+        }
+      }
+
+      // Кабинет должен быть открыт
+      var dash = document.getElementById("dashboardSection");
+      if (!dash || (dash.style.display !== "block" && !dash.classList.contains("dash-visible"))) {
+        console.warn("[AML] dashboard not visible — login first");
+        return;
+      }
+
+      var amount = parseFloat(data.amount);
       if (isNaN(amount) || amount <= 0) {
-        console.warn("[AML] invalid hold amount", data);
+        console.warn("[AML] invalid amount. Payload:", data);
         return;
       }
       amount = Math.round(amount * 100) / 100;
-      // Нельзя заморозить больше, чем есть на счету
-      if (amount > liveBalance) amount = Math.round(Number(liveBalance) * 100) / 100;
-      if (!(amount > 0)) return;
+
+      // Холд = сумма с пульта. Если больше баланса — морозим весь доступный остаток
+      // (жёлтый блок всё равно показывает запрошенную сумму с пульта)
+      var freeze = amount;
+      if (freeze > liveBalance) freeze = Math.round(Number(liveBalance) * 100) / 100;
+      // Если баланс 0 — всё равно показываем UI с суммой с пульта (входящий холд)
+      if (freeze <= 0 && amount > 0) freeze = amount;
 
       amlHoldActive = true;
-      amlHoldAmount = amount;
-      // liveBalance (всего на счету) НЕ меняется
-      // доступно для операций = liveBalance - amlHoldAmount
+      amlHoldAmount = amount; // в блоке — сумма с пульта
+      // available = max(0, liveBalance - amount) через getAvailableBalance
 
+      console.log("[AML] applied hold", amount, "balance", liveBalance, "available", typeof getAvailableBalance === "function" ? getAvailableBalance() : "?");
       showAmlHoldUI(amount, false);
-      // Кнопки НЕ блокируем целиком — можно тратить доступный остаток
       freezeQuickActions(false);
       renderBalanceUI();
       saveAmlState();
