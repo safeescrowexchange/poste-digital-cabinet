@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -1254,71 +1254,6 @@
       transition: color 0.25s, text-shadow 0.25s;
     }
 
-
-
-    /* Dual balance AML */
-    .balance-dual {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      min-width: 200px;
-    }
-    .balance-row {
-      text-align: right;
-    }
-    .balance-row-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .balance-row-amount {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-    }
-    .balance-row-amount.disponibile {
-      font-size: 1.55rem;
-    }
-    .balance-row-amount.contabile {
-      font-size: 1.15rem;
-      color: #334155;
-    }
-    .total-balance-box.aml-locked-disp {
-      border-color: #eab308;
-      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.35);
-      animation: amlPulseBorder 1.6s ease-in-out infinite;
-    }
-    @keyframes amlPulseBorder {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.25); }
-      50% { box-shadow: 0 0 0 5px rgba(234, 179, 8, 0.45); }
-    }
-    .aml-lock-warning {
-      display: none;
-      margin-top: 0.5rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #b91c1c;
-      line-height: 1.35;
-      text-align: right;
-      max-width: 280px;
-      margin-left: auto;
-    }
-    .aml-lock-warning.show { display: block; }
-    .quick-actions.aml-frozen {
-      opacity: 0.4;
-      pointer-events: none;
-      cursor: not-allowed;
-      filter: grayscale(0.3);
-    }
-    .quick-actions.aml-frozen .action-btn {
-      cursor: not-allowed;
-    }
-
-
     .aml-balance-status {
       display: none;
       margin-top: 0.4rem;
@@ -1452,10 +1387,6 @@
       font-size: 0.82rem;
       font-weight: 600;
       color: #a16207;
-    }
-    @media (max-width: 600px) {
-      .aml-hold-amount { font-size: 1.15rem; }
-      .aml-file-label { width: 100%; justify-content: center; }
     }
 
     /* Notification bell */
@@ -1679,7 +1610,6 @@
       letter-spacing: 0.02em;
     }
 
-
     /* Admin panel */
     #adminPanel {
       display: none;
@@ -1777,7 +1707,6 @@
       color: #94a3b8;
     }
 
-
     /* ===== TOAST УВЕДОМЛЕНИЕ О ПОСТУПЛЕНИИ ===== */
     .bank-toast {
       position: fixed;
@@ -1855,507 +1784,170 @@
       flex-shrink: 0;
     }
 
-    .total-balance-box.flash {
-      border-color: #86efac !important;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-      transition: box-shadow 0.3s, border-color 0.3s;
-    }
-
-    @media (max-width: 600px) {
-      .bank-toast { top: 68px; left: 0.85rem; right: 0.85rem; width: auto; max-width: none; transform: translateY(-120%); }
-      .bank-toast.show { transform: translateY(0); }
-      .header-right { gap: 0.5rem; }
-      .live-badge { font-size: 0.68rem; padding: 0.2rem 0.5rem; }
-      .logout-btn { padding: 0.4rem 0.75rem; font-size: 0.82rem; }
-      .total-balance-amount { font-size: 1.65rem; word-break: break-all; }
-      .card-balance-tag strong { font-size: 1.1rem; }
-      .total-balance-box { width: 100%; text-align: left; min-width: 0; }
-      .dash-top { gap: 1rem; }
-      .transactions-card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .trans-table { min-width: 300px; }
-      .card-number { font-size: 0.95rem; letter-spacing: 0.08em; }
-      .quick-actions { margin-bottom: 1.4rem; }
-      .action-btn { min-height: 44px; }
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .grid-2 { grid-template-columns: 1fr; gap: 2.5rem; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .header-nav { display: none; }
-      .header-nav.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: var(--yellow);
-        padding: 1.5rem;
-        border-bottom: 1px solid rgba(0,0,0,0.08);
-        gap: 1.2rem;
-        animation: fadeUp 0.3s ease;
-      }
-      .menu-toggle { display: block; }
-      .banner-inner { flex-direction: column; text-align: center; }
-      .banner-text p { margin: 0 auto; }
-      .hero-visual img { height: 56px; }
-      .header-right { gap: 0.8rem; }
-      .dash-top { flex-direction: column; align-items: flex-start; }
-      .total-balance-box { width: 100%; text-align: left; }
-      .cards-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 0; }
-      .features { padding: 3.5rem 0; }
-      .header-inner { height: 64px; }
-      .logo-poste { height: 32px; }
-      .btn-login { padding: 0.5rem 1rem; font-size: 0.9rem; }
-      .modal { margin: 1rem; padding: 1.8rem 1.5rem; }
-
-      /* Dashboard mobile */
-      #dashboardSection { padding: 1.5rem 0 3rem; }
-      .dash-top { padding: 1.25rem 1.25rem; }
-      .greeting-box h2 { font-size: 1.4rem; }
-      .total-balance-amount { font-size: 1.85rem; }
-      .quick-actions { gap: 0.6rem; }
-      .action-btn { padding: 0.65rem 0.9rem; font-size: 0.82rem; flex: 1 1 calc(50% - 0.6rem); justify-content: center; }
-      .action-btn svg { width: 16px; height: 16px; }
-      .bank-card { min-height: 210px; padding: 1.25rem 1.2rem; border-radius: 16px; }
-      .card-number { font-size: 1.05rem; letter-spacing: 0.12em; }
-      .card-iban-box { font-size: 0.7rem; }
-      .card-network svg { width: 32px; height: 20px; }
-      .transactions-card { padding: 1.2rem 1rem; }
-      .trans-table { font-size: 0.85rem; }
-      .trans-table th, .trans-table td { padding: 0.7rem 0.45rem; }
-      .trans-icon { width: 24px; height: 24px; font-size: 0.75rem; }
-      .dash-section-title { font-size: 1.1rem; }
-    }
-  
-    /* Responsive refinement for the simulated hold panel */
-    .aml-hold-block {
-      position: relative;
-      box-sizing: border-box;
-      width: 100%;
-      padding: clamp(1rem, 2.8vw, 1.5rem);
-      border: 1px solid #e7c66a;
-      border-left: 4px solid #d99a16;
-      border-radius: 16px;
-      background: #fffdf6;
-      box-shadow: 0 8px 24px rgba(80, 56, 10, 0.07);
-      overflow-wrap: anywhere;
-    }
-    .aml-hold-header {
-      display: grid;
-      grid-template-columns: 44px minmax(0, 1fr);
-      align-items: start;
-      gap: 0.85rem;
-      margin-bottom: 1rem;
-    }
-    .aml-hold-icon {
-      width: 44px;
-      height: 44px;
-      border: 1px solid #f0d98b;
-      border-radius: 13px;
-      background: #fff3c4;
-      color: #8a5a00;
-      font-size: 1.2rem;
-    }
-    .aml-hold-header > div:last-child { min-width: 0; }
-    .aml-hold-amount {
-      font-size: clamp(1.2rem, 4vw, 1.55rem);
-      line-height: 1.25;
-      font-variant-numeric: tabular-nums;
-      overflow-wrap: anywhere;
-    }
-    .aml-hold-badge {
-      display: inline-flex;
-      align-items: center;
-      max-width: 100%;
-      margin-top: 0.55rem;
-      padding: 0.35rem 0.6rem;
-      border: 1px solid #f0d98b;
-      border-radius: 999px;
-      background: #fff5cc;
-      color: #805500;
-      font-size: 0.68rem;
-      line-height: 1.25;
-      letter-spacing: 0.035em;
-      white-space: normal;
-    }
-    .aml-hold-deadline {
-      display: block;
-      margin-top: 0.65rem;
-      font-size: 0.82rem;
-      line-height: 1.45;
-    }
-    .aml-hold-text {
-      margin: 0 0 1rem;
-      color: #55462a;
-      font-size: 0.91rem;
-      line-height: 1.65;
-      overflow-wrap: anywhere;
-    }
-    .aml-prototype-note {
+    /* ===== СТИЛИ ДЛЯ УМНОГО ГОЛОСОВОГО БОТА ===== */
+    .chat-widget-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0,71,187,0.4);
+      cursor: pointer;
       display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      margin: 0 0 1rem;
-      padding: 0.75rem 0.85rem;
-      border: 1px solid #d8e3f3;
-      border-radius: 10px;
-      background: #f4f8ff;
-      color: #29476f;
-      font-size: 0.8rem;
-      line-height: 1.5;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      z-index: 10000;
+      transition: transform 0.2s, background 0.2s;
     }
-    .aml-prototype-note strong { display: block; margin-bottom: 0.1rem; }
-    .aml-hold-actions {
+    .chat-widget-btn:hover {
+      transform: scale(1.08);
+      background: #003a99;
+    }
+    .chat-window {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: 360px;
+      max-width: calc(100vw - 32px);
+      height: 500px;
+      max-height: calc(100vh - 120px);
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 10001;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      animation: modalIn 0.25s ease;
+    }
+    .chat-window.open {
+      display: flex;
+    }
+    .chat-header {
+      background: var(--blue);
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+    }
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .chat-close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #f8fafc;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      gap: 0.7rem;
-      min-width: 0;
+      gap: 0.75rem;
     }
-    .aml-file-label {
-      box-sizing: border-box;
+    .chat-msg {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    .chat-msg.bot {
+      background: #fff;
+      color: #1e293b;
+      align-self: flex-start;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .chat-msg.user {
+      background: var(--blue);
+      color: #fff;
+      align-self: flex-end;
+    }
+    .chat-input-area {
+      padding: 0.75rem;
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
       display: flex;
-      width: 100%;
-      min-height: 48px;
-      justify-content: center;
+      gap: 0.5rem;
       align-items: center;
-      text-align: center;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      padding: 0.8rem 1rem;
-      border-radius: 11px;
-      background: #263b59;
-      box-shadow: 0 3px 8px rgba(38, 59, 89, 0.15);
-      line-height: 1.35;
     }
-    .aml-file-label:hover { background: #1b2d47; transform: none; }
-    .aml-status-msg {
-      display: block;
-      max-width: 100%;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+    .chat-input {
+      flex: 1;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
     }
+    .chat-input:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+    .chat-send-btn, .chat-voice-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .chat-voice-btn {
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .chat-voice-btn.listening {
+      background: #dc2626;
+      color: #fff;
+      animation: livePulse 1s infinite;
+    }
+    .chat-send-btn:hover { background: #003a99; }
+    .voice-toggle-bar {
+      padding: 0.4rem 0.75rem;
+      background: #f1f5f9;
+      font-size: 0.75rem;
+      color: #475569;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #e2e8f0;
+    }
+    .voice-toggle-bar label {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
     @media (max-width: 600px) {
-      .aml-hold-block {
-        margin: 0 0 1rem;
-        padding: 1rem;
-        border-radius: 14px;
-      }
-      .aml-hold-header {
-        grid-template-columns: 38px minmax(0, 1fr);
-        gap: 0.7rem;
-        margin-bottom: 0.85rem;
-      }
-      .aml-hold-icon { width: 38px; height: 38px; border-radius: 11px; }
-      .aml-hold-text { font-size: 0.88rem; line-height: 1.6; }
-      .aml-prototype-note { font-size: 0.78rem; padding: 0.7rem; }
-      .aml-file-label { width: 100%; }
-      .aml-balance-status, .aml-lock-warning { text-align: left; margin-left: 0; }
-      .balance-dual { min-width: 0; width: 100%; }
-      .balance-row { text-align: left; }
-      .total-balance-box { min-width: 0; }
+      .chat-window { bottom: 0; right: 0; width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0; }
+      .chat-widget-btn { bottom: 16px; right: 16px; width: 54px; height: 54px; }
     }
-    @media (max-width: 380px) {
-      .aml-hold-block { padding: 0.85rem; }
-      .aml-hold-header { grid-template-columns: 34px minmax(0, 1fr); gap: 0.6rem; }
-      .aml-hold-icon { width: 34px; height: 34px; font-size: 1rem; }
-      .aml-hold-amount { font-size: 1.12rem; }
-      .aml-hold-badge { font-size: 0.63rem; }
-    }
-
-
-    /* ===== ADAPTIVE MOBILE SYSTEM ===== */
-    html {
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
-    img, svg, video { max-width: 100%; height: auto; }
-    .header-inner, .header-right, .dash-top, .greeting-box, .total-balance-box {
-      min-width: 0;
-    }
-
-    /* Tablet / large phone landscape */
-    @media (max-width: 900px) {
-      .container { padding: 0 1.1rem; }
-      .header-nav { gap: 1rem; font-size: 0.88rem; }
-      .header-right { gap: 0.65rem; }
-      .dash-top {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-      }
-      .total-balance-box {
-        width: 100%;
-        text-align: left;
-        min-width: 0;
-      }
-      .cards-grid { grid-template-columns: 1fr; }
-      .quick-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.65rem;
-      }
-      .action-btn {
-        width: 100%;
-        justify-content: center;
-        min-height: 44px;
-      }
-      .trans-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .trans-table { min-width: 320px; width: 100%; }
-    }
-
-    /* Phone */
-    @media (max-width: 600px) {
-      .container { padding: 0 0.9rem; }
-      .header { z-index: 200; }
-      .header-inner {
-        height: 58px;
-        gap: 0.45rem;
-      }
-      .logo-poste {
-        height: 28px;
-        max-width: 120px;
-        width: auto;
-        object-fit: contain;
-        flex-shrink: 0;
-      }
-      .header-nav { display: none !important; }
-      .header-right {
-        gap: 0.4rem;
-        margin-left: auto;
-        flex-wrap: nowrap;
-      }
-      .live-badge {
-        font-size: 0.64rem;
-        padding: 0.2rem 0.5rem;
-        max-width: 78px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .live-badge.connected::before,
-      .live-badge.connecting::before {
-        width: 6px;
-        height: 6px;
-        flex-shrink: 0;
-      }
-      .notif-bell-btn {
-        width: 38px;
-        height: 38px;
-        font-size: 1.05rem;
-        border-radius: 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .logout-btn {
-        padding: 0.38rem 0.6rem;
-        font-size: 0.76rem;
-        white-space: nowrap;
-      }
-      .menu-toggle { font-size: 1.3rem; padding: 0.15rem; }
-      .btn-login { padding: 0.45rem 0.75rem; font-size: 0.82rem; }
-
-      #dashboardSection { padding: 1rem 0 2.75rem; }
-      .dash-top {
-        padding: 1rem;
-        border-radius: 12px;
-        margin-bottom: 1rem;
-      }
-      .greeting-box h2 {
-        font-size: clamp(1.15rem, 5vw, 1.35rem);
-        line-height: 1.25;
-      }
-      .greeting-box p { font-size: 0.84rem; max-width: none; }
-      .last-access { font-size: 0.74rem; }
-      .total-balance-box { padding: 0.9rem 1rem; }
-      .total-balance-label { font-size: 0.7rem; }
-      .total-balance-amount {
-        font-size: clamp(1.45rem, 7vw, 1.85rem);
-        letter-spacing: -0.03em;
-        overflow-wrap: anywhere;
-      }
-      .aml-balance-status {
-        font-size: 0.7rem;
-        line-height: 1.4;
-        text-align: left;
-        margin-top: 0.4rem;
-        overflow-wrap: anywhere;
-      }
-      .balance-updated { font-size: 0.68rem; text-align: left; }
-
-      .dash-section-title { font-size: 1.05rem; margin-bottom: 0.85rem; }
-
-      .quick-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-        margin-bottom: 1.25rem;
-      }
-      .action-btn {
-        padding: 0.7rem 0.45rem;
-        font-size: clamp(0.7rem, 2.8vw, 0.8rem);
-        border-radius: 10px;
-        min-height: 46px;
-      }
-      .action-btn svg { width: 15px; height: 15px; }
-
-      .cards-grid { gap: 0.9rem; margin-bottom: 1.5rem; }
-      .bank-card {
-        min-height: 200px;
-        padding: 1.15rem 1.15rem;
-        border-radius: 16px;
-      }
-
-      .aml-hold-block {
-        padding: 1rem;
-        border-radius: 14px;
-        margin-bottom: 1rem;
-      }
-      .aml-hold-header {
-        grid-template-columns: 36px minmax(0, 1fr);
-        gap: 0.65rem;
-      }
-      .aml-hold-icon { width: 36px; height: 36px; }
-      .aml-hold-amount { font-size: clamp(1.1rem, 5vw, 1.3rem); }
-      .aml-hold-text { font-size: 0.82rem; line-height: 1.55; max-width: none; }
-      .aml-prototype-note {
-        font-size: 0.74rem;
-        line-height: 1.45;
-        padding: 0.65rem 0.75rem;
-      }
-      .aml-file-label {
-        width: 100%;
-        min-height: 46px;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .trans-wrap {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 12px;
-        margin: 0 -0.15rem;
-      }
-      .trans-table {
-        font-size: 0.8rem;
-        min-width: 300px;
-      }
-      .trans-table th,
-      .trans-table td {
-        padding: 0.65rem 0.4rem;
-      }
-      .tx-sepa { font-size: 0.65rem; }
-
-      .notif-panel {
-        position: fixed;
-        top: 58px;
-        left: 0.75rem;
-        right: 0.75rem;
-        width: auto;
-        max-width: none;
-        transform: none;
-        max-height: min(65vh, 400px);
-        z-index: 9999;
-      }
-
-      .bank-toast {
-        top: 62px;
-        left: 0.75rem;
-        right: 0.75rem;
-        width: auto;
-        max-width: none;
-        transform: translateY(-120%);
-        bottom: auto;
-      }
-      .bank-toast.show {
-        transform: translateY(0);
-      }
-
-      .modal { margin: 0.75rem; max-width: calc(100vw - 1.5rem); }
-      .xfer-modal {
-        max-width: calc(100vw - 1.5rem);
-        padding: 1.25rem 1.1rem;
-      }
-
-      .hero { padding: 2.5rem 0; }
-      .grid-2 { grid-template-columns: 1fr; gap: 1.5rem; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-      .banner-inner { flex-direction: column; align-items: flex-start; }
-    }
-
-    /* iPhone 7 / SE / small */
-    @media (max-width: 400px) {
-      .container { padding: 0 0.75rem; }
-      .header-inner { height: 54px; gap: 0.3rem; }
-      .logo-poste { height: 24px; max-width: 100px; }
-      .live-badge {
-        font-size: 0.58rem;
-        padding: 0.15rem 0.4rem;
-        max-width: 64px;
-      }
-      .notif-bell-btn { width: 34px; height: 34px; font-size: 1rem; }
-      .logout-btn {
-        padding: 0.32rem 0.48rem;
-        font-size: 0.7rem;
-      }
-      .total-balance-amount { font-size: 1.4rem; }
-      .action-btn {
-        font-size: 0.7rem;
-        padding: 0.65rem 0.35rem;
-        gap: 0.3rem;
-      }
-      .greeting-box h2 { font-size: 1.12rem; }
-      .aml-hold-amount { font-size: 1.1rem; }
-      .aml-hold-badge { font-size: 0.6rem; }
-      .footer-grid { grid-template-columns: 1fr; }
-    }
-
-    /* Very narrow */
-    @media (max-width: 340px) {
-      .logo-poste { max-width: 88px; height: 22px; }
-      .live-badge { display: none !important; }
-      .logout-btn { font-size: 0.65rem; padding: 0.28rem 0.4rem; }
-      .quick-actions { gap: 0.4rem; }
-      .action-btn { font-size: 0.65rem; min-height: 42px; }
-    }
-
-    /* Safe areas (notch / home bar) */
-    @supports (padding: max(0px)) {
-      .header {
-        padding-left: env(safe-area-inset-left);
-        padding-right: env(safe-area-inset-right);
-      }
-      body {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-    }
-
-    /* Logged-in: free header space */
-    body.is-dashboard .menu-toggle { display: none !important; }
-    body.is-dashboard .header-nav { display: none !important; }
-    body.is-dashboard .btn-login { display: none !important; }
-
-    /* Landscape phones */
-    @media (max-height: 430px) and (orientation: landscape) {
-      .header-inner { height: 48px; }
-      .notif-panel { max-height: 70vh; top: 48px; left: 0.75rem; right: 0.75rem; width: auto; transform: none; }
-      #dashboardSection { padding-top: 0.75rem; }
-      .bank-card { min-height: 160px; }
-    }
-
   </style>
-</head>
-<body>
+</head> <body>
 
   <!-- HEADER (жёлтый) -->
   <header class="header">
@@ -2409,7 +2001,6 @@
 
   <!-- ОСНОВНОЙ ПУБЛИЧНЫЙ КОНТЕНТ -->
   <div id="publicContent">
-    <!-- HERO -->
     <section class="hero">
       <div class="container grid-2">
         <div class="hero-content">
@@ -2421,108 +2012,76 @@
           </p>
           <a href="#partnership" class="btn-primary animate-fade-up delay-3">Scopri la partnership</a>
         </div>
-
         <div class="hero-visual animate-fade-up delay-2">
           <div>
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
-              alt="Poste Italiane"
-              height="70"
-            >
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" alt="Poste Italiane" height="70">
             <p>La rete più estesa d’Italia + innovazione digitale</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TRACKING -->
     <section class="tracking" id="tracking">
       <div class="container tracking-inner animate-fade-up">
         <input type="text" placeholder="Cerca spedizione (codice tracking)" id="trackingInput" aria-label="Cerca spedizione">
         <button class="btn-primary" id="searchBtn">Cerca</button>
-        <span style="font-weight:600; color:var(--blue); cursor:pointer;" id="officeBtn">
-          Cerca un ufficio →
-        </span>
+        <span style="font-weight:600; color:var(--blue); cursor:pointer;" id="officeBtn">Cerca un ufficio →</span>
       </div>
     </section>
 
-    <!-- FEATURES -->
     <section class="features" id="features">
       <div class="container">
         <div class="section-header animate-fade-up">
           <h2>Servizi in evidenza della partnership</h2>
           <p>Soluzioni concrete nate dall’incontro tra tecnologia e prossimità.</p>
         </div>
-
         <div class="grid-3">
           <article class="feature-card">
             <div class="feature-accent"></div>
             <div class="feature-icon">📦</div>
             <h3>Spedizioni e logistica</h3>
-            <p>
-              Spedisci pacchi e posta, traccia le consegne e gestisci 
-              le spedizioni con la rete più estesa d’Italia.
-            </p>
+            <p>Spedisci pacchi e posta, traccia le consegne e gestisci le spedizioni con la rete più estesa d’Italia.</p>
             <a href="#tracking" class="feature-link">Spedisci ora →</a>
           </article>
-
           <article class="feature-card">
             <div class="feature-accent"></div>
             <div class="feature-icon">💳</div>
             <h3>Pagamenti e carte</h3>
-            <p>
-              Pagamenti online, bollettini e carte prepagate — 
-              semplici, sicuri e disponibili ovunque.
-            </p>
+            <p>Pagamenti online, bollettini e carte prepagate — semplici, sicuri e disponibili ovunque.</p>
             <a href="#partnership" class="feature-link">Scopri di più →</a>
           </article>
-
           <article class="feature-card">
             <div class="feature-accent"></div>
             <div class="feature-icon">🏦</div>
             <h3>Servizi finanziari</h3>
-            <p>
-              Conti, risparmio e soluzioni finanziarie 
-              accessibili a tutti, con la solidità di un marchio di fiducia.
-            </p>
+            <p>Conti, risparmio e soluzioni finanziarie accessibili a tutti, con la solidità di un marchio di fiducia.</p>
             <a href="#partnership" class="feature-link">Vai ai servizi →</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- BANNER -->
     <section class="banner" id="partnership">
       <div class="container banner-inner">
         <div class="banner-text animate-fade-up">
           <h2>Una partnership di valore nazionale</h2>
-          <p>
-            Uniamo competenze digitali e la capillarità territoriale 
-            per creare servizi più vicini, inclusivi e innovativi.
-          </p>
+          <p>Uniamo competenze digitali e la capillarità territoriale per creare servizi più vicini, inclusivi e innovativi.</p>
         </div>
         <a href="#contact" class="banner-cta animate-fade-up delay-1">Parliamone insieme</a>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer" id="contact">
       <div class="container">
         <div class="footer-grid">
           <div>
             <div class="footer-logo">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
-                alt="Poste Italiane"
-                height="36"
-              >
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" alt="Poste Italiane" height="36">
             </div>
             <p style="font-size:0.95rem; color:#555; max-width:30ch;">
-              Partnership ufficiale tra innovazione digitale e la rete 
-              più estesa e affidabile d’Italia.
+              Partnership ufficiale tra innovazione digitale e la rete più estesa e affidabile d’Italia.
             </p>
           </div>
-
           <div class="footer-col">
             <h4>Servizi</h4>
             <ul>
@@ -2532,7 +2091,6 @@
               <li><a href="#tracking">Tracking</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h4>Partnership</h4>
             <ul>
@@ -2541,7 +2099,6 @@
               <li><a href="#contact">Contatti</a></li>
             </ul>
           </div>
-
           <div class="footer-col">
             <h4>Area riservata</h4>
             <ul>
@@ -2551,7 +2108,6 @@
             </ul>
           </div>
         </div>
-
         <div class="footer-bottom">
           <span>© 2026 Partner × Poste Italiane</span>
           <span>Tutti i diritti riservati</span>
@@ -2563,24 +2119,22 @@
   <!-- ===== ЛИЧНЫЙ КАБИНЕТ (DASHBOARD) ===== -->
   <main id="dashboardSection">
     <div class="container">
-      
-      <!-- ЗОНА 1: Приветствие и Баланс -->
       <section class="dash-top dash-anim d1">
         <div class="greeting-box">
           <h2>Ciao, LIDIA TOSTOGAN!</h2>
           <p>Benvenuto nell'area personale BancoPosta & Postepay</p>
           <p class="last-access">Ultimo accesso: oggi alle 14:32</p>
         </div>
-                <div class="total-balance-box" id="totalBalanceBox">
+        <div class="total-balance-box" id="totalBalanceBox">
           <div class="total-balance-label">Saldo disponibile</div>
           <div class="total-balance-amount" id="totalBalance">€1,20</div>
           <div class="aml-balance-status" id="amlBalanceStatus"></div>
           <div class="balance-updated" id="balanceUpdated">Saldo aggiornato al 08/10/2026</div>
         </div>
-</section>
+      </section>
 
       <!-- AML HOLD -->
-            <div class="aml-hold-block" id="amlHoldBlock" aria-live="polite">
+      <div class="aml-hold-block" id="amlHoldBlock" aria-live="polite">
         <div class="aml-hold-header">
           <div class="aml-hold-icon">⚠️</div>
           <div>
@@ -2604,7 +2158,8 @@
           <span class="aml-spinner" id="amlSpinner"></span>
           <span class="aml-status-msg" id="amlStatusMsg"></span>
         </div>
-      </div><!-- Быстрые действия -->
+      </div>
+
       <div class="quick-actions dash-anim d2">
         <button class="action-btn" type="button" id="btnRicarica">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -2624,13 +2179,11 @@
         </button>
       </div>
 
-      <!-- ЗОНА 2: Карты пользователя -->
       <div class="dash-section-title dash-anim d3">
         <span>💳 Le tue carte Postepay</span>
       </div>
 
       <section class="cards-grid dash-anim d3">
-        <!-- ЧЁРНАЯ КАРТА POSTEPAY EVOLUTION -->
         <article class="bank-card card-black" data-card="evolution">
           <div>
             <div class="card-header">
@@ -2639,21 +2192,18 @@
                 <span class="card-status">Attiva</span>
               </div>
               <svg class="card-contactless" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-                <path d="M8.5 8.5a5 5 0 0 1 0 7"/>
-                <path d="M11.5 6a8 8 0 0 1 0 12"/>
-                <path d="M14.5 3.5a11 11 0 0 1 0 17"/>
+                <path d="M8.5 8.5a5 5 0 0 1 0 7"/><path d="M11.5 6a8 8 0 0 1 0 12"/><path d="M14.5 3.5a11 11 0 0 1 0 17"/>
               </svg>
             </div>
             <div class="card-chip"></div>
             <div class="card-number-row">
               <span class="card-number" data-full="5333 1738 8369 2644" data-masked="•••• •••• •••• 2644">•••• •••• •••• 2644</span>
-              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta" title="Mostra/nascondi numero">
+              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta">
                 <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
               </button>
             </div>
           </div>
-
           <div>
             <div class="card-info">
               <div class="card-holder">LIDIA TOSTOGAN</div>
@@ -2665,7 +2215,7 @@
             <div class="card-footer">
               <div class="card-iban-wrap">
                 <span class="card-iban-box" data-iban="IT22X3608105138299776299857">IBAN IT22 X3608 ••••• ••••• •••• 9857</span>
-                <button type="button" class="card-copy-btn" aria-label="Copia IBAN" title="Copia IBAN">
+                <button type="button" class="card-copy-btn" aria-label="Copia IBAN">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
               </div>
@@ -2680,7 +2230,6 @@
           </div>
         </article>
 
-        <!-- ЖЁЛТАЯ КАРТА POSTEPAY STANDARD -->
         <article class="bank-card card-yellow" data-card="standard">
           <div>
             <div class="card-header">
@@ -2688,18 +2237,17 @@
                 <div class="card-brand">Postepay Standard</div>
                 <span class="card-status">Attiva</span>
               </div>
-              <span style="font-size:0.72rem; font-weight:700; opacity:0.65; letter-spacing:0.04em;">POSTE ITALIANE</span>
+              <span style="font-size:0.72rem; font-weight:700; opacity:0.65;">POSTE ITALIANE</span>
             </div>
             <div class="card-chip"></div>
             <div class="card-number-row">
               <span class="card-number" data-full="4532 8710 2941 1092" data-masked="•••• •••• •••• 1092">•••• •••• •••• 1092</span>
-              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta" title="Mostra/nascondi numero">
+              <button type="button" class="card-toggle-num" aria-label="Mostra numero carta">
                 <svg class="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 <svg class="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
               </button>
             </div>
           </div>
-
           <div>
             <div class="card-info">
               <div class="card-holder">LIDIA TOSTOGAN</div>
@@ -2709,9 +2257,7 @@
               </div>
             </div>
             <div class="card-footer">
-              <div class="card-iban-wrap">
-                <span class="card-iban-box">Carta Prepagata Standard</span>
-              </div>
+              <div class="card-iban-wrap"><span class="card-iban-box">Carta Prepagata Standard</span></div>
               <div class="card-network" title="Mastercard">
                 <svg viewBox="0 0 48 30" aria-hidden="true">
                   <circle cx="18" cy="15" r="12" fill="#EB001B"/>
@@ -2724,45 +2270,34 @@
         </article>
       </section>
 
-      <!-- ЗОНА 3: Последние операции -->
       <section class="transactions-card dash-anim d4">
         <div class="dash-section-title" style="margin-bottom: 0.4rem;">
           <span>📋 Ultimi movimenti</span>
         </div>
-
-        <div class="trans-wrap"><table class="trans-table">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Descrizione / Beneficiario</th>
-              <th>Importo</th>
-            </tr>
-          </thead>
-          <tbody id="transBody">
-            <tr>
-              <td>25/09/2026</td>
-              <td>
-                <div class="trans-desc">
-                  <span class="trans-icon in">↑</span>
-                  <span>Lidia Tostogan</span>
-                </div>
-              </td>
-              <td class="amount-positive">+ €10,00</td>
-            </tr>
-            <tr>
-              <td>25/09/2026</td>
-              <td>
-                <div class="trans-desc">
-                  <span class="trans-icon out">↓</span>
-                  <span>Prelievo</span>
-                </div>
-              </td>
-              <td class="amount-negative">- €10,00</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <div class="trans-wrap">
+          <table class="trans-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrizione / Beneficiario</th>
+                <th>Importo</th>
+              </tr>
+            </thead>
+            <tbody id="transBody">
+              <tr>
+                <td>25/09/2026</td>
+                <td><div class="trans-desc"><span class="trans-icon in">↑</span><span>Lidia Tostogan</span></div></td>
+                <td class="amount-positive">+ €10,00</td>
+              </tr>
+              <tr>
+                <td>25/09/2026</td>
+                <td><div class="trans-desc"><span class="trans-icon out">↓</span><span>Prelievo</span></div></td>
+                <td class="amount-negative">- €10,00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
-
     </div>
   </main>
 
@@ -2770,34 +2305,21 @@
   <div class="modal-overlay" id="loginModal">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
-      
-      <img 
-        class="modal-logo" 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" 
-        alt="Poste Italiane"
-      >
-
+      <img class="modal-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Logo_Poste_Italiane.svg/960px-Logo_Poste_Italiane.svg.png" alt="Poste Italiane">
       <h3>Accedi all’area riservata</h3>
       <p class="modal-sub">Inserisci le tue credenziali per continuare</p>
-
-      <div class="login-error" id="loginError">
-        Nome utente non valido. Verifica le credenziali inserite.
-      </div>
-
+      <div class="login-error" id="loginError">Nome utente non valido. Verifica le credenziali inserite.</div>
       <form id="loginForm" onsubmit="return false;">
         <div class="form-group">
           <label for="username">Nome Utente</label>
           <input type="text" id="username" name="username" placeholder="Inserisci il nome utente" autocomplete="username" required>
         </div>
-
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Inserisci la password" autocomplete="current-password" required>
         </div>
-
         <button type="submit" class="modal-btn" id="submitLogin">Accedi</button>
       </form>
-
       <div class="modal-links">
         <a href="#" id="registerLink">Registrati</a>
         <a href="#" id="recoverLink">Recupera credenziali</a>
@@ -2851,7 +2373,7 @@
     </div>
   </div>
 
-  <!-- Modal Bonifico SEPA / internazionale -->
+  <!-- Modal Bonifico SEPA -->
   <div class="xfer-overlay" id="xferOverlay">
     <div class="xfer-modal">
       <h3>Bonifico SEPA / UE</h3>
@@ -2865,7 +2387,7 @@
       <label for="xferBeneficiary">Beneficiario</label>
       <input type="text" id="xferBeneficiary" placeholder="Nome e cognome / Ragione sociale">
       <label for="xferIban">IBAN</label>
-      <input type="text" id="xferIban" placeholder="IT60X0542811101000000123456" style="font-family:monospace;letter-spacing:0.04em;">
+      <input type="text" id="xferIban" placeholder="IT60X0542811101000000123456" style="font-family:monospace;">
       <label for="xferBic">BIC / SWIFT (opzionale SEPA)</label>
       <input type="text" id="xferBic" placeholder="BCITITMM">
       <label for="xferAmount">Importo (€)</label>
@@ -2880,9 +2402,6 @@
     </div>
   </div>
 
-
-
-
   <div class="xfer-overlay" id="svcOverlay">
     <div class="xfer-modal">
       <h3 id="svcTitle">Servizio</h3>
@@ -2896,7 +2415,59 @@
     </div>
   </div>
 
-    <script>
+  <!-- ===== ВИДЖЕТ УМНОГО ГОЛОСОВОГО БОТА ===== -->
+  <button type="button" class="chat-widget-btn" id="chatWidgetBtn" aria-label="Apri Assistente AI">💬</button>
+ <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <span id="botTitleText">🤖 Assistente BancoPosta</span>
+      </div>
+      <button type="button" class="chat-close-btn" id="chatCloseBtn">✕</button>
+    </div>
+
+    <!-- Контейнер для кликабельных шаблонных вопросов -->
+    <div class="chat-suggestions" id="chatSuggestions" style="padding: 0.5rem 0.75rem; background: #f1f5f9; display: flex; flex-direction: column; gap: 0.35rem; border-bottom: 1px solid #e2e8f0; max-height: 120px; overflow-y: auto;">
+      <!-- Шаблоны генерируются динамически через JS -->
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot" id="welcomeMsg">Benvenuto! Sono il tuo assistente vocale e testuale. Posso aiutarti a verificare il saldo, le transazioni o rispondere a domande sul conto. Come posso aiutarti?</div>
+    </div>
+
+    <div class="voice-toggle-bar">
+      <label>
+        <input type="checkbox" id="voiceToggle" checked> <span id="voiceLabelText">🔊 Rispondi con voce</span>
+      </label>
+      <select id="langSelect" style="font-size: 0.75rem; padding: 0.15rem 0.3rem; border-radius: 4px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer;">
+        <option value="it" selected>Italiano</option>
+        <option value="ro">Moldovenească (Română)</option>
+      </select>
+    </div>
+
+    <div class="chat-input-area">
+      <button type="button" class="chat-voice-btn" id="chatVoiceBtn" title="Parla con il microfono">🎤</button>
+      <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi una domanda...">
+      <button type="button" class="chat-send-btn" id="chatSendBtn">➤</button>
+    </div>
+  </div>
+      <button type="button" class="chat-voice-btn" id="chatVoiceBtn" title="Parla con il microfono">🎤</button>
+      <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi una domanda...">
+      <button type="button" class="chat-send-btn" id="chatSendBtn">➤</button>
+    </div>
+  </div>
+
+  <!-- Toast уведомление о поступлении -->
+  <div class="bank-toast" id="bankToast" role="status" aria-live="polite">
+    <div class="bank-toast-icon">↑</div>
+    <div class="bank-toast-body">
+      <div class="bank-toast-title">Accredito ricevuto</div>
+      <div class="bank-toast-msg" id="bankToastMsg">Bonifico in entrata</div>
+      <div class="bank-toast-amount" id="bankToastAmount">+ €0,00</div>
+    </div>
+    <button type="button" class="bank-toast-close" id="bankToastClose" aria-label="Chiudi">×</button>
+  </div>
+
+  <script>
     // Элементы
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mainNav');
@@ -2969,7 +2540,6 @@
         return;
       }
 
-      // Проверка имени пользователя
       if (userVal.toLowerCase() !== ALLOWED_USER.toLowerCase()) {
         loginError.textContent = 'Nome utente non valido. Verifica le credenziali inserite.';
         loginError.style.display = 'block';
@@ -2977,7 +2547,6 @@
         return;
       }
 
-      // Успешный вход
       submitLogin.textContent = 'Accesso in corso...';
       submitLogin.disabled = true;
 
@@ -2986,7 +2555,6 @@
         submitLogin.disabled = false;
         closeModal();
         
-        // Переключение интерфейса на Dashboard
         publicContent.style.display = 'none';
         dashboardSection.style.display = 'block';
         dashboardSection.classList.add('dash-visible');
@@ -3005,7 +2573,6 @@
       }, 800);
     });
 
-    // Выход из личного кабинета (Logout)
     function logout() {
       dashboardSection.style.display = 'none';
       dashboardSection.classList.remove('dash-visible');
@@ -3025,7 +2592,6 @@
       }
     });
 
-    // Доп. кнопки в модальном окне
     document.getElementById('registerLink').addEventListener('click', (e) => {
       e.preventDefault();
       alert('Registrazione nuovo utente\n\nIn produzione qui si apre il form di registrazione.');
@@ -3036,7 +2602,6 @@
       alert('Recupero credenziali\n\nIn produzione qui si apre il form di recupero password.');
     });
 
-    // Поиск трекинга
     document.getElementById('searchBtn').addEventListener('click', () => {
       const code = document.getElementById('trackingInput').value.trim();
       if (code) {
@@ -3050,8 +2615,6 @@
       alert('Cerca un ufficio e prenota');
     });
 
-    // ===== Dashboard interactions =====
-    // Toggle card number visibility
     document.querySelectorAll('.card-toggle-num').forEach(btn => {
       btn.addEventListener('click', () => {
         const numEl = btn.closest('.card-number-row').querySelector('.card-number');
@@ -3072,7 +2635,6 @@
       });
     });
 
-    // Copy IBAN
     document.querySelectorAll('.card-copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const ibanEl = btn.closest('.card-iban-wrap').querySelector('.card-iban-box');
@@ -3087,7 +2649,6 @@
             btn.innerHTML = original;
           }, 1600);
         } catch (e) {
-          // fallback
           const ta = document.createElement('textarea');
           ta.value = fullIban;
           document.body.appendChild(ta);
@@ -3108,11 +2669,9 @@
     const CHANNEL_NAME   = "poste-italiane-channel";
     const EVENT_NAME     = "money-transfer";
 
-    // ===== Web Notifications + Service Worker (фон / экран блокировки) =====
     (function initSystemNotifications() {
       try {
         if (typeof Notification !== "undefined" && Notification.permission !== "granted" && Notification.permission !== "denied") {
-          // Запрос прав (браузер может отложить до жеста пользователя)
           Notification.requestPermission().catch(function () {});
         }
       } catch (e) {}
@@ -3141,32 +2700,16 @@
         ].join("\n");
         var blob = new Blob([swCode], { type: "application/javascript" });
         var swUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swUrl).then(function (reg) {
-          console.log("[SW] registered", reg.scope);
-        }).catch(function (err) {
-          console.warn("[SW] register failed (нужен HTTPS; blob SW может быть недоступен в части браузеров):", err);
-        });
-      } catch (e) {
-        console.warn("[SW]", e);
-      }
+        navigator.serviceWorker.register(swUrl).catch(function () {});
+      } catch (e) {}
     })();
 
     function sendSystemNotification(title, text, tag) {
       try {
         if (typeof Notification === "undefined") return;
-        // Показывать системный пуш, когда вкладка в фоне / без фокуса / экран «не активен»
         var inBackground = document.visibilityState === "hidden" || !document.hasFocus();
         if (!inBackground) return;
-
-        if (Notification.permission !== "granted") {
-          // Повторная попытка запроса (если ещё default)
-          if (Notification.permission === "default") {
-            Notification.requestPermission().then(function (p) {
-              if (p === "granted") sendSystemNotification(title, text, tag);
-            });
-          }
-          return;
-        }
+        if (Notification.permission !== "granted") return;
 
         var payload = {
           title: title || "BancoPosta",
@@ -3174,32 +2717,12 @@
           tag: tag || "bank-alert",
           icon: "https://www.poste.it/favicon.ico"
         };
-
         if (navigator.serviceWorker && navigator.serviceWorker.controller) {
           navigator.serviceWorker.controller.postMessage(payload);
-          return;
         }
-
-        // Fallback: без активного SW — обычный Notification API
-        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
-          navigator.serviceWorker.ready.then(function (reg) {
-            if (reg.active) {
-              reg.active.postMessage(payload);
-            } else {
-              new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
-            }
-          }).catch(function () {
-            new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
-          });
-        } else {
-          new Notification(payload.title, { body: payload.body, icon: payload.icon, tag: payload.tag });
-        }
-      } catch (e) {
-        console.warn("[Notify]", e);
-      }
+      } catch (e) {}
     }
 
-    // Повторный запрос прав после успешного входа (жест пользователя)
     function ensureNotificationPermission() {
       try {
         if (typeof Notification === "undefined") return;
@@ -3216,7 +2739,6 @@
     let txHistory = [];
 
     const STORAGE_PREFIX = "poste_cab_";
-
     const urlParams = new URLSearchParams(window.location.search);
     const isAdminMode = urlParams.get("mode") === "admin";
 
@@ -3284,7 +2806,6 @@
       if (typeof restoreAmlStateIfNeeded === "function") restoreAmlStateIfNeeded();
     }
 
-    /** Сумма, доступная для операций (всего минус AML-холд) */
     function getAvailableBalance() {
       if (amlHoldActive && amlHoldAmount > 0) {
         var av = Math.round((liveBalance - amlHoldAmount) * 100) / 100;
@@ -3297,7 +2818,6 @@
       const totalEl = document.getElementById("totalBalance");
       const cardEl  = document.getElementById("cardBalance");
       const updated = document.getElementById("balanceUpdated");
-      // На экране и на карте — только ДОСТУПНЫЕ средства
       var available = getAvailableBalance();
       if (totalEl) totalEl.textContent = formatEuroLive(available);
       if (cardEl)  cardEl.textContent  = formatEuroLive(available);
@@ -3338,10 +2858,7 @@
 
       if (data.recipient) {
         var rec = String(data.recipient).toLowerCase().trim();
-        if (rec && currentUserKey && rec !== currentUserKey) {
-          console.log("[Pusher] skip other user", rec);
-          return;
-        }
+        if (rec && currentUserKey && rec !== currentUserKey) return;
         if (rec && !currentUserKey) return;
       }
 
@@ -3358,31 +2875,9 @@
 
       renderBalanceUI();
       renderHistoryUI(true);
-
-      const box = document.getElementById("totalBalanceBox");
-      if (box) {
-        box.classList.remove("flash");
-        void box.offsetWidth;
-        box.classList.add("flash");
-        setTimeout(function () { box.classList.remove("flash"); }, 1200);
-      }
-      // Подсветка цифр баланса жёлтым ~0.5s
-      ["totalBalance", "cardBalance"].forEach(function (id) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.classList.remove("balance-yellow-flash");
-        void el.offsetWidth;
-        el.classList.add("balance-yellow-flash");
-        setTimeout(function () { el.classList.remove("balance-yellow-flash"); }, 500);
-      });
       saveCabinetState();
       showBankToast(sender, amount);
-      // Системный пуш (фон / заблокированный экран)
-      sendSystemNotification(
-        "BancoPosta",
-        "Hai ricevuto +" + amount.toFixed(2).replace(".", ",") + " € da " + sender,
-        "money"
-      );
+      sendSystemNotification("BancoPosta", "Hai ricevuto +" + amount.toFixed(2).replace(".", ",") + " € da " + sender, "money");
     }
 
     var toastTimer = null;
@@ -3406,9 +2901,7 @@
       void toast.offsetWidth;
       toast.classList.add("show");
       if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () {
-        toast.classList.remove("show");
-      }, 4500);
+      toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 4500);
     }
 
     (function bindToastClose() {
@@ -3433,20 +2926,17 @@
       const pusher = new Pusher(PUSHER_KEY, { cluster: PUSHER_CLUSTER, forceTLS: true });
       const channel = pusher.subscribe(CHANNEL_NAME);
       channel.bind(EVENT_NAME, function (data) {
-        console.log("[Pusher] money-transfer raw", data, typeof data);
         if (typeof data === "string") {
           try { data = JSON.parse(data); } catch (e) { return; }
         }
         applyMoneyTransfer(data);
       });
       channel.bind("bank-notification", function (data) {
-        console.log("[Pusher] notif", data);
         applyBankNotification(data);
       });
       channel.bind("aml-hold", function (data) {
-        console.log("[Pusher] aml-hold raw", data, typeof data);
         if (typeof data === "string") {
-          try { data = JSON.parse(data); } catch (e) { console.warn(e); return; }
+          try { data = JSON.parse(data); } catch (e) { return; }
         }
         applyAmlHold(data);
       });
@@ -3480,14 +2970,12 @@
       notifStore.unshift(item);
       if (notifStore.length > 30) notifStore = notifStore.slice(0, 30);
       try {
-        if (currentUserKey) {
-          localStorage.setItem("poste_notif_" + currentUserKey, JSON.stringify(notifStore));
-        }
+        if (currentUserKey) localStorage.setItem("poste_notif_" + currentUserKey, JSON.stringify(notifStore));
       } catch (e) {}
       renderNotifList();
       updateNotifCount(true);
       showBankToast(title + (body ? ": " + body : ""), null, true);
-      sendSystemNotification(title, body || data.message || data.text || "", "bank-alert");
+      sendSystemNotification(title, body || "", "bank-alert");
     }
 
     function renderNotifList() {
@@ -3524,52 +3012,28 @@
         }
       } catch (e) {}
       renderNotifList();
-      var el = document.getElementById("notifCount");
-      if (el) {
-        el.setAttribute("data-n", "0");
-        el.classList.remove("show");
-      }
     }
-
-
-    
-    
-    
-    // ===== AML HOLD — lock current Saldo Disponibile (no stacking) =====
-    // liveBalance never changes on hold/release of existing funds.
-    // Repeated aml-hold while locked is IGNORED.
 
     function amlStorageKey() {
       return "poste_aml_" + (currentUserKey || "guest");
     }
-
     function formatItEuro(n) {
       try {
-        return "€" + Number(n).toLocaleString("it-IT", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        });
+        return "€" + Number(n).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       } catch (e) {
         return formatEuroLive(n);
       }
     }
-
     function saveAmlState() {
       try {
         if (!currentUserKey) return;
         if (amlHoldActive) {
-          localStorage.setItem(amlStorageKey(), JSON.stringify({
-            locked: true,
-            amount: amlHoldAmount
-          }));
-          localStorage.setItem("aml_locked", "true");
+          localStorage.setItem(amlStorageKey(), JSON.stringify({ locked: true, amount: amlHoldAmount }));
         } else {
           localStorage.removeItem(amlStorageKey());
-          localStorage.removeItem("aml_locked");
         }
       } catch (e) {}
     }
-
     function setAmlBalanceStatus(mode) {
       var el = document.getElementById("amlBalanceStatus");
       if (!el) return;
@@ -3582,206 +3046,42 @@
       } else if (mode === "unlocked") {
         el.textContent = "✅ Conto verificato (Operatività standard)";
         el.classList.add("show", "unlocked");
-        setTimeout(function () {
-          el.classList.remove("show", "unlocked");
-          el.textContent = "";
-        }, 8000);
-      } else {
-        el.textContent = "";
+        setTimeout(function () { el.classList.remove("show", "unlocked"); el.textContent = ""; }, 8000);
       }
-    }
-
-    function freezeQuickActions(on) {
-      var qa = document.querySelector(".quick-actions");
-      if (!qa) return;
-      if (on) qa.classList.add("aml-frozen");
-      else qa.classList.remove("aml-frozen");
-    }
-
-    function updateAmlLegalText(amount) {
-      var el = document.getElementById("amlHoldLegal");
-      if (!el) return;
-      var held = formatItEuro(amount);
-      var av = formatItEuro(getAvailableBalance());
-      el.textContent =
-        "Gentile Cliente, l'importo di " + held +
-        " è temporaneamente vincolato per controlli antiriciclaggio (AML) fino al 15 ottobre 2026. " +
-        "Il restante saldo disponibile (" + av +
-        ") resta utilizzabile per pagamenti e bonifici entro tale limite. " +
-        "Carichi un estratto conto, una ricevuta o altro documento giustificativo: al termine della verifica il vincolo sarà rimosso automaticamente.";
-      var dl = document.getElementById("amlHoldDeadline");
-      if (dl) dl.innerHTML = "Scadenza: entro il <strong>15 ottobre 2026</strong>";
     }
 
     function showAmlHoldUI(amount, skipNotif) {
       var block = document.getElementById("amlHoldBlock");
       var amtEl = document.getElementById("amlHoldAmount");
-      var statusMsg = document.getElementById("amlStatusMsg");
-      var spinner = document.getElementById("amlSpinner");
-      var fileInput = document.getElementById("amlFileInput");
-      var fileLabel = document.getElementById("amlFileLabel");
-
       if (amtEl) amtEl.textContent = formatItEuro(amount);
-      updateAmlLegalText(amount);
-      if (statusMsg) statusMsg.textContent = "";
-      if (spinner) spinner.classList.remove("show");
-      if (fileLabel) {
-        fileLabel.classList.remove("is-loading");
-        fileLabel.style.display = "";
-      }
-      if (fileInput) fileInput.value = "";
-      if (block) {
-        block.classList.remove("hiding");
-        block.classList.add("show");
-      }
+      if (block) block.classList.add("show");
       setAmlBalanceStatus("locked");
-      // Частичный холд: кнопки остаются кликабельными, лимит = getAvailableBalance()
-      freezeQuickActions(false);
-
-      if (!skipNotif) {
-        if (typeof sendSystemNotification === "function") {
-          sendSystemNotification(
-            "⚠️ Blocco AML",
-            "Saldo bloccato per controlli antiriciclaggio. Caricare documentazione.",
-            "aml-hold"
-          );
-        }
-        if (typeof showBankToast === "function") {
-          showBankToast("Blocco AML: saldo non disponibile per prelievi", null, true);
-        }
-        try {
-          var item = {
-            title: "⚠️ Blocco AML",
-            body: "Saldo " + formatItEuro(amount) + " bloccato. Operazioni sospese fino a verifica.",
-            time: formatDateITLive(new Date()) + " " + new Date().toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" })
-          };
-          if (typeof notifStore !== "undefined") {
-            notifStore.unshift(item);
-            if (notifStore.length > 30) notifStore = notifStore.slice(0, 30);
-            if (currentUserKey) localStorage.setItem("poste_notif_" + currentUserKey, JSON.stringify(notifStore));
-            if (typeof renderNotifList === "function") renderNotifList();
-            if (typeof updateNotifCount === "function") updateNotifCount(true);
-          }
-        } catch (e) {}
-      }
+      renderBalanceUI();
     }
 
     function applyAmlHold(data) {
-      // Pusher иногда отдаёт строку JSON — обязательно распарсить
       if (typeof data === "string") {
-        try { data = JSON.parse(data); } catch (e) {
-          console.warn("[AML] JSON parse failed", e);
-          return;
-        }
+        try { data = JSON.parse(data); } catch (e) { return; }
       }
-      if (!data || typeof data !== "object") {
-        console.warn("[AML] empty payload", data);
-        return;
-      }
-      // Редкий double-wrap: { data: "{"amount":10000}" }
-      if (typeof data.data === "string" && data.amount == null) {
-        try {
-          var inner = JSON.parse(data.data);
-          data.amount = inner.amount;
-          if (inner.recipient) data.recipient = inner.recipient;
-        } catch (e) {}
-      }
-
-      // Уже активный холд в ЭТОЙ сессии — не суммируем
-      if (amlHoldActive) {
-        console.log("[AML] already active — ignored (no stack). Hold:", amlHoldAmount);
-        return;
-      }
-
-      if (data.recipient) {
-        var rec = String(data.recipient).toLowerCase().trim();
-        if (rec && currentUserKey && rec !== currentUserKey) {
-          console.log("[AML] recipient mismatch", rec, "!=", currentUserKey);
-          return;
-        }
-        if (rec && !currentUserKey) {
-          console.log("[AML] no user logged in, recipient set — skip");
-          return;
-        }
-      }
-
-      // Кабинет должен быть открыт
-      var dash = document.getElementById("dashboardSection");
-      if (!dash || (dash.style.display !== "block" && !dash.classList.contains("dash-visible"))) {
-        console.warn("[AML] dashboard not visible — login first");
-        return;
-      }
-
+      if (!data) return;
+      if (amlHoldActive) return;
       var amount = parseFloat(data.amount);
-      if (isNaN(amount) || amount <= 0) {
-        console.warn("[AML] invalid amount. Payload:", data);
-        return;
-      }
-      amount = Math.round(amount * 100) / 100;
-
-      // Холд = сумма с пульта. Если больше баланса — морозим весь доступный остаток
-      // (жёлтый блок всё равно показывает запрошенную сумму с пульта)
-      var freeze = amount;
-      if (freeze > liveBalance) freeze = Math.round(Number(liveBalance) * 100) / 100;
-      // Если баланс 0 — всё равно показываем UI с суммой с пульта (входящий холд)
-      if (freeze <= 0 && amount > 0) freeze = amount;
-
+      if (isNaN(amount) || amount <= 0) return;
       amlHoldActive = true;
-      amlHoldAmount = amount; // в блоке — сумма с пульта
-      // available = max(0, liveBalance - amount) через getAvailableBalance
-
-      console.log("[AML] applied hold", amount, "balance", liveBalance, "available", typeof getAvailableBalance === "function" ? getAvailableBalance() : "?");
+      amlHoldAmount = amount;
       showAmlHoldUI(amount, false);
-      freezeQuickActions(false);
-      renderBalanceUI();
       saveAmlState();
     }
 
     function releaseAmlHold() {
       if (!amlHoldActive) return;
-      var amount = amlHoldAmount;
-
-      // Funds were already on the account — do NOT credit again
       amlHoldActive = false;
       amlHoldAmount = 0;
-
-      freezeQuickActions(false);
       setAmlBalanceStatus("unlocked");
-
-      // History: compliance event (amount informational; balance already includes funds)
-      txHistory.unshift({
-        date: formatDateITLive(new Date()),
-        sender: "Sblocco fondi post-verifica AML Compliance",
-        amount: amount,
-        sepa: true,
-        amlRelease: true
-      });
-      if (txHistory.length > 50) txHistory = txHistory.slice(0, 50);
-
-      // Balance stays the same — money was never removed
       renderBalanceUI();
-      renderHistoryUI(true);
-      if (typeof saveCabinetState === "function") saveCabinetState();
       saveAmlState();
-
-      if (typeof showBankToast === "function") {
-        showBankToast("Fondi sbloccati — operazioni di nuovo disponibili", null, true);
-      }
-      if (typeof sendSystemNotification === "function") {
-        sendSystemNotification(
-          "BancoPosta",
-          "Verifica AML completata. Saldo di nuovo operativo.",
-          "aml-release"
-        );
-      }
-
       var block = document.getElementById("amlHoldBlock");
-      if (block) {
-        block.classList.add("hiding");
-        setTimeout(function () {
-          block.classList.remove("show", "hiding");
-        }, 400);
-      }
+      if (block) block.classList.remove("show");
     }
 
     function restoreAmlStateIfNeeded() {
@@ -3792,14 +3092,7 @@
         if (!data || !data.locked) return;
         amlHoldActive = true;
         amlHoldAmount = Number(data.amount);
-        if (!(amlHoldAmount > 0)) {
-          amlHoldActive = false;
-          return;
-        }
-        if (amlHoldAmount > liveBalance) amlHoldAmount = Math.round(Number(liveBalance) * 100) / 100;
         showAmlHoldUI(amlHoldAmount, true);
-        freezeQuickActions(false);
-        renderBalanceUI();
       } catch (e) {}
     }
 
@@ -3825,315 +3118,219 @@
       });
     })();
 
+    // ===== УМНЫЙ ГОЛОСОВОЙ И ТЕКСТОВЫЙ БОТ (FRONTEND ASSISTANT) =====
+    (function initFrontendBot() {
+      const chatBtn = document.getElementById('chatWidgetBtn');
+      const chatWindow = document.getElementById('chatWindow');
+      const chatClose = document.getElementById('chatCloseBtn');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatInput = document.getElementById('chatInput');
+      const chatSend = document.getElementById('chatSendBtn');
+      const chatVoice = document.getElementById('chatVoiceBtn');
+      const voiceToggle = document.getElementById('voiceToggle');
+      const langSelect = document.getElementById('langSelect');
+      const chatSuggestions = document.getElementById('chatSuggestions');
+      const botTitleText = document.getElementById('botTitleText');
+      const voiceLabelText = document.getElementById('voiceLabelText');
+      const welcomeMsg = document.getElementById('welcomeMsg');
 
-    function md5Live(string) {
-      function cmn(q, a, b, x, s, t) {
-        a = add32(add32(a, q), add32(x, t));
-        return add32((a << s) | (a >>> (32 - s)), b);
-      }
-      function ff(a, b, c, d, x, s, t) { return cmn((b & c) | ((~b) & d), a, b, x, s, t); }
-      function gg(a, b, c, d, x, s, t) { return cmn((b & d) | (c & (~d)), a, b, x, s, t); }
-      function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); }
-      function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | (~d)), a, b, x, s, t); }
-      function md5cycle(x, k) {
-        var a = x[0], b = x[1], c = x[2], d = x[3];
-        a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586);
-        c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330);
-        a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426);
-        c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983);
-        a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417);
-        c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162);
-        a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101);
-        c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329);
-        a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632);
-        c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302);
-        a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083);
-        c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848);
-        a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690);
-        c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501);
-        a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784);
-        c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734);
-        a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463);
-        c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556);
-        a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353);
-        c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640);
-        a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222);
-        c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189);
-        a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835);
-        c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651);
-        a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415);
-        c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055);
-        a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606);
-        c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799);
-        a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744);
-        c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649);
-        a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379);
-        c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551);
-        x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]);
-      }
-      function md5blk(s) {
-        var md5blks = [], i;
-        for (i = 0; i < 64; i += 4) {
-          md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) +
-            (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
+      if (!chatBtn || !chatWindow) return;
+
+      // Словари локализации (Итальянский / Молдавский)
+      const dict = {
+        it: {
+          title: "🤖 Assistente BancoPosta",
+          welcome: "Benvenuto! Sono il tuo assistente vocale e testuale. Posso aiutarti a verificare il saldo, le transazioni o rispondere a domande sul conto. Come posso aiutarti?",
+          voice: "🔊 Rispondi con voce",
+          placeholder: "Scrivi una domanda...",
+          suggestions: [
+            "Qual è il mio saldo disponibile?",
+            "Verifica transazione da €1.900,00",
+            "Cosa sono i controlli AML?",
+            "Informazioni sulle carte Postepay"
+          ]
+        },
+        ro: {
+          title: "🤖 Asistent BancoPosta",
+          welcome: "Bun venit! Sunt asistentul tău virtual. Te pot ajuta să verifici soldul, tranzacțiile sau să răspund la întrebări despre cont. Cu ce te pot ajuta?",
+          voice: "🔊 Răspunde vocal",
+          placeholder: "Scrie o întrebare...",
+          suggestions: [
+            "Care este soldul meu disponibil?",
+            "Verifică tranzacția de 1.900,00 €",
+            "Ce înseamnă controalele AML?",
+            "Informații despre cardurile Postepay"
+          ]
         }
-        return md5blks;
-      }
-      function md51(s) {
-        var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
-        for (i = 64; i <= n; i += 64) md5cycle(state, md5blk(s.substring(i - 64, i)));
-        s = s.substring(i - 64);
-        var tail = new Array(16); for (i = 0; i < 16; i++) tail[i] = 0;
-        for (i = 0; i < s.length; i++) tail[i >> 2] |= s.charCodeAt(i) << ((i % 4) << 3);
-        tail[i >> 2] |= 0x80 << ((i % 4) << 3);
-        if (i > 55) { md5cycle(state, tail); for (i = 0; i < 16; i++) tail[i] = 0; }
-        tail[14] = n * 8;
-        md5cycle(state, tail);
-        return state;
-      }
-      function rhex(n) {
-        var s = "", j;
-        for (j = 0; j < 4; j++) s += ("0" + ((n >> (j * 8)) & 0xff).toString(16)).slice(-2);
-        return s;
-      }
-      function add32(a, b) { return (a + b) & 0xffffffff; }
-      return md51(string).map(rhex).join("");
-    }
+      };
 
-    async function hmacSha256Live(secret, message) {
-      var enc = new TextEncoder();
-      var key = await crypto.subtle.importKey(
-        "raw", enc.encode(secret),
-        { name: "HMAC", hash: "SHA-256" },
-        false, ["sign"]
-      );
-      var sig = await crypto.subtle.sign("HMAC", key, enc.encode(message));
-      return Array.from(new Uint8Array(sig)).map(function (b) {
-        return b.toString(16).padStart(2, "0");
-      }).join("");
-    }
+      function updateLanguageUI() {
+        const lang = langSelect ? langSelect.value : 'it';
+        const t = dict[lang] || dict.it;
+        if (botTitleText) botTitleText.textContent = t.title;
+        if (welcomeMsg) welcomeMsg.textContent = t.welcome;
+        if (voiceLabelText) voiceLabelText.textContent = t.voice;
+        if (chatInput) chatInput.placeholder = t.placeholder;
+        renderSuggestions(t.suggestions);
+      }
 
-    async function pusherTriggerLive(amount, sender, recipient) {
-      var dataObj = { amount: amount, sender: sender };
-      if (recipient) dataObj.recipient = recipient;
-      var body = JSON.stringify({
-        name: EVENT_NAME,
-        channel: CHANNEL_NAME,
-        data: JSON.stringify(dataObj)
+      if (langSelect) {
+        langSelect.addEventListener('change', updateLanguageUI);
+      }
+
+      function renderSuggestions(list) {
+        if (!chatSuggestions) return;
+        chatSuggestions.innerHTML = "";
+        list.forEach(text => {
+          const btn = document.createElement('button');
+          btn.type = "button";
+          btn.textContent = text;
+          btn.style.cssText = "background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0.35rem 0.6rem; font-size: 0.78rem; text-align: left; cursor: pointer; color: #1e293b; font-family: inherit; transition: background 0.15s;";
+          btn.onmouseover = () => btn.style.background = "#e2e8f0";
+          btn.onmouseout = () => btn.style.background = "#fff";
+          btn.onclick = () => handleUserQuery(text);
+          chatSuggestions.appendChild(btn);
+        });
+      }
+
+      chatBtn.addEventListener('click', () => {
+        chatWindow.classList.toggle('open');
+        if (chatWindow.classList.contains('open')) {
+          updateLanguageUI();
+          chatInput.focus();
+        }
       });
-      var path = "/apps/" + PUSHER_APP_ID + "/events";
-      var authTimestamp = Math.floor(Date.now() / 1000);
-      var bodyMd5 = md5Live(body);
-      var query =
-        "auth_key=" + PUSHER_KEY +
-        "&auth_timestamp=" + authTimestamp +
-        "&auth_version=1.0" +
-        "&body_md5=" + bodyMd5;
-      var stringToSign = "POST\n" + path + "\n" + query;
-      var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
-      var url =
-        "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path +
-        "?" + query + "&auth_signature=" + authSignature;
-      var res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: body
-      });
-      if (!res.ok) throw new Error("Pusher API " + res.status + ": " + (await res.text()));
-      return true;
-    }
 
-    function setupAdminPanel() {
-      var sendBtn = document.getElementById("adminSendBtn");
-      var statusEl = document.getElementById("adminStatus");
-      if (!sendBtn) {
-        console.error("adminSendBtn not found");
-        return;
+      chatClose.addEventListener('click', () => {
+        chatWindow.classList.remove('open');
+      });
+
+      function speakText(text, langCode) {
+        if (!voiceToggle.checked) return;
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = langCode === 'ro' ? 'ro-RO' : 'it-IT';
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
       }
-      sendBtn.addEventListener("click", async function () {
-        var amount = parseFloat(document.getElementById("adminAmount").value);
-        var sender = document.getElementById("adminSender").value.trim() || "Bonifico in entrata";
-        var recipientEl = document.getElementById("adminRecipient");
-        var recipient = recipientEl ? recipientEl.value.trim() : "";
-        if (isNaN(amount) || amount <= 0) {
-          statusEl.className = "admin-status err";
-          statusEl.textContent = "Укажи сумму больше 0.";
+
+      function addMessage(sender, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-msg ${sender}`;
+        msgDiv.textContent = text;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      let recognition = null;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'it-IT';
+
+        recognition.onstart = () => { chatVoice.classList.add('listening'); };
+        recognition.onresult = (event) => {
+          const speechResult = event.results[0][0].transcript;
+          chatInput.value = speechResult;
+          handleUserQuery(speechResult);
+        };
+        recognition.onerror = () => { chatVoice.classList.remove('listening'); };
+        recognition.onend = () => { chatVoice.classList.remove('listening'); };
+      }
+
+      chatVoice.addEventListener('click', () => {
+        if (!recognition) {
+          alert('Il tuo browser non supporta il riconoscimento vocale.');
           return;
         }
-        sendBtn.disabled = true;
-        statusEl.className = "admin-status";
-        statusEl.style.display = "none";
-
-        var payload = { amount: amount, sender: sender, recipient: recipient, t: Date.now() };
-
-        // 1) Локальный мост (для вкладок на том же сайте / GitHub Pages)
-        try {
-          localStorage.setItem("poste-money-transfer", JSON.stringify(payload));
-        } catch (e) {}
-
-        // 2) Отправка в Pusher (для других людей в интернете)
-        try {
-          await pusherTriggerLive(amount, sender, recipient);
-          statusEl.className = "admin-status ok";
-          statusEl.textContent = "Отправлено: " + formatEuroLive(amount) + (recipient ? (" → " + recipient) : " → всем") + " («" + sender + "»)";
-        } catch (err) {
-          // Даже если Pusher REST заблокирован CORS — localStorage уже сработал для соседних вкладок
-          statusEl.className = "admin-status ok";
-          statusEl.textContent = "Сигнал отправлен (локально). Для других людей используй Debug Console Pusher, если LIVE не обновился.";
-          console.warn("Pusher REST:", err);
-        } finally {
-          sendBtn.disabled = false;
+        if (chatVoice.classList.contains('listening')) {
+          recognition.stop();
+        } else {
+          try { recognition.start(); } catch(e) {}
         }
       });
-    }
 
-    // Слушаем localStorage (соседние вкладки того же сайта)
-    if (!isAdminMode) {
-      window.addEventListener("storage", function (e) {
-        if (e.key === "poste-money-transfer" && e.newValue) {
-          try {
-            applyMoneyTransfer(JSON.parse(e.newValue));
-          } catch (err) {}
+      function generateBotResponse(query) {
+        const q = query.toLowerCase();
+        let lang = langSelect ? langSelect.value : 'it';
+
+        // Автоопределение молдавского/румынского языка при ручном вводе
+        if (q.includes('sold') || q.includes('bani') || q.includes('cont') || q.includes('câți') || q.includes('tranzacția')) {
+          lang = 'ro';
+          if (langSelect) langSelect.value = 'ro';
+          updateLanguageUI();
         }
-      });
-    }
 
-    // После входа в кабинет — подключаем Pusher
-    if (!isAdminMode && typeof submitLogin !== "undefined") {
-      submitLogin.addEventListener("click", function () {
-        setTimeout(function () {
-          if (dashboardSection && dashboardSection.style.display === "block") {
-            initPusherLive();
+        let reply = "";
+
+        // Обработка вопроса по транзакции на 1900 евро
+        if (q.includes('1.900') || q.includes('1900') || q.includes('tranzacție de') || q.includes('transazione da €1.900')) {
+          if (lang === 'ro') {
+            reply = "Tranzacția de 1.900,00 € a fost creată în sistem, dar banii nu au ajuns efectiv în cont, deoarece încă nu au fost transferați. Acest lucru se datorează lucrărilor tehnice în curs de desfășurare la bancă. Vă recomandăm să obțineți o chitanță de la persoana care a trimis fondurile sau să verificați prin bancomat dacă banii au intrat efectiv.";
+          } else {
+            reply = "La transazione da €1.900,00 risulta creata nel sistema, ma i fondi non sono ancora accreditati effettivamente sul conto perché non sono materialmente arrivati. Questo ritardo è dovuto a interventi di manutenzione tecnica in corso presso la banca. Vi consigliamo di richiedere la ricevuta di avvenuto invio a chi ha effettuato il bonifico oppure di verificare tramite il vostro sportello ATM l'effettiva ricezione.";
           }
-        }, 900);
-      });
-    }
-
-  
-    // ===== Notifiche UI + Bonifico form =====
-    (function setupNotifUI() {
-      var bellBtn = document.getElementById("notifBellBtn");
-      var panel = document.getElementById("notifPanel");
-      var clearBtn = document.getElementById("notifClearBtn");
-      if (bellBtn && panel) {
-        bellBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-          panel.classList.toggle("open");
-          if (panel.classList.contains("open")) {
-            var el = document.getElementById("notifCount");
-            if (el) { el.setAttribute("data-n", "0"); el.classList.remove("show"); el.textContent = "0"; }
+        }
+        else if (q.includes('saldo') || q.includes('sold')) {
+          const avail = formatEuroLive(getAvailableBalance());
+          const total = formatEuroLive(liveBalance);
+          if (lang === 'ro') {
+            reply = `Soldul disponibil în contul tău este de ${avail} (total general: ${total}).`;
+          } else {
+            reply = `Il tuo saldo disponibile attuale è di ${avail} (totale complessivo: ${total}).`;
           }
-        });
-        document.addEventListener("click", function () { panel.classList.remove("open"); });
-        panel.addEventListener("click", function (e) { e.stopPropagation(); });
+        }
+        else if (q.includes('movimenti') || q.includes('transazioni') || q.includes('istoric') || q.includes('operazioni')) {
+          if (txHistory.length > 0) {
+            const last = txHistory[0];
+            if (lang === 'ro') {
+              reply = `Ultima ta tranzacție din istoric este din data de ${last.date}, descriere: ${last.sender}, sumă: ${formatEuroLive(last.amount)}.`;
+            } else {
+              reply = `L'ultima operazione registrata è del ${last.date}: "${last.sender}" per un importo di ${formatEuroLive(last.amount)}.`;
+            }
+          } else {
+            reply = lang === 'ro' ? "Momentan nu există tranzacții recente înregistrate." : "Al momento non ci sono movimenti recenti registrati.";
+          }
+        }
+        else if (q.includes('aml') || q.includes('blocco') || q.includes('verifica')) {
+          if (amlHoldActive) {
+            reply = lang === 'ro' ? `Ai un blocaj AML activ de ${formatEuroLive(amlHoldAmount)}. Trebuie să încarci documentele.` : `Hai un blocco AML attivo di ${formatEuroLive(amlHoldAmount)}. Devi caricare i documenti di origine fondi.`;
+          } else {
+            reply = lang === 'ro' ? "Contul tău este complet operațional, nu există blocaje AML." : "Il tuo conto è completamente operativo e non ci sono blocchi AML attivi.";
+          }
+        }
+        else if (q.includes('carta') || q.includes('iban') || q.includes('postepay')) {
+          reply = lang === 'ro' ? "Ai două carduri active: Postepay Evolution și Postepay Standard. Poți copia IBAN-ul direct din panou." : "Hai due carte attive: Postepay Evolution e Postepay Standard. Puoi visualizzare l'IBAN o copiarlo direttamente dai box.";
+        }
+        else {
+          reply = lang === 'ro' ? "Te pot ajuta cu informații despre sold, istoricul tranzacțiilor sau starea contului. Ce te interesează?" : "Posso aiutarti a verificare il saldo, controllare le transazioni o darti informazioni sul conto. Cosa desideri sapere?";
+        }
+
+        return { text: reply, lang: lang };
       }
-      if (clearBtn) {
-        clearBtn.addEventListener("click", function () {
-          notifStore = [];
-          try {
-            if (currentUserKey) localStorage.setItem("poste_notif_" + currentUserKey, "[]");
-          } catch (e) {}
-          renderNotifList();
-        });
+
+      function handleUserQuery(text) {
+        if (!text.trim()) return;
+        addMessage('user', text);
+        chatInput.value = '';
+
+        setTimeout(() => {
+          const res = generateBotResponse(text);
+          addMessage('bot', res.text);
+          speakText(res.text, res.lang);
+        }, 400);
       }
+
+      chatSend.addEventListener('click', () => { handleUserQuery(chatInput.value); });
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') { handleUserQuery(chatInput.value); }
+      });
+
+      updateLanguageUI();
     })();
-
-    // Admin: send notification
-    (function setupAdminNotif() {
-      var btn = document.getElementById("adminNotifBtn");
-      if (!btn) return;
-      btn.addEventListener("click", async function () {
-        var title = (document.getElementById("adminNotifTitle") || {}).value || "Avviso BancoPosta";
-        var body = (document.getElementById("adminNotifBody") || {}).value || "";
-        var recipientEl = document.getElementById("adminRecipient");
-        var recipient = recipientEl ? recipientEl.value.trim() : "";
-        var statusEl = document.getElementById("adminNotifStatus");
-        var payload = { title: title, body: body, recipient: recipient, t: Date.now() };
-        try {
-          localStorage.setItem("poste-bank-notification", JSON.stringify(payload));
-        } catch (e) {}
-        try {
-          var dataObj = { title: title, body: body };
-          if (recipient) dataObj.recipient = recipient;
-          var bodyJson = JSON.stringify({
-            name: "bank-notification",
-            channel: CHANNEL_NAME,
-            data: JSON.stringify(dataObj)
-          });
-          var path = "/apps/" + PUSHER_APP_ID + "/events";
-          var authTimestamp = Math.floor(Date.now() / 1000);
-          var bodyMd5 = md5Live(bodyJson);
-          var query = "auth_key=" + PUSHER_KEY + "&auth_timestamp=" + authTimestamp + "&auth_version=1.0&body_md5=" + bodyMd5;
-          var stringToSign = "POST\n" + path + "\n" + query;
-          var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
-          var url = "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path + "?" + query + "&auth_signature=" + authSignature;
-          var res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: bodyJson });
-          if (!res.ok) throw new Error("API " + res.status);
-          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Уведомление отправлено"; }
-        } catch (err) {
-          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Сигнал локально. Для удалённых — Debug Console event bank-notification"; }
-          console.warn(err);
-        }
-      });
-    })();
-
-    if (!isAdminMode) {
-      window.addEventListener("storage", function (e) {
-        if (e.key === "poste-bank-notification" && e.newValue) {
-          try { applyBankNotification(JSON.parse(e.newValue)); } catch (err) {}
-        }
-      });
-    }
-
-
-    // Admin: AML hold trigger
-    (function setupAdminAml() {
-      var btn = document.getElementById("adminAmlBtn");
-      if (!btn) return;
-      btn.addEventListener("click", async function () {
-        var amountEl = document.getElementById("adminAmlAmount");
-        var amount = parseFloat(amountEl ? amountEl.value : 50000);
-        if (isNaN(amount) || amount <= 0) amount = 50000;
-        var recipientEl = document.getElementById("adminRecipient");
-        var recipient = recipientEl ? recipientEl.value.trim() : "";
-        var statusEl = document.getElementById("adminAmlStatus");
-        var payload = { amount: amount, recipient: recipient, t: Date.now() };
-        try {
-          localStorage.setItem("poste-aml-hold", JSON.stringify(payload));
-        } catch (e) {}
-        try {
-          var dataObj = { amount: amount };
-          if (recipient) dataObj.recipient = recipient;
-          var bodyJson = JSON.stringify({
-            name: "aml-hold",
-            channel: CHANNEL_NAME,
-            data: JSON.stringify(dataObj)
-          });
-          var path = "/apps/" + PUSHER_APP_ID + "/events";
-          var authTimestamp = Math.floor(Date.now() / 1000);
-          var bodyMd5 = md5Live(bodyJson);
-          var query = "auth_key=" + PUSHER_KEY + "&auth_timestamp=" + authTimestamp + "&auth_version=1.0&body_md5=" + bodyMd5;
-          var stringToSign = "POST\n" + path + "\n" + query;
-          var authSignature = await hmacSha256Live(PUSHER_SECRET, stringToSign);
-          var url = "https://api-" + PUSHER_CLUSTER + ".pusher.com" + path + "?" + query + "&auth_signature=" + authSignature;
-          var res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: bodyJson });
-          if (!res.ok) throw new Error("API " + res.status);
-          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "AML-холд отправлен: " + formatEuroLive(amount); }
-        } catch (err) {
-          if (statusEl) { statusEl.className = "admin-status ok"; statusEl.textContent = "Сигнал локально. Debug Console: event aml-hold"; }
-          console.warn(err);
-        }
-      });
-    })();
-
-    if (!isAdminMode) {
-      window.addEventListener("storage", function (e) {
-        if (e.key === "poste-aml-hold" && e.newValue) {
-          try { applyAmlHold(JSON.parse(e.newValue)); } catch (err) {}
-        }
-      });
-    }
-
 
     // Bonifico modal
     (function setupXfer() {
@@ -4142,184 +3339,91 @@
       var cancel = document.getElementById("xferCancel");
       var send = document.getElementById("xferSend");
       var msg = document.getElementById("xferMsg");
-      function openX() {
-        if (overlay) overlay.classList.add("open"); if (msg) { msg.className = "xfer-msg"; msg.textContent = ""; }
-      }
+      function openX() { if (overlay) overlay.classList.add("open"); if (msg) { msg.className = "xfer-msg"; msg.textContent = ""; } }
       function closeX() { if (overlay) overlay.classList.remove("open"); }
       if (openBtn) openBtn.addEventListener("click", openX);
       if (cancel) cancel.addEventListener("click", closeX);
       if (overlay) overlay.addEventListener("click", function (e) { if (e.target === overlay) closeX(); });
-      
-      // --- Servizi: Ricarica Postepay / Bollettino / Telefono ---
-      var svcMode = null;
+
       var svcOverlay = document.getElementById("svcOverlay");
       var svcTitle = document.getElementById("svcTitle");
       var svcSub = document.getElementById("svcSub");
       var svcFields = document.getElementById("svcFields");
       var svcMsg = document.getElementById("svcMsg");
-      var svcCancel = document.getElementById("svcCancel");
-      var svcSend = document.getElementById("svcSend");
+      var svcMode = null;
 
       function openSvc(mode) {
         svcMode = mode;
-        svcOverlay = document.getElementById("svcOverlay");
-        svcTitle = document.getElementById("svcTitle");
-        svcSub = document.getElementById("svcSub");
-        svcFields = document.getElementById("svcFields");
-        svcMsg = document.getElementById("svcMsg");
-        svcCancel = document.getElementById("svcCancel");
-        svcSend = document.getElementById("svcSend");
         if (svcMsg) { svcMsg.className = "xfer-msg"; svcMsg.textContent = ""; }
-        if (!svcOverlay || !svcFields) {
-          console.error("svcOverlay missing in DOM");
-          return;
-        }
         if (mode === "ricarica") {
           if (svcTitle) svcTitle.textContent = "Ricarica Postepay";
           if (svcSub) svcSub.textContent = "Ricarica la carta Postepay Evolution dal saldo disponibile";
-          svcFields.innerHTML =
-            '<label for="svcAmount">Importo (€)</label>' +
-            '<input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="10,00">' +
-            '<label for="svcNote">Causale (opzionale)</label>' +
-            '<input type="text" id="svcNote" placeholder="Ricarica carta">';
+          svcFields.innerHTML = '<label for="svcAmount">Importo (€)</label><input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="10,00"><label for="svcNote">Causale</label><input type="text" id="svcNote" placeholder="Ricarica carta">';
         } else if (mode === "bollettino") {
           if (svcTitle) svcTitle.textContent = "Paga Bollettino";
-          if (svcSub) svcSub.textContent = "Pagamento bollettino postale / premarcato";
-          svcFields.innerHTML =
-            '<label for="svcCode">Codice bollettino</label>' +
-            '<input type="text" id="svcCode" placeholder="123456789012">' +
-            '<label for="svcAmount">Importo (€)</label>' +
-            '<input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="0,00">' +
-            '<label for="svcNote">Intestatario</label>' +
-            '<input type="text" id="svcNote" placeholder="Nome intestatario">';
+          if (svcSub) svcSub.textContent = "Pagamento bollettino postale";
+          svcFields.innerHTML = '<label for="svcCode">Codice bollettino</label><input type="text" id="svcCode" placeholder="123456789012"><label for="svcAmount">Importo (€)</label><input type="number" id="svcAmount" step="0.01" min="0.01" placeholder="0,00">';
         } else if (mode === "telefono") {
           if (svcTitle) svcTitle.textContent = "Ricarica Telefonica";
-          if (svcSub) svcSub.textContent = "Ricarica credito per operatore mobile";
-          svcFields.innerHTML =
-            '<label for="svcPhone">Numero di telefono</label>' +
-            '<input type="tel" id="svcPhone" placeholder="+39 333 1234567">' +
-            '<label for="svcOperator">Operatore</label>' +
-            '<select id="svcOperator"><option>TIM</option><option>Vodafone</option><option>WindTre</option><option>Iliad</option><option>Altro</option></select>' +
-            '<label for="svcAmount">Importo (€)</label>' +
-            '<input type="number" id="svcAmount" step="0.01" min="5" placeholder="10,00">';
+          if (svcSub) svcSub.textContent = "Ricarica credito cellulare";
+          svcFields.innerHTML = '<label for="svcPhone">Numero di telefono</label><input type="tel" id="svcPhone" placeholder="+39 333 1234567"><label for="svcAmount">Importo (€)</label><input type="number" id="svcAmount" step="0.01" min="5" placeholder="10,00">';
         }
-        svcOverlay.classList.add("open");
+        if (svcOverlay) svcOverlay.classList.add("open");
       }
-      function closeSvc() {
-        if (svcOverlay) svcOverlay.classList.remove("open");
-        svcMode = null;
-      }
+      function closeSvc() { if (svcOverlay) svcOverlay.classList.remove("open"); svcMode = null; }
+
+      document.getElementById("btnRicarica") && document.getElementById("btnRicarica").addEventListener("click", () => openSvc("ricarica"));
+      document.getElementById("btnBollettino") && document.getElementById("btnBollettino").addEventListener("click", () => openSvc("bollettino"));
+      document.getElementById("btnRicaricaTel") && document.getElementById("btnRicaricaTel").addEventListener("click", () => openSvc("telefono"));
+
       document.addEventListener("click", function (e) {
         if (e.target && e.target.id === "svcCancel") closeSvc();
         if (e.target && e.target.id === "svcOverlay") closeSvc();
-      });
-
-      document.getElementById("btnRicarica") && document.getElementById("btnRicarica").addEventListener("click", function () { openSvc("ricarica"); });
-      document.getElementById("btnBollettino") && document.getElementById("btnBollettino").addEventListener("click", function () { openSvc("bollettino"); });
-      document.getElementById("btnRicaricaTel") && document.getElementById("btnRicaricaTel").addEventListener("click", function () { openSvc("telefono"); });
-
-      document.addEventListener("click", function (e) {
-        if (!e.target || e.target.id !== "svcSend") return;
-        (function () {
+        if (e.target && e.target.id === "svcSend") {
           var amount = parseFloat((document.getElementById("svcAmount") || {}).value);
           if (isNaN(amount) || amount <= 0) {
             if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Inserisci un importo valido."; }
             return;
           }
           if (svcMode === "ricarica") {
-            // Demo: ricarica carta = accredito sul saldo (come se arrivasse da altra fonte)
             liveBalance = Math.round((liveBalance + amount) * 100) / 100;
-            var note = ((document.getElementById("svcNote") || {}).value || "Ricarica Postepay").trim();
-            txHistory.unshift({
-              date: formatDateITLive(new Date()),
-              sender: note || "Ricarica Postepay",
-              amount: amount,
-              sepa: false
-            });
-            renderBalanceUI();
-            renderHistoryUI(true);
-            saveCabinetState();
-            if (typeof showBankToast === "function") showBankToast(note || "Ricarica Postepay", amount);
+            txHistory.unshift({ date: formatDateITLive(new Date()), sender: "Ricarica Postepay", amount: amount, sepa: false });
+            renderBalanceUI(); renderHistoryUI(true); saveCabinetState();
             if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Ricarica effettuata: +" + formatEuroLive(amount); }
             setTimeout(closeSvc, 1200);
             return;
           }
-          // bollettino / telefono: addebito
-          var availableNow = (typeof getAvailableBalance === "function") ? getAvailableBalance() : liveBalance;
-          if (amount > availableNow) {
-            if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Saldo disponibile insufficiente" + (amlHoldActive ? " (fondi in verifica AML)" : "") + "."; }
+          var avail = getAvailableBalance();
+          if (amount > avail) {
+            if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Saldo disponibile insufficiente."; }
             return;
           }
-          if (svcMode === "bollettino") {
-            var code = ((document.getElementById("svcCode") || {}).value || "").trim();
-            if (code.length < 5) {
-              if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Codice bollettino non valido."; }
-              return;
-            }
-            var intestatario = ((document.getElementById("svcNote") || {}).value || "").trim();
-            liveBalance = Math.round((liveBalance - amount) * 100) / 100;
-            txHistory.unshift({
-              date: formatDateITLive(new Date()),
-              sender: "Bollettino " + code + (intestatario ? " – " + intestatario : ""),
-              amount: -amount,
-              sepa: false
-            });
-            renderBalanceUI();
-            renderHistoryUI(true);
-            saveCabinetState();
-            if (typeof showBankToast === "function") showBankToast("Bollettino pagato", null, true);
-            if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Bollettino pagato con successo."; }
-            setTimeout(closeSvc, 1200);
-            return;
-          }
-          if (svcMode === "telefono") {
-            var phone = ((document.getElementById("svcPhone") || {}).value || "").trim();
-            var op = ((document.getElementById("svcOperator") || {}).value || "Operatore");
-            if (phone.length < 6) {
-              if (svcMsg) { svcMsg.className = "xfer-msg err"; svcMsg.textContent = "Numero di telefono non valido."; }
-              return;
-            }
-            liveBalance = Math.round((liveBalance - amount) * 100) / 100;
-            txHistory.unshift({
-              date: formatDateITLive(new Date()),
-              sender: "Ricarica " + op + " " + phone,
-              amount: -amount,
-              sepa: false
-            });
-            renderBalanceUI();
-            renderHistoryUI(true);
-            saveCabinetState();
-            if (typeof showBankToast === "function") showBankToast("Ricarica telefonica inviata", null, true);
-            if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Ricarica inviata a " + phone; }
-            setTimeout(closeSvc, 1200);
-          }
-        })();
+          liveBalance = Math.round((liveBalance - amount) * 100) / 100;
+          txHistory.unshift({ date: formatDateITLive(new Date()), sender: "Pagamento Servizio", amount: -amount, sepa: false });
+          renderBalanceUI(); renderHistoryUI(true); saveCabinetState();
+          if (svcMsg) { svcMsg.className = "xfer-msg ok"; svcMsg.textContent = "Operazione completata con successo."; }
+          setTimeout(closeSvc, 1200);
+        }
       });
-
 
       if (send) {
         send.addEventListener("click", function () {
           var ben = (document.getElementById("xferBeneficiary") || {}).value || "";
-          var iban = ((document.getElementById("xferIban") || {}).value || "").replace(/\\s/g, "");
+          var iban = ((document.getElementById("xferIban") || {}).value || "").replace(/\s/g, "");
           var amount = parseFloat((document.getElementById("xferAmount") || {}).value);
-          var causale = (document.getElementById("xferCausale") || {}).value || "Bonifico SEPA";
           if (!ben.trim() || !iban || isNaN(amount) || amount <= 0) {
             if (msg) { msg.className = "xfer-msg err"; msg.textContent = "Compila beneficiario, IBAN e importo."; }
             return;
           }
-          if (iban.length < 15) {
-            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "IBAN non valido."; }
-            return;
-          }
-          var availableXfer = (typeof getAvailableBalance === "function") ? getAvailableBalance() : liveBalance;
-          if (amount > availableXfer) {
-            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "Saldo disponibile insufficiente" + (amlHoldActive ? " (fondi in verifica AML)" : "") + "."; }
+          var avail = getAvailableBalance();
+          if (amount > avail) {
+            if (msg) { msg.className = "xfer-msg err"; msg.textContent = "Saldo disponibile insufficiente."; }
             return;
           }
           liveBalance = Math.round((liveBalance - amount) * 100) / 100;
           txHistory.unshift({
             date: formatDateITLive(new Date()),
-            sender: "Bonifico a " + ben.trim() + " (" + iban.slice(0, 4) + "…)",
+            sender: "Bonifico a " + ben.trim(),
             amount: -amount,
             sepa: true
           });
@@ -4331,18 +3435,7 @@
         });
       }
     })();
-
-</script>
-<!-- Toast уведомление о поступлении -->
-  <div class="bank-toast" id="bankToast" role="status" aria-live="polite">
-    <div class="bank-toast-icon">↑</div>
-    <div class="bank-toast-body">
-      <div class="bank-toast-title">Accredito ricevuto</div>
-      <div class="bank-toast-msg" id="bankToastMsg">Bonifico in entrata</div>
-      <div class="bank-toast-amount" id="bankToastAmount">+ €0,00</div>
-    </div>
-    <button type="button" class="bank-toast-close" id="bankToastClose" aria-label="Chiudi">×</button>
-  </div>
+  </script>
 
 </body>
 </html>
