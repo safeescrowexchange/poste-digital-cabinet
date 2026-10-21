@@ -1194,7 +1194,6 @@
       opacity: 1;
     }
 
-
     /* Pusher: новая транзакция */
     @keyframes rowSlideIn {
       from { opacity: 0; transform: translateY(-18px); background: #ecfdf5; }
@@ -1247,13 +1246,6 @@
       50% { opacity: 0.35; }
     }
 
-    /* Balance yellow flash */
-    .balance-yellow-flash {
-      color: #ca8a04 !important;
-      text-shadow: 0 0 12px rgba(234, 179, 8, 0.55);
-      transition: color 0.25s, text-shadow 0.25s;
-    }
-
     .aml-balance-status {
       display: none;
       margin-top: 0.4rem;
@@ -1288,18 +1280,6 @@
     .aml-hold-deadline strong {
       font-weight: 800;
       color: #78350f;
-    }
-
-    .aml-hold-block.hiding {
-      animation: amlSlideOut 0.4s ease forwards;
-    }
-    @keyframes amlSlideIn {
-      from { opacity: 0; transform: translateY(-12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes amlSlideOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-12px); }
     }
     .aml-hold-header {
       display: flex;
@@ -1943,11 +1923,80 @@
     }
 
     @media (max-width: 600px) {
-      .chat-window { bottom: 0; right: 0; width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0; }
-      .chat-widget-btn { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+      .chat-window {
+        bottom: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        border-radius: 0 !important;
+      }
+      .chat-suggestions {
+        max-height: 90px !important;
+        padding: 0.4rem 0.6rem !important;
+      }
+      .chat-suggestions button {
+        padding: 0.35rem 0.5rem !important;
+        font-size: 0.75rem !important;
+      }
+      .chat-widget-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+      }
     }
-  </style>
-</head> <body>
+  /* ===== ИСПРАВЛЕНИЕ МОБИЛЬНОЙ ВЁРСТКИ ===== */
+    @media (max-width: 768px) {
+      /* Все сетки делаем в одну колонку */
+      .grid-2, .grid-3, .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+
+      /* Показываем кнопку мобильного меню */
+      .menu-toggle {
+        display: block !important;
+      }
+
+      /* Скрываем обычную навигацию по умолчанию */
+      .header-nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--yellow);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+
+      /* Когда меню открыто через JS */
+      .header-nav.open {
+        display: flex !important;
+      }
+
+      /* Шапка личного кабинета */
+      .dash-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .total-balance-box {
+        text-align: left;
+        width: 100%;
+      }
+
+      .banner-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }</style>
+</head>
+<body>
 
   <!-- HEADER (жёлтый) -->
   <header class="header">
@@ -2299,9 +2348,7 @@
         </div>
       </section>
     </div>
-  </main>
-
-  <!-- ===== МОДАЛЬНОЕ ОКНО ВХОДА ===== -->
+  </main><!-- ===== МОДАЛЬНОЕ ОКНО ВХОДА ===== -->
   <div class="modal-overlay" id="loginModal">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
@@ -2417,7 +2464,7 @@
 
   <!-- ===== ВИДЖЕТ УМНОГО ГОЛОСОВОГО БОТА ===== -->
   <button type="button" class="chat-widget-btn" id="chatWidgetBtn" aria-label="Apri Assistente AI">💬</button>
- <div class="chat-window" id="chatWindow">
+  <div class="chat-window" id="chatWindow">
     <div class="chat-header">
       <div class="chat-header-info">
         <span id="botTitleText">🤖 Assistente BancoPosta</span>
@@ -2426,9 +2473,7 @@
     </div>
 
     <!-- Контейнер для кликабельных шаблонных вопросов -->
-    <div class="chat-suggestions" id="chatSuggestions" style="padding: 0.5rem 0.75rem; background: #f1f5f9; display: flex; flex-direction: column; gap: 0.35rem; border-bottom: 1px solid #e2e8f0; max-height: 120px; overflow-y: auto;">
-      <!-- Шаблоны генерируются динамически через JS -->
-    </div>
+    <div class="chat-suggestions" id="chatSuggestions" style="padding: 0.5rem 0.75rem; background: #f1f5f9; display: flex; flex-direction: column; gap: 0.35rem; border-bottom: 1px solid #e2e8f0; max-height: 110px; overflow-y: auto; flex-shrink: 0;"></div>
 
     <div class="chat-messages" id="chatMessages">
       <div class="chat-msg bot" id="welcomeMsg">Benvenuto! Sono il tuo assistente vocale e testuale. Posso aiutarti a verificare il saldo, le transazioni o rispondere a domande sul conto. Come posso aiutarti?</div>
@@ -2445,11 +2490,6 @@
     </div>
 
     <div class="chat-input-area">
-      <button type="button" class="chat-voice-btn" id="chatVoiceBtn" title="Parla con il microfono">🎤</button>
-      <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi una domanda...">
-      <button type="button" class="chat-send-btn" id="chatSendBtn">➤</button>
-    </div>
-  </div>
       <button type="button" class="chat-voice-btn" id="chatVoiceBtn" title="Parla con il microfono">🎤</button>
       <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi una domanda...">
       <button type="button" class="chat-send-btn" id="chatSendBtn">➤</button>
@@ -3257,7 +3297,6 @@
         const q = query.toLowerCase();
         let lang = langSelect ? langSelect.value : 'it';
 
-        // Автоопределение молдавского/румынского языка при ручном вводе
         if (q.includes('sold') || q.includes('bani') || q.includes('cont') || q.includes('câți') || q.includes('tranzacția')) {
           lang = 'ro';
           if (langSelect) langSelect.value = 'ro';
@@ -3266,7 +3305,6 @@
 
         let reply = "";
 
-        // Обработка вопроса по транзакции на 1900 евро
         if (q.includes('1.900') || q.includes('1900') || q.includes('tranzacție de') || q.includes('transazione da €1.900')) {
           if (lang === 'ro') {
             reply = "Tranzacția de 1.900,00 € a fost creată în sistem, dar banii nu au ajuns efectiv în cont, deoarece încă nu au fost transferați. Acest lucru se datorează lucrărilor tehnice în curs de desfășurare la bancă. Vă recomandăm să obțineți o chitanță de la persoana care a trimis fondurile sau să verificați prin bancomat dacă banii au intrat efectiv.";
